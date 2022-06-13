@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta th:substituteby="fragments/head_meta :: meta"></meta>
+  <meta th:substituteby="fragments/resources :: head_resources"></meta>
+  
+  <link rel="stylesheet" href="../styles/cht.css">
+  <link rel="stylesheet" href="../styles/tab2.css">
+  <script src="../scripts/redips-drag-source.js"></script>
+  <script src="../scripts/cht.js"></script>
+   
+</head>
+
+<body>
+<!-- 可在此設定 modal 的寬度，預設為 600px  -->
+  <style type="text/css">
+  .modal-dialog {
+     width:800px 
+  }
+  </style>
+  
+  <div class="container">
+    <div th:substituteby="fragments/body_header :: body_header"></div>
+
+    <div class="row" data-ng-app="ods703eApp">
+      <div class="container"  data-ng-controller="ods703eController">
+
+        <div class="row-fluid">
+          <div class="btn-toolbar pull-right">
+            <button type="button" class="btn btn-primary" data-ng-click="createVer()">
+                <span class="glyphicon glyphicon-plus"></span> 新增版本
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="saveVer()" data-ng-disabled="inState('INIT','RESETD')">
+                <span class="glyphicon glyphicon-edit"></span> 修改
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="reset()">
+              <i class="glyphicon glyphicon-refresh"></i>清除
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="print()" data-ng-disabled="inState('INIT','RESETD')">
+                <span class="glyphicon glyphicon-print"></span> 列印
+            </button>
+<!--             <button type="button" class="btn btn-primary"> -->
+<!--                 <span class="glyphicon glyphicon-book"></span> 另存新檔 -->
+<!--             </button> -->
+            <button type="button" class="btn btn-primary" data-ng-click="publishVer()" data-ng-disabled="inState('INIT','RESETD')">
+                <span class="glyphicon glyphicon-cloud-upload"></span> 發佈
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="unPublishVer()" data-ng-disabled="inState('INIT','RESETD')">
+                <span class="glyphicon glyphicon-cloud-download"></span> 下架
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="preview()" data-ng-disabled="inState('INIT','RESETD');chkPattern();">
+                <span class="glyphicon glyphicon-picture"></span> 預覽
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="queryVerAll()">
+                <span class="glyphicon glyphicon-search"></span> 顯示含標記刪除的版本
+            </button>
+<!--             <button type="button" class="btn btn-primary" data-ng-click="parsePackageLayout()"> -->
+<!--                 <span class="glyphicon glyphicon-search"></span> parsePackageLayout -->
+<!--             </button> -->
+          </div>
+        </div>
+
+        <section>
+          <form class="form-inline" name="ods703eForm" data-c-enter-tab  data-c-form-validation={ignoreHidden:false}>
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                  <span th:text="${FUNCTION_ID}"></span> <span class="text-muted">主題版本管理</span>
+                </h3>
+              </div>
+              <div class="panel-body">
+                <fieldset>
+                  <p>
+                      <ul class="tabs">
+                          <li><a href="#packageInfo">基本資料</a></li>
+                          <li><a href="#metadata">詮釋資料</a></li>
+                          <li><a href="#addResource">加入素材及案例</a></li>
+                          <li><a href="#editResource">編排素材及案例</a></li>
+                      </ul>
+                  
+<!--                       <ul class="nav nav-tabs"> -->
+<!--                         <li class="active"><a href="#packageInfo" data-toggle="tab">基本資料</a></li> -->
+<!--                         <li><a href="#metadata" data-toggle="tab">詮釋資料</a></li> -->
+<!--                         <li><a href="#addResource" data-toggle="tab">加入素材及案例</a></li> -->
+<!--                         <li><a href="#editResource" data-toggle="tab">編排素材及案例</a></li> -->
+<!--                       </ul> -->
+                      
+<!--                       <ul class="cus_css"> -->
+<!--                           <li data-ng-repeat="tab in tabs"  -->
+<!--                               data-ng-class="{active:isActiveTab(tab.url)}"  -->
+<!--                               data-ng-click="onClickTab(tab)">{{tab.title}}</li> -->
+<!--                       </ul> -->
+<!--                       <div id="mainView"> -->
+<!--                           <div data-ng-include="currentTab"></div> -->
+<!--                       </div> -->
+                  </p>
+<!--                   <div class="tab-content"> -->
+<!--                     <div id="packageInfo" class="tab-pane active"> -->
+<!--                    <script type="text/ng-template" id="packageInfo"> -->
+                   <div>
+                     <div id="packageInfo">
+                      <table class="form-group" style="width: 100%;">
+                        <thead>
+                          <tr class="row">
+                              <th>
+                              </th>
+                              <th>
+                              </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="row" >
+                            <th width="10%" style="text-align:right">
+                              <label for="name" class="control-label">版本名稱：</label>
+                            </th>
+                            <td width="90%">
+                              <input type="text" id="name" name="name" class="form-control" data-ng-model="model.name" required placeholder="請輸入版本名稱…" style="width:630px">
+                            </td>
+                          </tr>
+                          <tr class="row" >
+                            <th style="text-align:right">
+                              <label for="description" class="control-label">版本說明：</label>
+                            </th>
+                            <td>
+                              <textarea id="description" name="description" class="form-control" data-ng-model="model.description" rows="5" style="width:630px"></textarea>
+                            </td>
+                          </tr>
+                          <tr class="row" >
+                            <th style="text-align:right">
+                              <label for="delMk" class="control-label">刪除註記：</label>
+                            </th>
+                            <td>
+                              <select class="form-control" data-ng-model="model.delMk">
+                                <option value="false">N</option>
+                                <option value="true">Y</option>
+                              </select>
+                            </td>
+                          </tr>
+                          <tr class="row" >
+                            <th width="10%" style="text-align:right">
+                              <label for="materialFile" class="control-label">版次：</label>
+                            </th>
+                            <td width="90%">
+                              <input type="text" id="ver" name="id.ver" class="form-control" data-ng-model="model.id.ver" disabled="disabled">
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div class="panel panel-default">
+                          <div class="panel-body">
+                              <div class="grid-style" data-ng-grid="girdObject1"
+                                 style="display: inline-block; height: 360px; width: 1076px;">
+                              </div>
+                          </div>
+                      </div>
+<!--                    </script> -->
+                    </div>
+                    
+<!--                     <div id="metadata" class="tab-pane"> -->
+<!--                    <script type="text/ng-template"  id="metadata"> -->
+                      <div id="metadata">
+                        <table class="form-group" style="width: 100%;">
+                        <thead>
+                          <tr class="row">
+                              <th>
+                              </th>
+                              <th>
+                              </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="row" data-ng-repeat="item in commonMetadata track by $index">
+                            <th width="20%" style="text-align:right">
+                              <label for="dataKey{{$index}}" class="control-label">{{item.dataKey}}：</label>
+                            </th>
+                            <td width="80%">
+                              <input ng-if="item.dataType == 'text'" type="text" class="form-control" data-ng-model="item.dataValue">
+                              <input ng-if="item.dataType == 'date'" type="text" class="form-control" data-ng-model="item.dataValue" data-c-date-picker="{chrono : 'Minguo', format : 'yyy/MM/dd', converter : 'Raw', trigger : 'focus'}"/>
+                            </td>
+                          </tr>                          
+                        </tbody>
+                      </table>
+                      
+                      <div class="panel panel-default">
+                        <div class="panel-body">
+                          <table class="form-group" style="width: 100%;">
+                            <thead>
+                              <tr class="row">
+                                  <th>
+                                  </th>
+                                  <th>
+                                  </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr class="row" >
+                                <td colspan="5">
+                                  <p>
+                                    <label for="materialName" class="control-label">自訂其他詮釋資料：</label>
+                                    <button type="button" class="btn btn-default btn-xl" data-ng-click="addMetadata()">
+                                        <span class="glyphicon glyphicon-plus"></span> 新增詮釋資料項目
+                                    </button>
+                                  </p>
+                                </td>
+                              </tr>
+                              <tr class="row" data-ng-repeat="item in extraMetadata track by $index">
+                                <th style="text-align:right">
+                                  <label for="materialNote" class="control-label">鍵項：</label>
+                                </th>
+                                <td>
+                                  <input type="text" class="form-control" data-ng-model="item.dataKey">
+                                </td>
+                                <th style="text-align:right">
+                                  <label for="materialNote" class="control-label">鍵值：</label>
+                                </th>
+                                <td>
+                                  <input type="text" class="form-control" data-ng-model="item.dataValue">
+                                </td>
+                                <td>
+                                  <button type="button" class="btn btn-danger btn-sm" data-ng-click="removeMetadata($index)"><span class="glyphicon glyphicon-remove"></span></button>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+<!--                     </script> -->
+                  </div>
+                    
+<!--                     <div id="addResource" class="tab-pane"> -->
+<!--                    <script type="text/ng-template" id="addResource"> -->
+                     <div id="addResource">
+                       <p>
+                          <div class="row">
+                              <div class="col-md-12">
+                                  <button type="button" class="btn btn-primary"  data-ng-click="openChoseResource()">挑選素材及案例</button>
+                              </div>
+                          </div>
+                       </p>
+                       <div class="panel panel-default">
+                          <div class="panel-body">
+                              <div class="grid-style" data-ng-grid="girdObject2"
+                                 style="display: inline-block; height: 360px; width: 1076px;">
+                              </div>
+                          </div>
+                      </div>
+<!--                    </script> -->
+                    </div>
+                    
+<!--                     <div id="editResource" class="tab-pane"> -->
+<!--                    <div id="editResource"> -->
+                    <div id="editResource">
+                       <p>        
+                          <div class="row">
+                              <div class="col-md-12">
+                                  <button type="button" class="btn btn-primary"  data-ng-click="openChoseLayout()">匯入範本</button>
+                              </div>
+                          </div>
+                      </p>
+                      <div id="main_container">
+                        <div id="drag">
+                          <!-- left container -->
+                          <div id="left" style="overflow:auto; height:700px;">
+                              <table id="table1">
+                                  <tbody>
+                                      <!-- Common Resources -->
+                                      <tr data-ng-repeat="item in commonRes track by $index" repeat-complete="initDrag()">
+                                        <td class="dark">
+                                          <div id="a{{$index}}" class="drag clone" style="white-space:nowrap;text-align:left;">
+<!--                                             {{item.resName}}<br/> -->
+                                            <textarea id="resId{{item.resourceId}}resVer{{item.resourceVer}}" rows="4" cols="20" style="width:100%;">文字方塊</textarea>                                            
+                                          </div>
+                                        </td>
+                                      </tr> 
+                                      <!-- Package Version Resources -->
+                                      <tr data-ng-repeat="item in gridData2 track by $index" repeat-complete="initDrag()">
+                                        <td class="dark">
+                                          <div id="b{{$index}}" class="drag clone" style="white-space:nowrap;text-align:left;">
+                                            {{item.resName}} 版本{{item.resourceVer}}<br/>
+                                            <div ng-if="item.format == 'image'">
+                                                <img id="resId{{item.resourceId}}resVer{{item.resourceVer}}" th:src="@{'/ODS308E/public/resource/{{item.resourceId}}/image/{{item.resourceId}}-{{item.resourceVer}}.png'}" style="width:150px;height:120px">
+                                            </div>
+                                            <div ng-if="item.format != 'image'">
+                                                <img id="resId{{item.resourceId}}resVer{{item.resourceVer}}" src="../images/{{item.format}}.png" style="width:150px;height:120px">
+                                            </div>
+                                          </div>
+                                        </td>
+                                      </tr>          
+                                  </tbody>
+                              </table>
+                          </div><!-- left container -->
+                          <!-- right container -->
+                          <div id="right">
+                              <div class="css_tr" data-ng-repeat="pattern in patternData track by $index" ng-init="rowIndex = $index">
+                                <div ng-repeat="n in [] | range:pattern" repeat-complete="initDrag()">
+                                
+                                  <div ng-if="pattern==3">
+                                    <div ng-if="n==0" class="css_td css_td_left">
+                                      <div class="css_cell">  
+                                        <table id="table2">
+                                          <tr>                                
+                                            <td class="mark" id="row{{rowIndex}}col{{n}}"></td>
+                                          </tr>
+                                        </table>
+                                      </div>
+                                    </div>
+                                    
+                                    <div ng-if="n!=0" class="css_td">
+                                      <div class="css_cell">  
+                                        <table id="table2">
+                                          <tr>                                
+                                            <td class="mark" id="row{{rowIndex}}col{{n}}"></td>
+                                          </tr>
+                                        </table>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  
+                                  <div ng-if="pattern==2">
+                                    <div ng-if="n==0" class="css_td2a">
+                                      <div class="css_cell">  
+                                        <table id="table2">
+                                          <tr>                                
+                                            <td class="mark2" id="row{{rowIndex}}col{{n}}"></td>
+                                          </tr>
+                                        </table>
+                                      </div>
+                                    </div>
+                                    
+                                    <div ng-if="n!=0" class="css_td2b">
+                                      <div class="css_cell">  
+                                        <table id="table2">
+                                          <tr>                                
+                                            <td class="mark2" id="row{{rowIndex}}col{{n}}"></td>
+                                          </tr>
+                                        </table>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  
+                                  <div ng-if="pattern==1">
+                                    <div class="css_td3c">
+                                      <div class="css_cell">  
+                                        <table id="table2">
+                                          <tr>                                
+                                            <td class="mark3" id="row{{rowIndex}}col{{n}}"></td>
+                                          </tr>
+                                        </table>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  
+                                </div>
+                              </div>
+                              
+                              <div class="css_tr">
+                                <div class="css_td3">
+                                    <table id="table2">
+                                        <tr>
+                                          <td class="trash">垃圾桶</td>
+                                        </tr>
+                                    </table>
+                                </div>                  
+                              </div>
+                              
+                          </div>
+                           
+                        </div>
+                      </div>
+
+                    </div>
+                        
+                   </div>
+                  
+                </fieldset>
+              </div>
+             </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div th:substituteby="fragments/body_footer :: footer"></div>
+  <div th:substituteby="fragments/resources :: body_resources"></div>
+
+  <script type="text/javascript" th:src="@{/scripts/ods703e_02.js}"></script>
+  <script type="text/javascript" th:src="@{/scripts/filters/commonFilter.js}"></script>
+</body>
+
+</html>

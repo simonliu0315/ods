@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org"
+  xmlns:wro4j="https://github.com/sevensource/wro4spring-thymeleaf-dialect">
+
+<head th:fragment="head_resources" th:remove="tag">
+<link rel="shortcut icon" th:href="@{/images/favicon.ico}">
+
+<link rel="stylesheet" type="text/css" wro4j:style="theme" />
+<link rel="stylesheet" th:href="@{/styles/common/environment/gh-fork-ribbon.css}"
+  th:if="${not #strings.isEmpty(ENVIRONMENT_DISPLAY_NAME)}">
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+    <script th:src="@{/assets/html5shiv/3.7.0/html5shiv.min.js}"></script>
+    <script th:src="@{/assets/respond/1.4.2/dest/respond.matchmedia.addListener.min.js}"></script>
+    <script th:src="@{/assets/respond/1.4.2/dest/respond.min.js}"></script>
+    <script th:src="@{/scripts/common/angular-directives-shiv.js}"></script>
+    <script th:src="@{/scripts/common/ie8-javascript-shiv.js}"></script>
+    <link rel="stylesheet" th:href="@{/styles/common/environment/gh-fork-ribbon.ie.css}"
+      th:if="${not #strings.isEmpty(ENVIRONMENT_DISPLAY_NAME)}">
+  <![endif]-->
+  
+<!-- windows is not work in IE8/IE9 http://msdn.microsoft.com/en-us/library/ie/gg589530(v=vs.85).aspx -->
+<!--[if lte IE 9]>
+    <script th:src="@{/scripts/common/console-api-shiv.js}"></script>
+  <![endif]-->
+  
+</head>
+
+<body th:fragment="body_resources" th:remove="tag">
+  <script wro4j:script="ods_external_thirdparty"></script>
+</body>
+
+</html>

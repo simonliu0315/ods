@@ -1,0 +1,6 @@
+﻿Title: 隨選主題資料權改版
+Issue number: F_103M_STS_FDC_SIP_M_00002_00002
+Version: 0.0.1
+Description: 
+1.	隨選主題資料權
+2.	隨選主題瀏覽頁面調整

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta th:substituteby="fragments/head_meta :: meta"></meta>
+
+  <meta th:substituteby="fragments/resources :: head_resources"></meta>
+</head>
+
+<body>
+
+  <div class="container">
+    <div th:substituteby="fragments/body_header :: body_header"></div>
+
+    <div class="row" data-ng-app="sls002eApp">
+      <div class="container"  data-ng-controller="sls002eController">
+
+        <div class="row-fluid">
+          <div class="btn-toolbar pull-right">
+            <button type="button" class="btn btn-primary" data-ng-click="create()" data-ng-disabled="inState('QUERYED')">
+              <i class="glyphicon glyphicon-plus"></i>新增
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="save()" data-ng-disabled="inState('INIT','RESETD')">
+              <i class="glyphicon glyphicon-pencil"></i>修改
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="remove()" data-ng-disabled="inState('INIT','RESETD')">
+              <i class="glyphicon glyphicon-remove"></i>刪除
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="query()">
+              <i class="glyphicon glyphicon-search"></i>查詢
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="reset()">
+              <i class="glyphicon glyphicon-refresh"></i>清除
+            </button>
+          </div>
+        </div>
+
+        <section>
+          <form class="form-inline"  data-c-enter-tab>
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                  <span th:text="${FUNCTION_ID}"></span> <span class="text-muted">特別預算期別檔維護</span>
+                </h3>
+              </div>
+              <div class="panel-body">
+                <fieldset>
+                  <legend>期別</legend>
+                <table class="form-group" style="width: 100%;">
+                  <thead>
+                    <tr class="row">
+                        <th>標頭
+                        </th>
+                        <th>
+                        </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="row" >
+                      <th width="20%" style="text-align:right">
+                        <label for="ped" class="control-label">期別：</label>
+                      </th>
+                      <td width="80%">
+                        <input type="text" id="ped" name="ped" class="form-control" data-ng-model="model.ped" data-ng-maxlength="3" required>
+                      </td>
+                    </tr>
+                    <tr class="row">
+                      <th style="text-align:right">
+                        <label for="styr" class="control-label">起始年度：</label>
+                      </th>
+                      <td>
+                        <input type="text" id="styr" name="styr" class="form-control" data-ng-model="model.styr" data-ng-maxlength="3" 
+                            data-c-date-picker="{format : 'yyy'}"/>~
+                        <input type="text" id="edyr" name="edyr" class="form-control" data-ng-model="model.edyr" data-ng-maxlength="3" data-c-date-picker="{format : 'yyy'}"/>
+                      </td>
+                    </tr>
+                    <tr class="row">
+                      <th style="text-align:right">
+                        <label for="changeAge" class="control-label">新年度是否更改機關：</label>
+                      </th>
+                      <td>
+                        <select id="changeAgeType" name="changeAgeType" class="form-control" data-ng-model="changeAgeType" data-ng-maxlength="1"
+                            data-ng-options="changeAgeType.name for changeAgeType in changeAgeList">
+                        </select>(舊資料未輸入者，將預設為'N')
+                      </td>
+                      
+                    </tr>
+                    <tr class="row">
+                      <th style="text-align:right">
+                        <label for="nam" class="control-label">期別：</label>
+                      </th>
+                      <td>
+                        <input type="text" id="nam" name="nam" class="form-control" data-ng-model="model.nam" data-ng-maxlength="60">
+                      </td>
+                    </tr>
+                    <tr class="row">
+                      <th style="text-align:right">
+                        <label for="mdate" class="control-label">修改日期(僅為日曆示範)：</label>
+                      </th>
+                      <td>
+                        <input type="text" id="mdate" name="mdate" class="form-control" data-ng-model="model.mdate" data-ng-maxlength="60" 
+                          data-c-date-picker="{chrono : 'Minguo', format : 'yyy/MM/dd', converter : 'Date', trigger : 'focus'}">
+                      </td>
+                    </tr>
+                    <tr class="row">
+                      <td style="text-align:right">
+                      <button type="button" class="btn btn-primary" data-ng-click="fun()" 
+                          data-ng-disabled="true">
+                        <i class="glyphicon"></i>按鈕
+                      </button>
+                      </td>
+                      <td>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                </fieldset>
+                <div class="grid-style" data-ng-grid="girdObject"
+                   style="display: inline-block; height: 240px;">
+                </div>
+              </div>
+             </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div th:substituteby="fragments/body_footer :: footer"></div>
+  <div th:substituteby="fragments/resources :: body_resources"></div>
+
+  <script type="text/javascript" th:src="@{/scripts/sls002e.js}"></script></body>
+</body>
+
+</html>

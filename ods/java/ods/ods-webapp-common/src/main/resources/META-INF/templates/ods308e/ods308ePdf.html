@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--[if IE 7]> <html lang="zh_TW" class="ie ie7"> <![endif]-->
+<!--[if IE 8]> <html lang="zh_TW" class="ie ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="zh_TW" class="ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="zh_TW"> <!--<![endif]-->
+<head>
+  <meta th:substituteby="fragments/head_meta :: meta"></meta>
+  <link rel="shortcut icon" th:href="@{/images/favicon.ico}">
+  <!-- link rel="stylesheet" type="text/css" wro4j:style="pdfCSS" /-->
+  <link rel="stylesheet" type="text/css" th:href="@{/scripts/preview/vendor/select2/select2.css}" />
+  <link rel="stylesheet" type="text/css" th:href="@{/scripts/preview/vendor/pdfviewer/viewer.min.css}" />
+  <link rel="stylesheet" type="text/css" th:href="@{/styles/preview/pdf.css}" />
+  <link rel="stylesheet" type="text/css" wro4j:style="paginateCSS" />
+  <link rel="stylesheet" type="text/css" wro4j:style="reclineCSS" />
+  <link rel="resource" type="application/l10n" th:href="@{/scripts/preview/vendor/l10n/locale.properties.js}">
+  <meta charset="utf-8" />
+  <meta name="generator" content="cht opendata 1.0" />
+ 
+</head>
+
+<body th:attr="data-site-root=${PreloadDto.siteUrl}, data-locale-root=${PreloadDto.siteUrl}">
+<!--[if lt IE 9 ]>
+<h1 style="color:red;">IE 8以下版本不提供PDF預覽功能，請直接點選下載功能</h1>
+<![endif]-->
+<!--[if gt IE 9]>
+<h3 style="color:red;">預覽因瀏覽器而異，如出現無法預覽請直接點選下載功能</h3>
+<![endif]-->
+<div class="pagination" class="alert alert-info" style="width:1010px; max-width:100%; margin-right: auto; margin-left: auto;">
+      <span th:text="${PreloadDto.name}" style="font-size: 36px; font-family: '微軟正黑體';"></span><br>
+      <span th:utext="${PreloadDto.description}" style="font-size: 20px; font-family: '微軟正黑體';"></span>
+      <div id="pagging">
+      </div>
+      <br/>
+  </div>
+
+<div align="center" style="width:1060px; height:678px; max-width:100%; margin-right: auto; margin-left: auto; border-style: solid; border-color: #ddd; border-width: 1px; border-radius: 4px 4px 4px 4px; padding-top: 20px; padding-bottom: 20px;">
+  <iframe align="center" TITLE="PDF" LONGDESC=" " th:src="@{'/ODS308E/' + ${PreloadDto.packageId} + '/' + ${PreloadDto.packageVer} + '/' + ${PreloadDto.id} + '/' + ${PreloadDto.ver} + '/?preview=Y'}" height="100%" width="1010px" scrolling="no" frameborder="0">
+  </iframe>
+</div>
+
+
+   <script th:inline="javascript">
+  /*<![CDATA[*/
+      var preload_resource = /*[[${PreloadDto}]]*/;
+  /*]]>*/
+  </script>
+  <script type="text/javascript" th:src="@{/scripts/preview/vendor/jquery/3.5.1/jquery-3.5.1.min.js}"></script>
+  <script type="text/javascript" th:src="@{/scripts/preview/vendor/jquery/3.5.1/jquery-migrate-3.3.1.min.js}"></script>
+  <script wro4j:script="paginateJS"></script>
+
+  <script th:inline="javascript">
+  $(function() {
+      var dto = /*[[${PreloadDto.parDtoList}]]*/;
+      var start = 1;
+      $.each(dto, function(index) {
+          if (dto[index].resourceId == preload_resource.id && dto[index].rowPosition == preload_resource.rowPosition && dto[index].columnPosition == preload_resource.columnPosition) {
+              start = index + 1;
+          }
+      });
+      $("#pagging").paginate({
+          count       : /*[[${#lists.size(PreloadDto.parDtoList)}]]*/,
+          start       : start,
+          display     : 20,
+          border                  : false,
+          text_color              : '#888',
+          background_color        : '#EEE',
+          text_hover_color        : 'black',
+          background_hover_color  : '#CFCFCF',
+          mouse                 : 'press',
+          onChange              : function(page){
+              //window.location = /+PreloadDto.parDtoList[page]
+
+              var siteUrl = /*[[${PreloadDto.siteUrl}]]*/;
+              window.location = siteUrl + 'ODS308E/'+ dto[page-1].packageId + '/' + dto[page-1].packageVer + '/' + dto[page-1].resourceId + '/' + dto[page-1].resourceVer +"/" + dto[page-1].rowPosition +"/" + dto[page-1].columnPosition +"/";
+          }
+      });
+  });
+  </script>
+</body>
+
+</html>

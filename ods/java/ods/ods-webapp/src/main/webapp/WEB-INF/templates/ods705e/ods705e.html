@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta th:substituteby="fragments/head_meta :: meta"></meta>
+
+  <meta th:substituteby="fragments/resources :: head_resources"></meta>
+</head>
+
+<body>
+
+  <div class="container">
+    <div th:substituteby="fragments/body_header :: body_header"></div>
+
+    <div class="row" data-ng-app="ods705eApp">
+      <div class="container"  data-ng-controller="ods705eController">
+
+        <div class="row-fluid">
+          <div class="btn-toolbar pull-right">
+            <button type="button" class="btn btn-primary" data-ng-click="query(model.name, 0)">
+              <i class="glyphicon glyphicon-search"></i>查詢
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="create()">
+                <span class="glyphicon glyphicon-plus"></span> 新增
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="save()" data-ng-disabled="inState('INIT','RESETD')">
+                <span class="glyphicon glyphicon-edit"></span> 修改
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="remove()" data-ng-disabled="inState('INIT','RESETD')">
+                <span class="glyphicon glyphicon-remove"></span> 刪除
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="reset()">
+              <i class="glyphicon glyphicon-refresh"></i>清除
+            </button>
+          </div>
+        </div>
+
+        <section>
+          <form class="form-inline" name="ods705eForm" data-c-enter-tab data-c-form-validation>
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                  <span th:text="${FUNCTION_ID}"></span> <span class="text-muted">範本管理</span>
+                </h3>
+              </div>
+              <div class="panel-body">
+                <fieldset>
+                  <table class="form-group" style="width: 100%;">
+                    <thead>
+                      <tr class="row">
+                          <th>
+                          </th>
+                          <th>
+                          </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="row" height="100">
+                        <th width="10%" style="text-align:right">
+                          <label for="name" class="control-label">範本名稱：</label>
+                        </th>
+                        <td colspan="4">
+                          <input type="text" id="name" name="name" class="form-control" data-ng-model="model.name" required placeholder="請輸入範本名稱…" style="width:630px">
+                        </td>
+                      </tr>
+                      <tr class="row" height="100">
+                        <th style="text-align:right">
+                          <label for="pattern" class="control-label">範本設計：</label>
+                        </th>
+                        <td width="20%">              
+                          <label class="radio">
+                              <input type="radio" name="patternDesign" id="patternDesign1" ng-model="patternDesign" value="1">
+                              <img src="../images/column1.jpg" class="img-polaroid" height="30" width="80">
+                        <h4>一欄</h4>
+                          </label>
+                        </td>
+                        <td width="20%">
+                          <label class="radio">
+                              <input type="radio" name="patternDesign" id="patternDesign2" ng-model="patternDesign" value="2">
+                              <img src="../images/column2.jpg" class="img-polaroid" height="30" width="80">
+                        <h4>兩欄</h4>
+                          </label>
+                        </td>
+                        <td width="20%">
+                          <label class="radio">
+                              <input type="radio" name="patternDesign" id="patternDesign3" ng-model="patternDesign" value="3">
+                              <img src="../images/column3.jpg" class="img-polaroid" height="30" width="80">
+                        <h4>三欄</h4>
+                          </label>
+                        </td>
+                        <td>
+                          <label class="radio">
+                              <button type="button" class="btn btn-primary" data-ng-click="addPattern()">
+                                  <span class="glyphicon glyphicon-plus"></span> 新增一列
+                              </button>
+                          </label>
+                        </td>
+                      </tr>
+<!--                       <tr class="row"> -->
+<!--                         <th style="text-align:right"> -->
+<!--                           <label for=pattern class="control-label">範本樣式：</label>                          -->
+<!--                         </th> -->
+<!--                         <td colspan="4"> -->
+<!--                           <input type="text" id="pattern" name="pattern" class="form-control"  data-ng-model="model.pattern" data-c-validate="{patternValidation:true}"> -->
+<!--                         </td> -->
+<!--                       </tr> -->
+                      <tr class="row">
+                        <th style="text-align:right">
+                          <label for=pattern class="control-label">範本預覽：</label>                         
+                        </th>
+                        <td colspan="4">
+                          <div data-ng-repeat="item in patternData track by $index">
+                            <img src="../images/column{{item}}.jpg" class="img-polaroid" height="100" width="650">
+                            <button type="button" class="btn  btn-danger" data-ng-click="removePattern($index)">
+                              <span class="glyphicon glyphicon-minus"></span> 刪除
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>                  
+<!--                   <div class="panel panel-default"> -->
+<!--                       <div class="panel-body"> -->
+<!--                           <div class="row"> -->
+<!--                               <div class="col-md-12"> -->
+<!--                                                                                    查詢清單 -->
+<!--                               </div> -->
+<!--                           </div>                           -->
+<!--                       </div> -->
+<!--                   </div> -->
+                  <div class="grid-style" data-ng-grid="girdObject"
+                             style="display: inline-block; height: 240px;">
+                  </div>
+                </fieldset>
+              </div>
+             </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div th:substituteby="fragments/body_footer :: footer"></div>
+  <div th:substituteby="fragments/resources :: body_resources"></div>
+
+  <script type="text/javascript" th:src="@{/scripts/ods705e.js}"></script>
+</body>
+
+</html>

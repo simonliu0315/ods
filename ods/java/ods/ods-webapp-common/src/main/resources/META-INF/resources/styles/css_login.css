@@ -1,0 +1,76 @@
+@charset "utf-8";
+
+
+
+
+
+/*slect 下拉選單(黃底)*/
+
+.slect{
+	font-family: Arial, "新細明體";
+	font-size: 15px;
+	color: #377ddd;
+	background-color: #FF9;
+	border: 2px solid #1880cb;
+	height: 24px;
+}
+	
+	
+/*slect1 下拉選單(白底)*/
+
+.slect1{
+	font-family: Arial, "新細明體";
+	font-size: 15px;
+	color: #226CD0;
+	border: 2px solid #86C4F0;
+	height: 20px;
+}
+	
+	
+/*ltxtg 黑字無連結*/
+.ltxtg{
+	font-family: Arial, "新細明體";
+	font-size: 13px;
+	color: #000;
+}
+
+
+
+/*ltxtb 藍字無連結*/
+.ltxtb{
+	font-family: Arial, "新細明體";
+	font-size: 13px;
+	color: #06F;
+}
+
+	
+/*acc 連結(藍)*/
+
+A.acc:link {
+	font-family: Arial, "新細明體";
+	font-size: 13px;
+	color: #377ddd;
+	text-decoration: underline;
+	line-height: 20px;
+}
+A.acc:hover {
+	font-family: Arial, "新細明體";
+	font-size: 13px;
+	color: #377ddd;
+	text-decoration: none;
+	line-height: 20px;
+}
+A.acc:active {
+	font-family: Arial, "新細明體";
+	font-size: 13px;
+	color: #377ddd;
+	text-decoration: none;
+	line-height: 20px;
+}
+A.acc:visited {
+	font-family: Arial, "新細明體";
+	font-size: 13px;
+	color: #377ddd;
+	text-decoration: none;
+	line-height: 20px;
+}

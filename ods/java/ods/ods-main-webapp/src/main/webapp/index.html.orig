@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hant-TW">
+<meta charset="utf-8">
+<title>作業功能範例</title>
+<link href="./styles/theme/common.css" rel="stylesheet" />
+<body style="background-color: lightYellow;">
+  <div class="jumbotron" style="background-color: yellow;">
+    <h1 style="color: olive;">作業功能範例</h1>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3>前端功能展示</h3>
+          </div>
+          <div class="panel-body">
+            <ul>
+              <li><a href="SLS001E/">基本編排 (SLS001E)</a></li>
+              <li><a href="SLS002E/">基本 CRUD (SLS002E)</a></li>
+              <li><a href="ODS301E/">主題群組列表 (ODS301E)</a></li>
+              <li><a href="ODS302E/">主題列表 (ODS302E)</a></li>              
+              <li><a href="ODS303E/">主題瀏覽 (ODS303E)</a></li>
+              <li><a href="ODS304E/">主題報表列印 (ODS304E)</a></li>
+              <li><a href="ODS305E/">主題訂閱 (ODS305E)</a></li>
+              <li><a href="ODS306E/">社群分享 (ODS306E)</a></li>
+              <li><a href="ODS307E/">喜好程度回饋 (ODS307E)</a></li>
+              <li><a href="ODS308E/">素材及案例線上瀏覽 (ODS308E)</a></li>
+              <li><a href="ODS309E/">使用說明 (ODS309E)</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
+

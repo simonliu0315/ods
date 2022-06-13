@@ -1,0 +1,10 @@
+@media (max-width: 2560px) {
+    .col-lg-height-3 {
+        height:350px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .col-sm-height-6 {
+        height:500px;
+}

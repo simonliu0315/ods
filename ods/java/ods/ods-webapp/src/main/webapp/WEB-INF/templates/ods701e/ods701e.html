@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta th:substituteby="fragments/head_meta :: meta"></meta>
+
+  <meta th:substituteby="fragments/resources :: head_resources"></meta>
+  
+  <style type="text/css">
+.ods701ImportDialog {
+  width: 50px;
+  left: 38%
+}
+
+.modal-body-left {
+    float: left;
+    margin-right:20px;
+}
+
+</style>
+  
+
+<!--script>
+    //optional need to be loaded before angular-file-upload-shim(.min).js
+    FileAPI = {
+        //only one of jsPath or jsUrl.
+        //jsPath: '/js/FileAPI.min.js/folder/', 
+        jsPath: '../scripts/',
+        //jsUrl: 'yourcdn.com/js/FileAPI.min.js',
+
+        //only one of staticPath or flashUrl.
+        //staticPath: '/flash/FileAPI.flash.swf/folder/'
+        staticPath: '../scripts/'
+        //flashUrl: 'yourcdn.com/js/FileAPI.flash.swf'
+    }
+</script>
+<script src="../scripts/angular-file-upload-shim.js"></script>
+<script src="../scripts/angular.min.js"></script>
+<script src="../scripts/angular-file-upload.min.js"></script--> 
+
+
+  
+</head>
+
+<body>
+
+  <div class="container">
+    <div th:substituteby="fragments/body_header :: body_header"></div>
+
+    <div class="row" data-ng-app="ods701eApp">
+      <div class="container"  data-ng-controller="ods701e02Controller">
+
+        <div class="row-fluid">
+          <div class="btn-toolbar pull-right">
+            <button type="button" class="btn btn-primary" data-ng-click="query(model.name, model.description, 0, model.workbookName, model.viewName)">
+              <i class="glyphicon glyphicon-search"></i>查詢
+            </button>
+            <!-- button type="button" class="btn btn-primary" data-ng-click="create()" -->
+            <!-- 1. 查詢後點選資料帶到表單區後，不需disable新增鈕  button type="button" class="btn btn-primary" data-ng-click="createImportUpload()" data-ng-disabled="inState('DSSELECTED','NONDSSELECTED')" -->
+            <button type="button" class="btn btn-primary" data-ng-click="createImportUpload()" data-ng-disabled="">
+                <span class="glyphicon glyphicon-plus"></span> 新增
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="save()" data-ng-disabled="inState('INIT','RESETD','QUERYED')">
+                <span class="glyphicon glyphicon-edit"></span> 修改
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="criteriaDetail()" data-ng-disabled="inState('INIT','RESETD','QUERYED','NONDSSELECTED')">
+                <span class="glyphicon glyphicon-stats"></span> 門檻值管理
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="resDetail()" data-ng-disabled="inState('INIT','RESETD','QUERYED')">
+                <span class="glyphicon glyphicon-list-alt"></span> 版本管理
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="reset()">
+              <i class="glyphicon glyphicon-refresh"></i>清除
+            </button>    
+          </div>
+        </div>
+
+        <section>
+          <form class="form-inline"  data-c-enter-tab data-ng-init="init()">
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                  <span th:text="${FUNCTION_ID}"></span> <span class="text-muted">素材及案例管理</span>
+                </h3>
+              </div>
+              <div class="panel-body">
+                <fieldset>
+                  <p>
+                      <ul class="nav nav-tabs">
+                        <li class="active"><a href="ods701e.html">基本資料</a></li>
+                        <!-- li><a href="ods701e_03.html">素材及案例瀏覽</a></li -->
+                      </ul>
+                  </p>
+                  <table class="form-group" style="width: 100%;">
+                    <thead>
+                      <tr class="row">
+                          <th>
+                          </th>
+                          <th>
+                          </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="row" >
+                        <th width="12%" style="text-align:right">
+                          <label for="materialName02" class="control-label">素材及案例名稱：</label>
+                        </th>
+                        <td>
+                          <input type="text" id="materialName02" name="materialName02" class="form-control" data-ng-model="model.name" required style="width:630px">
+                          <input type="hidden" id="materialName02Backup" name="materialName02Backup" class="form-control" >
+                        </td>
+                      </tr>
+                      <tr class="row" >
+                        <th style="text-align:right">
+                          <label for="materialNote02" class="control-label">素材及案例說明：</label>
+                        </th>
+                        <td>
+                          <textarea id="materialNote02" name="materialNote02" class="form-control" data-ng-model="model.description" rows="5" style="width:630px"></textarea>
+                          <textarea style="display:none;" id="materialNote02Backup" name="materialNote02Backup" class="form-control" rows="5"></textarea>
+                        </td>
+                      </tr>
+                      <tr class="row" >
+                        <th width="20%" style="text-align:right">
+                          <label for="materialFile" class="control-label">素材及案例匯入【新增用】：</label>
+                        </th>
+                        <td width="90%">
+                          <label class="radio">
+                              <input type="radio" name="optionsRadios" id="optionsRadios1" data-ng-model="optionRadios" value="optionImport" data-ng-change="option1Check(optionRadios)"  checked="checked" 
+                              > 匯入素材及案例　
+                              <button type="button" id="importBtn" class="btn btn-primary" data-ng-click="openImportDialog()" data-ng-disabled="optionRadios == 'optionUpload'">選擇素材及案例 </button> 
+                              <span data-ng-show="importSelected">選擇結果: {{ importSelectedView }}</span>
+                              
+                                  <script type="text/ng-template" id="myModalContent.html">
+                                    <div class="modal-header">
+                                            <h3 class="modal-title">請依序選取Workbook、View、格式</h3>
+                                    </div>
+                                    <div class="modal-body">
+                                        <ul>
+                                            <label class="modal-body-left" for="name">Workbook名稱查詢</label>              
+                                              <input class="modal-body-left" id="wbkResName" style="width: 40%;" data-ng-model="wbkResName">
+                                            <button type="button" class="btn btn-primary" data-ng-click="queryImportResource(wbkResName)">
+                                                  <i class="glyphicon glyphicon-search"></i>查詢
+                                            </button>
+                                            <br>
+                                        </ul>
+
+                                        <ul>
+                                            <!--li ng-repeat="workbook in workbooks">
+                                                <a ng-click="selected.workbook = workbook">{{ workbook }}</a>
+                                            </li-->
+  
+                                            <!--select id="danWbk" name="danWbk" data-ng-model = "danWorkbook"  ng-click="selected.danWorkbook = danWorkbook" -->
+                                            <select class="modal-body-left" id="danWbk" name="danWbk" data-ng-model = "danWorkbook"  data-ng-change="danWorkbookChoose(danWorkbook)"
+                                                    multiple class="form-control" data-ng-options="danWorkbook as danWorkbook.name for danWorkbook in danWorkbooks" style="width:150px; height:200px">
+                                            </select>
+
+                                            <select class="modal-body-left" id="danVw" name="danVw" data-ng-model = "danView"  data-ng-change="danViewChoose(danView)"
+                                                    multiple class="form-control" data-ng-options="danView as danView.name for danView in danViews" style="width:150px; height:200px">
+                                            </select>
+
+                                            <select class="modal-body-left" id="fmt" name="fmt" data-ng-model = "format"  data-ng-change="danFormatChoose(format)"
+                                                    multiple class="form-control" data-ng-options="format as format.name for format in formats" style="width:100px; height:200px">
+                                            </select>
+                                            
+                                       </ul>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        <br>
+                                        Workbook: <b>{{ importSelected.danWorkbook[0].name }}</b><br>
+                                        View: <b>{{ importSelected.danView[0].name }}</b><br>
+                                                                                                           格式: <b>{{ importSelected.format[0].name }}</b>
+                                    </div>
+                                     <div class="modal-footer">
+                                        <button class="btn btn-primary" ng-click="ok()" id='importDialogOk' disabled>OK</button>
+                                        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+                                    </div>
+                                  </script>  
+                                  
+                          </label>
+
+                          <br>
+                          <label class="radio">
+                              <input type="radio" name="optionsRadios" id="optionsRadios2" data-ng-model="optionRadios" value="optionUpload" data-ng-change="option2Check(optionRadios)"> 自行上傳　
+                              <!-- input type="file" id="uploadLocalFile"  class="form-control"  value="選擇檔案"   data-ng-click="fileChoose()"  data-ng-file-select="onFileSelect($files)" data-ng-disabled="optionRadios == 'optionImport'" -->
+                              
+                              <!-- button type="button" class="btn btn-primary" data-loading-text="上傳中...." data-ng-click="upload()">
+                                   <i class="glyphicon glyphicon-upload"></i> 上傳
+                              </button -->
+                              
+                          </label>   
+                              <input type="text" id="uploadFileName" name="uploadFileName" class="form-control" style="width:250px;" data-ng-readonly="true"
+                              data-ng-model="files[0].name">
+                              <div class="form-control btn btn-primary" style="position: relative; width:100px;">
+                                                                                                                                                               選擇檔案
+                                  <div style="width:100%;height:100%; position: absolute; top: 0; left: 0;">
+                                    <input type="file" id="uploadLocalFile"  class="form-control"  value="選擇檔案" 
+                                       data-ng-click="fileChoose()" data-ng-file-select="onFileSelect($files)" data-ng-disabled="optionRadios == 'optionImport'" data-ng-model="files"
+                                       style="opacity: 0; height:100%; width:100%; filter: alpha(opacity=0);">
+                                  </div>
+                              </div>                       
+                        </td>
+                      </tr>
+                      <!-- tr class="row" >
+                        <th width="12%" style="text-align:right">
+                          <label class="control-label">View名稱：</label>
+                        </th>
+                        <td>
+                          <input type="text" id="wbkName" name="wbkName" class="form-control" data-ng-model="model.viewName">
+                       </td>
+                      </tr -->
+                     <tr class="row" >
+                        <th width="10%" style="text-align:right">
+                         <label class="control-label">檔案容量：</label>
+                       </th>
+                       <td width="90%">
+                          {{model.filesize}}
+                       </td>
+                    </tr>
+                      <tr class="row" >
+                        <th width="10%" style="text-align:right">
+                          <label for="materialFile" class="control-label">資料集傳送設定【新增用】：</label>
+                        </th>
+                        <td width="90%">
+                          <label class="checkbox">
+                              <input type="checkbox" name="optionscheck" id="optionscheck" data-ng-model="model.toDatastoreSync" data-ng-true-value="1" data-ng-false-value="0" data-ng-change="syncCheck(model.toDatastoreSync)"> 立即傳送【傳送日期：
+                              <!-- input type="text" id="toDatastoreDate" name="toDatastoreDate" class="form-control" data-ng-maxlength="10" data-ng-model="model.toDatastoreDate"  
+                        style="width:20%" data-c-date-picker="{format : 'yyyy/MM/dd'}"  -->
+                              <input type="text" id="toDatastoreDate" name="toDatastoreDate" class="form-control" data-ng-maxlength="10" data-ng-model="model.toDatastoreDate"  
+                        style="width:20%" data-c-date-picker="{format : 'yyy/MM/dd'}"  data-ng-disabled='model.toDatastoreSync==1' >：建議1mb以上的資料集指定往後日期執行批次】
+                              <!-- input class="form-control" data-ng-model="startDate" data-c-validate="{dateValidation : ['yyyMMdd','Minguo']}" data-c-date-picker="{format : 'yyy/MM/dd'}"/ -->
+                        <!-- data-ng-change="model.datastoreDateChange(model.toDatastoreDate)" -->
+                     <br/>
+                          </label>                        
+                        </td>
+                      </tr>
+                      <tr class="row" >
+                        <th width="20%" style="text-align:right">
+                          <label class="control-label">Workbook / View 名稱查詢：</label>
+                        </th>
+                        <td>
+                          Workbook:<input type="text" id="wbkName" name="wbkName" class="form-control" data-ng-model="model.workbookName"> / View:<input type="text" id="wbkName" name="wbkName" class="form-control" data-ng-model="model.viewName">
+                       </td>
+                      </tr>
+
+                    </tbody>
+                  </table>
+                  
+                  <div class="panel panel-default">
+                      <div class="panel-body">
+                          <div class="row">
+                              <div class="col-md-12">
+                                  <a class="accordion-toggle" data-toggle="collapse" href="#list" data-ng-click="showCateDetails = ! showCateDetails">素材及案例分類</a>
+                                  <button type="button" class="btn btn-primary" data-ng-click="showCateDetails = ! showCateDetails"
+                                  data-ng-disabled="false">挑選分類</button>
+                                  <input type="hidden" id="id" name="id" class="form-control" data-ng-model="model.id">
+                              </div>
+                             <div class="panel-body" data-ng-show="showCateDetails">              
+                                  <table class="form-group" style="width: 100%;">
+                                    <tbody>
+                                      <!-- tr class="row">
+                                        <td colspan="3">
+                                          <input type="text" style="width:210px">
+                                          <button type="button" class="btn btn-default btn-sm">
+                                              <span class="glyphicon glyphicon-search"></span> 
+                                          </button>
+                                        </td>                      
+                                      </tr -->
+                                      <tr class="row">
+                                        <td style="width: 30px;">
+                                          <!-- select multiple style="width:250px; height:200px" id="select1" -->
+                                          <select id="cateUnSel" name="cateUnSel" data-ng-model = "model.unSelCategory"
+                                                  multiple class="form-control" data-ng-options="unSelCategory as unSelCategory.name for unSelCategory in unSelCategories" style="width:300px; height:200px">
+                                          </select>
+                                        </td>
+                                        <td class="text-center" style="height:200px">
+                                          <div class="vcenter"><button type="button" class="btn btn-default btn-sm" id="addcategory" data-ng-click="clickAddcategory()"> &gt;&gt;</button></div>
+                                          <div class="vcenter"><button type="button" class="btn btn-default btn-sm" id="delcategory" data-ng-click="clickDelcategory()">&lt;&lt;</button></div>
+                                        </td>
+                                        <td>
+                                         <select id="cateSel" name="cateSel" data-ng-model = "model.selCategory"
+                                                  multiple class="form-control" data-ng-options="selCategory as selCategory.name for selCategory in selCategories" style="width:300px; height:200px">
+                                          </select>
+                                        </td>
+                                        <td>
+ 
+      <!-- pre> model.selCategory = {{model.selCategory}}</pre>
+      <pre> model.unSelCategory = {{model.unSelCategory}}</pre -->
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                </div>  
+                          </div>
+                          <!-- div class="row">
+                                                                            查詢清單
+                          </div -->
+                          <div class="grid-style" data-ng-grid="girdObject1"
+                             style="display: inline-block; height: 240px;">
+                          </div>
+                      </div>
+                  </div>
+                </fieldset>
+              </div>
+             </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div th:substituteby="fragments/body_footer :: footer"></div>
+  <div th:substituteby="fragments/resources :: body_resources"></div>
+
+  <script type="text/javascript" th:src="@{/scripts/ods701e.js}"></script>
+  <script type="text/javascript" th:src="@{/scripts/filters/commonFilter.js}"></script>
+
+  </body>
+</body>
+
+</html>

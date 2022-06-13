@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta th:replace="fragments/external_meta :: meta"></meta>
+  <meta th:replace="fragments/external_resources :: head_resources"></meta>  
+  <meta th:substituteby='fragments/resources :: head_resources'></meta><!-- 套這個 -->
+  <link rel="stylesheet" type="text/css" wro4j:style="odsCommonMCSS" />   <!-- 套這個 -->
+  <link rel="stylesheet" href="/ods-main/styles/mQuery.css" />
+  <style type="text/css">
+  <!--  
+  .lessContent{
+    overflow: hidden;
+    max-height: 122px;
+  }
+  .list-group-item.nonactive {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+  margin-bottom: -15px;
+  background-color: #fff;
+  border: 1px solid #dddddd;
+  }
+  .list-group-item.active{
+  z-index: 2;
+  color: #fff;
+  margin-bottom: -15px;
+  background-color: #428bca;
+  border-color: #428bca;
+  } 
+  .more-tag-btn {
+    font-size:13px;
+    background:none!important;
+    border:none; 
+    padding:0!important;
+    /*border is optional*/
+    /*border-bottom:1px solid #444; */
+  }
+  -->
+  </style>
+</head>
+
+<body th:class="${session.EXTERNAL_USER_STYLE}">
+  <div th:replace="fragments/external_mobile_layout :: header"></div> 
+  <!-- form th:action="@{/ODS301E/initPage/}" method = "post" accept-charset='UTF-8' -->
+  <!-- form method='post' action='/ods-main/ODS301E/rest/cc/0/1/query/' accept-charset='UTF-8' -->
+  <form th:action="@{/ODS301E/noscript/}" method = "post" >
+  <div class="container" style="width: 1006px;">
+      <div class="row">
+        <table width="1010" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr class="txtb">
+              <td height="33" th:background="@{/images/title_bg_b.png}">
+                <table width="250" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td width="30">&nbsp;</td>
+                    <td width="162" class="title">主題群組列表查詢</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr class="txtb">
+            <td valign="top" bgcolor="#FFFFFF"><br />
+              <table width="980" border="0" align="center" cellpadding="2" cellspacing="0">
+              <tbody><tr>
+                <td>
+                   <div id="content" class="container" style="width: 1006px;">
+                   <div class="col-md-3">
+                    <button accesskey="S" type="submit" class="btn btn-default btn-sm" name="btnCommand" value="search">
+                        <span class="glyphicon glyphicon-search"></span> 查詢
+                    </button>
+                   </div>
+                    <div class="col-md-offset-9 ">
+                    <!-- select id="orderByType" onchange="odsGroupQuery();" th:value="${orderByType}" orig-->
+                    <!-- select id="orderByType" name="orderByType" th:onchange="@{'location.href=' + ' \'/ods-main/ODS301E/rest/cc/\' + ' + this.value} + ' + \'/sort\' '   使用單引號: http://stackoverflow.com/questions/24227318/thymeleaf-39-added-on-passing-parameter-to-javascript-function " -->
+                    <!-- select id="orderByType" name="orderByType" onchange="this.form.submit()" th:value="${data.orderByType}" -->
+                    <label for="orderByType">排序條件</label>
+                    <select id="orderByType" name="orderByType" th:value="${data.orderByType}" >
+                        <!-- option value="0" th:selected="${orderByType==0}">更新時間</option orig-->
+                        <option value="0" th:selected="${data.orderByType==0}">更新時間</option>
+                        <!-- option value="1" th:selected="${orderByType==1}">熱門排名</option orig-->
+                        <option value="1" th:selected="${data.orderByType==1}">熱門排名</option>
+                    </select>
+                    <a accesskey="B" href="javascript:void(0);" onclick="history.back();" onkeypress="history.back();" class="btn btn-primary btn-xs pull-right" role="button">BACK</a>
+                    </div>
+                      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                          <tbody>
+                            <tr><td>
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <h4><label for="groupName">關鍵字</label></h4>
+                                            <!-- input type="text" class="form-control" id="groupName" placeholder="請輸入關鍵字"/ -->
+                                            <input type="text" class="form-control" id="groupName" name="groupName" placeholder="請輸入關鍵字" th:value="${data.groupName}" />
+                                            <!-- >button type="button" class="btn btn-default btn-sm" onclick="odsGroupQuery();" -->
+
+                                            <!-- button type="button" class="btn btn-warning btn-xs" onclick="clearGroupName()">
+                                                <span class="glyphicon glyphicon-remove"></span> 清除條件
+                                            </button -->
+                                            <button accesskey="C" type="submit" class="btn btn-warning btn-xs" name="btnCommand" value="clearGroupName">
+                                                <span class="glyphicon glyphicon-remove"></span> 清除條件
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <h4 id="pkgTagBs">分類標籤</h4>
+                                            <!-- div id="tags" class="list-group lessContent">
+                                            </div -->
+                                            
+                                            <div th:attr="class=${data.morePkgTag == 0 ? 'list-group lessContent' : 'list-group'}">
+                                            <input type="hidden" name="morePkgTag" th:value="${data.morePkgTag}" />
+                                            <!-- a th:each="odsPackageTag : ${data.odsPackageTag}" class="list-group-item" th:text="${odsPackageTag}" th:href="@{/list?l=${odsPackageTag}}">
+                                            </a -->
+                                            <p th:each="odsPackageTag : ${data.odsPackageTag}">
+                                              <span th:attr="class=${!#arrays.contains(data.selectedOdsPackageTag, odsPackageTag) ? 'list-group-item nonactive' : 'list-group-item active'}">
+                                                <input type="checkbox"  th:name=selectedOdsPackageTag th:value=${odsPackageTag}  th:text="${odsPackageTag}" th:checked="${#arrays.contains(data.selectedOdsPackageTag, odsPackageTag)}">
+                                              </span>
+                                            </p>
+                                            </div>
+                                            
+                                            <!-- h6 onclick="showMore('tags')">更多標籤...</h6 -->
+                                            <!-- button type="button" class="btn btn-warning btn-xs" onclick="clearSelectedObject('tags')">
+                                                <span class="glyphicon glyphicon-remove"></span> 清除條件
+                                            </button -->      
+                                            <button accesskey="M" class="more-tag-btn" name="btnCommand" value="btnMorePkgTag">更多標籤...</button><p>  
+                                            <button accesskey="C" type="submit" class="btn btn-warning btn-xs" name="btnCommand" value="clearSelectedOdsPackageTag">
+                                                <span class="glyphicon glyphicon-remove"></span> 清除條件
+                                            </button>                    
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <h4 id="resFileExtBs">檔案格式</h4>
+                                            <!-- div id="fileExts" class="list-group lessContent">
+                                            </div -->
+                                            
+                                            <div th:attr="class=${data.moreResFileExt == 0 ? 'list-group lessContent' : 'list-group'}">
+                                            <input type="hidden" name="moreResFileExt" th:value="${data.moreResFileExt}" />
+                                            <!-- a th:each="odsResourceFileExt : ${data.odsResourceFileExt}" class="list-group-item" th:text="${odsResourceFileExt}" th:href="@{/list?l=${odsResourceFileExt}}">
+                                            </a -->
+                                            <p th:each="odsResourceFileExt : ${data.odsResourceFileExt}">
+                                              <span th:attr="class=${!#arrays.contains(data.selectedOdsResourceFileExt, odsResourceFileExt) ? 'list-group-item nonactive' : 'list-group-item active'}">
+                                                <input type="checkbox"  th:name=selectedOdsResourceFileExt th:value=${odsResourceFileExt}  th:text="${odsResourceFileExt}" th:checked="${#arrays.contains(data.selectedOdsResourceFileExt, odsResourceFileExt)}">
+                                              </span>
+                                            </p>
+                                            </div>
+                                                                                        
+                                            <!-- h6 onclick="showMore('fileExts')">更多標籤...</h6 -->
+                                            <!-- button type="button" class="btn btn-warning btn-xs" onclick="clearSelectedObject('fileExts')">
+                                                <span class="glyphicon glyphicon-remove"></span> 清除條件
+                                            </button -->
+                                            <button accesskey="M" class="more-tag-btn" name="btnCommand" value="btnMoreResFileExt">更多標籤...</button><p>
+                                            <button accesskey="C" type="submit" class="btn btn-warning btn-xs" name="btnCommand" value="clearSelectedOdsResourceFileExt">
+                                                <span class="glyphicon glyphicon-remove"></span> 清除條件
+                                            </button>   
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <h4 id="identityTagBs">分眾推廣群</h4>
+                                            <!-- div id="identitys" class="list-group lessContent">
+                                            </div -->
+
+                                            <div th:attr="class=${data.moreIdentityTag == 0 ? 'list-group lessContent' : 'list-group'}">
+                                            <input type="hidden" name="moreIdentityTag" th:value="${data.moreIdentityTag}" />
+                                            <!-- input type="text" name="selectedOdsIdentity[0]" id="selectedOdsIdentity[0]" />
+                                            <input type="text" name="selectedOdsIdentity[0]" id="selectedOdsIdentity[1]" / -->
+                                            <!-- div th:text="${odsIdentity}"></div -->
+                                            <!-- a href="javascript:void(0);" class="list-group-item" onclick="selctedObject('identitys',this)"> <span th:text="${odsIdentity}"></span></a -->
+                                            <!-- a th:each="odsIdentity : ${data.odsIdentity}" class="list-group-item" th:text="${odsIdentity}" th:href="@{/list?l=${odsIdentity}}">
+                                            </a -->
+
+                                            <!-- a th:each="odsIdentity : ${data.odsIdentity}" th:attr="class=${2 == 1 ? 'list-group-item' : 'list-group-item active'}" 
+                                            th:text="${odsIdentity}" onclick=" document.getElementById('ddd').value='aa' ;document.forms[0].submit()" onkeypress="document.forms[0].submit()">
+                                            </a>
+                                            <input type="text" th:each="odsIdentity : ${data.odsIdentity}" th:name=selectedOdsIdentity th:value=${odsIdentity} onclick="this.value='a'" -->
+                                            
+                                            <!-- th:attr="class=${1 == 1 ? 'list-group-item' : 'list-group-item active'}" -->
+                                            <p th:each="odsIdentity : ${data.odsIdentity}">
+                                              <span th:attr="class=${!#arrays.contains(data.selectedOdsIdentity, odsIdentity) ? 'list-group-item nonactive' : 'list-group-item active'}">
+                                                <input type="checkbox"  th:name=selectedOdsIdentity th:value=${odsIdentity}  th:text="${odsIdentity}" th:checked="${#arrays.contains(data.selectedOdsIdentity, odsIdentity)}">
+                                              </span>
+                                            </p>
+
+                                            </div>
+                                            <!-- h6 onclick="showMore('identitys')">更多標籤...</h6 -->
+                                            <!-- button type="button" class="btn btn-warning btn-xs" onclick="clearSelectedObject('identitys')">
+                                                <span class="glyphicon glyphicon-remove"></span> 清除條件
+                                            </button -->
+                                            <button accesskey="M" class="more-tag-btn" name="btnCommand" value="btnMoreIdentityTag">更多標籤...</button><p>
+                                            <button accesskey="C" type="submit" class="btn btn-warning btn-xs" name="btnCommand" value="clearSelectedOdsIdentity">
+                                                <span class="glyphicon glyphicon-remove"></span> 清除條件
+                                            </button>   
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-md-9">
+                                  <!-- div id="odsGroups" class="row"></div -->
+                                  
+                                  <div class="row">
+                                      <div class="col-6 col-sm-6 col-lg-4" th:each="odsGroups : ${data.odsGroups}">
+                                          <div class="panel panel-default" style="height: 300px;overflow:hidden;">
+                                              <div class="panel-body">
+                                                  <div style="float:left;margin-right:5px">
+                                                      <img class="img-thumbnail" th:src="@{'/ODS308E/public/group/'+${odsGroups.id}+'/image/'+${odsGroups.imageUrl}}" style="max-width:100px" alt=" ">
+                                                  </div>
+                                                  <h2>
+                                                      <a th:href="@{'/ODS301E/rest/'+${odsGroups.id}+'/'}">
+                                                      <span th:text="${odsGroups.name}"></span></a>
+                                                  </h2>
+                                                  <p th:text="${odsGroups.description}"></p>
+                                                  <p style="position:absolute;bottom:20px;right:30px;">
+                                                      <a class="btn btn-default" th:href="@{'/ODS301E/rest/'+${odsGroups.id}+'/'}">詳細資訊</a>
+                                                  </p>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  
+                                </div>
+                            </div>
+                            </td><tr>
+                          </tbody>
+                      </table>
+                    <a accesskey="B" href="javascript:void(0);" onClick="history.back();" onkeypress="history.back();" class="btn btn-primary btn-xs pull-right" role="button">BACK</a>
+                   </div>
+                </td>
+              </tr></tbody>
+              </table>
+            </td>
+            </tr>
+            </tbody>
+        </table>
+      </div>  
+  </div>
+  </form>
+  <div th:replace="fragments/external_mobile_layout :: footer"></div>
+    
+    <!-- script type="text/javascript" th:src="@{/scripts/ods301e.js}">
+    </script -->
+
+    
+    <!-- script type="text/javascript" th:src="@{/scripts/common/sls-jquery-ajax.js}"></script -->
+    <script type="text/javascript" th:src="@{/scripts/respond.js}"></script>
+    <link rel="stylesheet" href="/ods-main/styles/ods_main.css" />
+</body>
+
+</html>

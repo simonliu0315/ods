@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+  <span th:fragment="breadcrumb" class="crumb">
+
+    <th:block th:if="${breadData != null}">
+      <!-- span> &gt; </span>
+      <a class="crumb" th:href="@{'/ODS301E/'}" target="_self" th:text="主題群組列表查詢"></a -->
+      <th:block th:each="node : ${breadData.getFuncInfo()}">
+        <span> &gt; </span>
+       <a th:title="'連結到 ' + ${node[1]}" class="crumb" th:href="@{'/'+${node[0]}+'/'}" th:target="_self" th:text="${node[1]}"></a>
+        <!-- input type="text" class="form-control" id="groupName" name="groupName" th:value="${node.odsPackage.get(0).getBreadLink()}" / -->
+      </th:block>
+
+      <!-- span> &gt; </span>
+      <a class="crumb" th:href="aaa" target="_self" th:text="AAA"></a>
+      <input type="text" class="form-control" id="groupName" name="groupName" th:value="${data.groupId}" />
+      <input type="text" class="form-control" id="groupName2" name="groupName2" th:value="${#httpServletRequest.requestURI}" / -->
+    </th:block>
+    
+    <span> &gt; </span>
+    <a title="目前位置" class="crumb" th:href="${#httpServletRequest.requestURI}" th:target="_self" th:text="目前位置"></a>
+  </span>
+  
+  <span th:fragment="breadcrumb_mobile" class="crumb-mobile"></span>
+</body>
+
+</html>

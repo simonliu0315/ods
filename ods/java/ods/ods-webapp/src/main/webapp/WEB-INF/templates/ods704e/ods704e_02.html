@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta th:substituteby="fragments/head_meta :: meta"></meta>
+
+  <meta th:substituteby="fragments/resources :: head_resources"></meta>
+  
+<style type="text/css">
+.identity-fieldset {
+    width: 600px;
+}
+.identity-div {
+    float: left;
+    width: 150px;
+}
+.identity-label {
+    float: left;
+}
+</style>
+
+</head>
+
+<body>
+
+  <div class="container">
+    <div th:substituteby="fragments/body_header :: body_header"></div>
+
+    <div class="row" data-ng-app="ods704eApp">
+      <div class="container"  data-ng-controller="ods704eController">
+
+        <div class="row-fluid">
+          <div class="btn-toolbar pull-right">
+            <button type="button" class="btn btn-primary" data-ng-click="query(model.name, model.description, 0)">
+              <i class="glyphicon glyphicon-search"></i>查詢
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="create()" data-ng-disabled="">
+              <i class="glyphicon glyphicon-plus"></i>新增
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="save()" data-ng-disabled="inState('INIT','RESETD')">
+              <i class="glyphicon glyphicon-pencil"></i>修改
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="remove()" data-ng-disabled="inState('INIT','RESETD')">
+              <i class="glyphicon glyphicon-remove"></i>刪除
+            </button>  
+            <button type="button" class="btn btn-primary" data-ng-click="reset()">
+              <i class="glyphicon glyphicon-refresh"></i>清除
+            </button>          
+          </div>
+        </div>
+
+        <section>
+          <form class="form-inline"  data-c-enter-tab>
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                  <span th:text="${FUNCTION_ID}"></span> <span class="text-muted">主題群組維護</span>
+                </h3>
+              </div>
+              <div class="panel-body">
+                <fieldset>
+<!--                   <p> -->
+<!--                       <ul class="breadcrumb"> -->
+<!--                         <li><a href="ods704e.html">主題群組查詢</a></li> -->
+<!--                         <li class="active">主題群組維護</li> -->
+<!--                       </ul> -->
+<!--                   </p> -->
+                  <table class="form-group" style="width: 100%;">
+                    <thead>
+                      <tr class="row">
+                          <th>
+                          </th>
+                          <th>
+                          </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="row" >
+                        <th width="12%" style="text-align:right">
+                          <label for="materialName" class="control-label">主題群組名稱：</label>
+                        </th>
+                        <td>
+                          <input type="text" id="materialName" name="materialName" class="form-control" data-ng-model="model.name" required style="width:630px">
+                        </td>
+                      </tr>
+                      <tr class="row" >
+                        <th style="text-align:right">
+                          <label for="materialNote" class="control-label">主題群組說明：</label>
+                        </th>
+                        <td>
+                          <textarea id="materialNote" name="materialNote" class="form-control" data-ng-model="model.description" rows="5" style="width:630px"></textarea>
+                        </td>
+                      </tr>
+                      <tr class="row" >
+                        <th width="10%" style="text-align:right">
+                          <label for="materialFile" class="control-label">主題群組圖示：</label>
+                        </th>
+                        <td width="90%">
+                          <!-- input type="file" id="uploadLocalFile"  class="form-control"  data-ng-file-select="onFileSelect($files)"  -->
+                          <input type="text" id="uploadFileName" name="uploadFileName" class="form-control" style="width:250px;" data-ng-readonly="true"
+                          data-ng-model="files[0].name">
+                          <div class="form-control btn btn-primary" style="position: relative; width:100px;">
+                                                                                                                                                           選擇檔案
+                              <div style="width:100%;height:100%; position: absolute; top: 0; left: 0;">
+                                <input type="file" id="uploadLocalFile"  class="form-control"  value="選擇檔案" 
+                                   data-ng-click="fileChoose()" data-ng-file-select="onFileSelect($files)" data-ng-model="files"
+                                   style="opacity: 0; height:100%; width:100%; filter: alpha(opacity=0);">
+                              </div>
+                          </div>   
+                        </td>
+                      </tr>
+                      <tr class="row" >
+                        <th width="10%" style="text-align:right">
+                          <label for="ped" class="control-label">分眾推廣群：</label>
+                        </th>
+                        <!-- td data-ng-repeat="item in items" style="white-space: nowrap;display:inline">
+                          
+                          <input type="checkbox" data-ng-model="newObject[item.name]">
+                          <label>{{item.name}}　</label -->
+                            
+
+                          <td>
+                            
+                            <fieldset class= "identity-fieldset">
+                              <div class="identity-div" data-ng-repeat="identity in identities">
+                              <!-- input type="checkbox" class="identity-label" data-ng-model="chooseIdentities[identity.id]" data-ng-change="aaa()" -->
+                              <input type="checkbox" class="identity-label" data-ng-model="chooseIdentities[identity.id]" >
+                                <label class="identity-label">{{identity.name}}　</label>
+                                
+                                
+                            
+                                <!-- input type="checkbox">消費者
+                                <input type="checkbox">社福團體
+                                <input type="checkbox">外部機關
+                                <input type="checkbox">營業人
+                                <input type="checkbox">政府機關
+                                <input type="checkbox">專業代理人 -->
+                            
+                              </div>
+                            </fieldset>
+                        
+                          </td>
+
+                      </tr>
+                    </tbody>
+                  </table>
+                  
+                  <div class="panel panel-default">
+                      <div class="panel-body">
+                          <div class="row">
+                              <div class="col-md-12">
+                              <input type="hidden" id="id" name="id" class="form-control" data-ng-model="model.id">
+                                  <a class="accordion-toggle" data-toggle="collapse" href="#list" data-ng-click="hideSelectedPkg = ! hideSelectedPkg">主題關連清單</a>
+                                  <!-- button type="button" class="btn btn-primary" onclick="window.open('ods704e_03.html')" 
+                                  data-ng-disabled="false">挑選主題</button -->
+                                  <button type="button" class="btn btn-primary"  data-ng-click="hideSelectedPkg = false; openChosePackage()">挑選主題</button>
+                              </div>
+                          </div>
+                          <div class="panel-body" data-ng-hide="hideSelectedPkg">  
+                            <div class="grid-style" data-ng-grid="girdObject1"
+                               style="display: inline-block; height: 240px;">
+                            </div>
+                          </div>
+                      </div>
+                  </div>
+                  
+                  <div class="panel panel-default">
+                      <div class="panel-body">
+                          <div class="row">
+                              <div class="col-md-12">
+                                                                                          查詢清單
+                              </div>
+                          </div>
+                          
+                      </div>
+                  </div>
+                  <div class="panel panel-default">
+                      <div class="panel-body">
+                          <div class="grid-style" data-ng-grid="girdObject2"
+                             style="display: inline-block; height: 240px;">
+                          </div>
+                      </div>
+                  </div>
+                </fieldset>
+              </div>
+             </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div th:substituteby="fragments/body_footer :: footer"></div>
+  <div th:substituteby="fragments/resources :: body_resources"></div>
+
+  <script type="text/javascript" th:src="@{/scripts/ods704e.js}"></script></body>
+</body>
+
+</html>

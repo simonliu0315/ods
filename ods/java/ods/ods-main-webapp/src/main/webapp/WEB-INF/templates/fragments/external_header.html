@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+  <div th:fragment="header" class="header">
+    <div class="header-bg" th:style="'background-image:url(\''+ @{'/images/external/' + ${session.EXTERNAL_HEADER.imageFileName}} + '\')'">
+      <div class="header-top">
+        <a title="連結到 首頁" th:href="@{~/sip-main/}"><div class="header-top-left"></div></a>
+        <div class="header-top-right">
+          <div class="header-menu">
+            <a accesskey="U" class="accesskey" href="#guiding-brick-up" id="guiding-brick-up" title="上方快速連結區" tabindex="2">:::</a>
+            <a title="連結到 首頁" th:href="@{~/sip-main/}" class="top">回首頁</a><span class="top">│</span>
+            <a title="連結到 網站導覽" th:href="@{~/sip-main/sip105e/}" class="top">網站導覽</a><span class="top">│</span>
+            <a title="連結到 聯絡我們" th:href="@{~/sip-main/sip114e/}" class="top">聯絡我們</a><span class="top">│</span>
+            <a title="連結到 常見問題" th:href="@{~/sip-main/sip106e/}" class="top">常見問題</a><span class="top">│</span>
+            <a title="連結到 RSS訂閱" th:href="@{~/sip-main/sip108e/}" class="top">RSS訂閱</a><span class="top">│</span>
+            <a title="連結到 行動裝置" th:href="@{~/sip-main/mobile/}" class="top">行動裝置</a>
+          </div>
+          <div class="header-info-font">
+            <span><img align="absmiddle" alt="24H" height="18" width="33" th:src="@{~/ods-main/images/b_24h.png}">客服專線</span>
+            <span class="telephone">0800-521-988</span>
+            <span>　　　　　　字級大小：</span>
+            <th:block th:if="${session.EXTERNAL_USER_FONT_SIZE != null}">
+              <a title="小" href="javascript:chtExtUtil.changeFontSize('s');" th:class="${'font-size-s' + (session.EXTERNAL_USER_FONT_SIZE == 's' ? ' active' : '')}">小</a> 
+              <a title="中" href="javascript:chtExtUtil.changeFontSize('m');" th:class="${'font-size-m' + (session.EXTERNAL_USER_FONT_SIZE == 'm' ? ' active' : '')}">中</a> 
+              <a title="大" href="javascript:chtExtUtil.changeFontSize('b');" th:class="${'font-size-b' + (session.EXTERNAL_USER_FONT_SIZE == 'b' ? ' active' : '')}">大</a>
+            </th:block>
+            <th:block th:if="${session.EXTERNAL_USER_FONT_SIZE == null}">
+              <a title="小" href="javascript:chtExtUtil.changeFontSize('s');" class="font-size-s">小</a> 
+              <a title="中" href="javascript:chtExtUtil.changeFontSize('m');" class="font-size-m active">中</a> 
+              <a title="大" href="javascript:chtExtUtil.changeFontSize('b');" class="font-size-b">大</a>
+            </th:block>
+          </div>
+        </div>
+      </div>
+      <div class="header-body">
+        <div class="header-search" style="width:420px">
+          <div class="header-search-form" style="width:420px">
+            <form id="sipSiteSearchForm" name="sipSiteSearchForm" method="post" th:action="@{~/sip-main/sip112e/search}">
+              <div class="header-search-col-label" style="line-height: 17px;"><label for="keyword">全文檢索</label></div>
+              <div class="header-search-col">
+                <input id="keyword" name="keyword" type="text" class="input" size="28" th:value="${(siteSearchKeyword != null) ? siteSearchKeyword : ''}" role="SITE_SEARCH_PAGE_HIDDEN"/>
+                <input type="hidden" name="page" th:value="${(siteSearchResultPage != null) ? siteSearchResultPage.number : '0'}" role="SITE_SEARCH_PAGE_HIDDEN" />
+                <input type="hidden" name="size" th:value="${(siteSearchResultPage != null) ? siteSearchResultPage.size : '10'}" role="SITE_SEARCH_PAGE_HIDDEN" />
+              </div>
+              <div class="header-search-col"><input title="搜 尋" type="submit" class="button btn-cmn" value="搜 尋" /></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="crumb-row">
+      <span class="crumb">
+        <a id="guiding-brick-content" href="#guiding-brick-content" class="accesskey" accesskey="C" title="中央主要內容區">:::</a>
+        <a title="連結到 首頁" th:href="@{~/sip-main/}" class="crumb">首頁</a>
+      </span>
+      <span th:replace="fragments/external_breadcrumb :: breadcrumb"></span>      
+      <div class="menu-favorite-subscribe" th:if="${session.EXTERNAL_USER_IS_ANONYMOUS != null && !(session.EXTERNAL_USER_IS_ANONYMOUS)}">
+        <div class="menu-favorite-body" style="display:none;">
+          <ul role="FAVORITE">
+            <th:block th:if="${session.EXTERNAL_USER_FAVORITE != null && #lists.size(session.EXTERNAL_USER_FAVORITE) > 0}">
+              <th:block th:each="favorite : ${session.EXTERNAL_USER_FAVORITE}">
+                <li><a class="theme" th:href="@{${'~/' + (#strings.startsWith(favorite.functionId, 'SIP') ? 'sip-main' : 'ods-main') + favorite.url}}" 
+                th:title="'連結到 ' + ${favorite.name}" th:alt="${favorite.name}" th:text="${favorite.name}"></a></li>
+              </th:block>
+            </th:block>
+            <th:block th:if="${session.EXTERNAL_USER_FAVORITE == null || #lists.size(session.EXTERNAL_USER_FAVORITE) == 0}">
+              <li class="txt-grey">您還沒有加入任何最愛</li>
+            </th:block>
+          </ul>
+        </div>
+        <div class="menu-subscribe-body" style="display:none;">
+          <ul role="SUBSCRIBE">
+            <th:block th:if="${session.EXTERNAL_USER_SUBSCRIBE != null && #lists.size(session.EXTERNAL_USER_SUBSCRIBE) > 0}">
+              <th:block th:each="subscribe : ${session.EXTERNAL_USER_SUBSCRIBE}">
+                <li><a class="theme" th:href="@{${'~/ods-main/ODS303E/' + subscribe.id + '/' + subscribe.latestVer + '/'}}" 
+                th:title="'連結到 ' + ${subscribe.name}" th:alt="${subscribe.name}" th:text="${subscribe.name}"></a></li>
+              </th:block>
+              <a title="編輯" class="button btn-cmn" href="/ods-main/ODS352E/" target="_self">編輯</a>
+            </th:block>
+            <th:block th:if="${session.EXTERNAL_USER_SUBSCRIBE == null || #lists.size(session.EXTERNAL_USER_SUBSCRIBE) == 0}">
+              <li class="txt-grey">您還沒有訂閱任何資訊</li>
+            </th:block>
+          </ul>
+        </div>
+        <div class="btn-menu left btn-menu-favorite" onclick="chtExtUtil.toggleFavoriteMenu();" onkeypress="chtExtUtil.toggleFavoriteMenu();"><span class="icons favorite">&nbsp;</span>我的最愛</div>
+        <div class="btn-menu right btn-menu-subscribe" onclick="chtExtUtil.toggleSubscribeMenu();" onkeypress="chtExtUtil.toggleSubscribeMenu();"><span class="icons subscribe">&nbsp;</span>訂閱資訊</div>
+      </div>
+    </div>
+  </div>
+  
+  <div th:fragment="header_mobile" class="header-mobile" th:style="'background-image:url(\''+ @{/images/external/mobile_header.png} + '\')'">
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta th:replace="fragments/external_meta :: meta"></meta>
+<meta th:replace="fragments/external_resources :: head_resources"></meta>
+<meta th:substituteby='fragments/resources :: head_resources'></meta>
+<!-- 套這個 -->
+<link rel="stylesheet" type="text/css" wro4j:style="odsCommonMCSS" />
+<!-- 套這個 -->
+<style type="text/css">
+<!--
+.lessContent {
+  overflow: hidden;
+  max-height: 132px;
+}
+-->
+</style>
+</head>
+
+<body>
+  <div class="row">
+    <div class="col-4 col-sm-4 col-lg-2" th:each="odsPackage : ${data.popularUserPackageClick}">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <a th:href="@{${odsPackage.packageUrl}}">
+            <div>
+              <img th:src="@{${odsPackage.imageUrl}}" style="width: 100%; height: 150px;">
+            </div>
+            <h5>
+              <span th:text="${odsPackage.name}"></span>
+            </h5>
+          </a>
+          <p th:text="${odsPackage.description}"></p>
+          <p>
+            <a class="btn btn-default" th:href="@{${odsPackage.packageUrl}}">詳細資訊</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div th:replace="fragments/external_resources :: body_resources"></div>
+  <div th:substituteby='fragments/resources :: body_resources'></div>
+  <!-- 套這個 -->
+  <script type="text/javascript" th:src="@{/scripts/common/sls-jquery-ajax.js}"></script>
+</body>
+
+</html>

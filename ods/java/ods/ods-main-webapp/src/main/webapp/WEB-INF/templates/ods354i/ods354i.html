@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta th:substituteby="fragments/external_meta :: meta"></meta>
+<meta th:substituteby="fragments/external_resources :: head_resources"></meta>
+<meta th:substituteby="fragments/resources :: head_resources"></meta>
+<link rel="stylesheet" type="text/css" wro4j:style="odsCommonMCSS" />   
+</head>
+
+<body>
+  
+    <div th:substituteby="fragments/external_header :: header"></div>
+    <!--  >div th:substituteby="fragments/body_header :: body_header"></div-->
+    
+    
+    <div class="container" style="width: 1010px">
+    <div th:substituteby="body_alert_header :: alert"></div>
+    <div class="row">
+      <table border="0" cellspacing="0" cellpadding="0">
+        <tbody>
+        <tr class="txtb">
+          <td height="33" th:background="@{/images/title_bg_b.png}">
+            <table width="200" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td width="30">&nbsp;</td>
+                <td width="162" class="title">主題群組列表查詢</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        <tr class="txtb">
+        <td valign="top" bgcolor="#FFFFFF"><br/>
+          <table width="980" border="0" align="center" cellpadding="2" cellspacing="0">
+          <tbody>
+            <tr>
+              <td>
+                 <!-- >div id="content" class="container" -->
+                    <a href="javascript:void(0);" onclick="history.back();" class="btn btn-primary btn-xs pull-right" role="button">BACK</a>
+                    <center>
+                    <p>&nbsp;</p>
+          <section>
+          <form class="form-inline" name="ods305eForm" id="ods305eForm">
+          <input type="hidden" name="packageId" id="packageId" th:value="${dynamicContentObjs.packageId}" /> 
+          <input type="hidden" name="packageVer" id="packageVer" th:value="${dynamicContentObjs.packageVer}" />
+            <div class="panel panel-default">              
+              <div class="panel-body">
+                <div class="row">
+                <div class="panel-body text-left">
+                  <h2 class="theme3">選擇訂閱主題
+                    <button id="btnUpdate" type="button" class="btn btn-success btn-xs">
+                      <span class="glyphicon glyphicon-tag"></span>訂閱
+                    </button>
+                    <button id="btnRefresh" type="button" class="btn btn-success btn-xs">
+                      <span class="glyphicon glyphicon-refresh"></span>還原預設
+                    </button>
+                    <!-- >button id="btnUpdate" type="button" class="btn btn-primary">更新</button>
+                    <button id="btnRefresh" type="button" class="btn btn-primary">還原預設</button -->
+                  </h2>
+                  </div>
+                </div>
+                <div class="panel-body">
+                <div th:class="row">
+                <div class="panel panel-default">
+                <div class="panel-body text-left">
+                  <h3>
+                    <input type="checkbox" id="aaa" name="criteriaSpecial[]" value="V" />更新即通知
+                  </h3>
+                  <p class="txtgl">此案例內容有更新即通知我。</p>
+                  </div>
+                  </div>
+                </div>
+                </div>
+                <div th:class="row">
+                  <div th:each="odsResourceCriteria : ${dynamicContentObjs.odsResourceCriteriaList}"
+                    th:class="'col-4 col-sm-4 col-lg-4 text-left'">
+                    <div class="panel panel-default">
+                      <div class="panel-body">
+                        <h3>
+                          <input type="checkbox" name="criteriaNormal[]" th:value="${packageId} + ' ' + ${odsResourceCriteria.id.resourceId} + ' ' + ${odsResourceCriteria.id.criteriaId}"/> 
+                          <span class="theme2" th:text="${odsResourceCriteria.name}"></span>
+                        </h3>
+                        <p class="txtgl" th:text="${odsResourceCriteria.description}"></p>
+                        <!-- >p th:text="${odsResourceCriteria.id.resourceId}"></p>
+                        <p th:text="${odsResourceCriteria.id.criteriaId}"></p -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>              
+            </div>
+          </form>
+        </section>
+                    </center>
+                    <a href="javascript:void(0);" onClick="history.back();" class="btn btn-primary btn-xs pull-right" role="button">BACK</a>
+                  <!-- /div-->
+              </td>
+            </tr>
+          </tbody>
+          </table>
+        </td>
+        </tr>
+        <tr class="txtb">
+        <td><img th:src="@{/images/skin_41.png}" width="1010" height="9" style="vertical-align: top;" alt="白色圓角底圖" /></td>
+        </tr>
+      </tbody>
+    </table>
+     
+    </div>
+  </div>
+
+  <div th:substituteby="fragments/external_footer :: footer"></div>
+  <div th:substituteby="fragments/external_resources :: body_resources"></div>
+  <div th:substituteby="fragments/resources :: body_resources"></div>
+
+  <script type="text/javascript" th:src="@{/scripts/ods305e.js}"></script>
+  <script type="text/javascript" th:src="@{/scripts/form2object.js}"></script>
+  <script type="text/javascript" th:src="@{/scripts/common/sls-jquery-ajax.js}"></script>
+</body>
+
+</html>

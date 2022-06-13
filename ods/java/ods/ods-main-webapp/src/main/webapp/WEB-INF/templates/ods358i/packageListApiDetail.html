@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta th:replace="fragments/external_meta :: meta"></meta>
+<meta th:replace="fragments/external_resources :: head_resources"></meta>
+<meta th:substituteby='fragments/resources :: head_resources'></meta>
+<!-- 套這個 -->
+<meta name="viewport"
+  content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+
+<link rel="stylesheet" type="text/css" wro4j:style="odsCommonMCSS" />
+</head>
+
+<body th:class="${session.EXTERNAL_USER_STYLE}">
+
+<div th:replace="fragments/external_mobile_layout :: header"></div>  
+      
+<div class="container forIe8" >
+    <div id="content" >
+      <div class="row">
+          <div class="panel-title">
+              <span class="title">●主題列表API說明</span>  
+          </div>
+      </div>
+      <div class="row" style="background-color:#fff">
+        <div class="container container-sm-height" style="width: 98%;">
+            <div class="col-12 col-sm-12 col-lg-12 col-sm-height">
+                <div class="panel panel-primary">
+                    <div class="panel-heading clearfix" style="text-align:center;">
+                        <h4><span th:text="主題列表API連結"></span></h4>
+                    </div>
+                    <div class="panel-body">
+                        <div>
+                            API1：<br><a th:href="${url}" target="_blank"><span th:text="${url}"></span></a>
+                        </div>
+                        <div><br></div>
+                        <div>
+                            API2：<br><a th:href="${url2}" target="_blank"><span th:text="${url2}"></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container container-sm-height" style="width: 98%;">
+            <div class="col-12 col-sm-12 col-lg-12 col-sm-height">
+                <div class="panel panel-info">
+                  <div class="panel-heading clearfix">
+                      <span th:text="主題列表API使用說明"></span>
+                  </div>
+                  <div class="panel-body">
+                      <p style="text-align:left;">1.API1可用來查詢所有主題資訊。</p>
+                      <p style="text-align:left;">2.API2可加入查詢條件，查詢出相關條件主題，查詢修件說明如下：<br>
+                        <table border="1" width="98%">
+                          <tr>
+                            <th width="15%">{packageName}<br>主題名稱</th>
+                            <td>輸入主題名稱關鍵字當查詢條件，如名稱有中文字請先使用URLEncoder.encode(’中文’, ’UTF-8’)進行編碼。</td>
+                          </tr>
+                          <tr>
+                            <th>{packageTags}<br>分類標籤</th>
+                            <td>輸入分類標籤當查詢條件，輸入格式為{{標籤1,標籤2,...}}，如標籤有中文字請先使用URLEncoder.encode(’中文’, ’UTF-8’)進行編碼。</td>
+                          </tr>
+                          <tr>
+                            <th>{resourceFileExts}<br>檔案格式</th>
+                            <td>輸入檔案格式當查詢條件，檔案格式有image,pdf,dataset三種，輸入格式為{{檔案格式1,檔案格式2,...}}。</td>
+                          </tr>
+                        </table>
+                      </p>
+                      <p style="text-align:left;">3.回傳結果說明：<br>
+                        <table border="1" width="98%">
+                          <tr>
+                            <th width="15%">status</th>
+                            <td>00 查詢成功／01 查無資料／99 查詢失敗</td>
+                          </tr>
+                          <tr>
+                            <th>result</th>
+                            <td>(1)id:主題ID<br>
+                                (2)name:主題名稱<br>
+                                (3)description:主題說明<br>
+                                (4)url:主題連結<br>
+                                (5)imageUrl:主題圖示連結<br>
+                            </td>
+                          </tr>
+                        </table>
+                      </p>
+                      <p style="text-align:left;">4.每個主題可經由主題瀏覽頁面的【 主題資訊API】所提供的連結, 進一步下載相關之素材或資料集：<br>
+                        <img th:alt="主題資訊API" th:title="主題資訊API" th:src="@{/images/api.png}"/><br>
+                        <p>以愛心溫度計為例, 請參考以下連結：<br>
+                          <div>
+                                                                        主題發佈版本列表API：<br><a th:href="'http://sip.einvoice.nat.gov.tw/ods-main/api/package/versions/55B7CB0E-8182-4FDE-A5A0-085A64625D02'" target="_blank"><span th:text="'http://sip.einvoice.nat.gov.tw/ods-main/api/package/versions/55B7CB0E-8182-4FDE-A5A0-085A64625D02'"></span></a>
+                          </div>
+                          <div><br></div>
+                          <div>
+                                                                        主題版本之素材列表API：<br><a th:href="'http://sip.einvoice.nat.gov.tw/ods-main/api/resources/55B7CB0E-8182-4FDE-A5A0-085A64625D02/3'" target="_blank"><span th:text="'http://sip.einvoice.nat.gov.tw/ods-main/api/resources/55B7CB0E-8182-4FDE-A5A0-085A64625D02/3'"></span></a>
+                          </div>
+                          <div><br></div>
+                          <div>
+                                                                        主題版本之素材下載路徑API：<br><a th:href="'http://sip.einvoice.nat.gov.tw/ods-main/api/resourceDownloadList/55B7CB0E-8182-4FDE-A5A0-085A64625D02/3'" target="_blank"><span th:text="'http://sip.einvoice.nat.gov.tw/ods-main/api/resourceDownloadList/55B7CB0E-8182-4FDE-A5A0-085A64625D02/3'"></span></a>
+                          </div>
+                        </p>
+                      </p>
+                  </div>
+                </div>
+            </div>
+        </div>
+
+      </div>
+    </div>
+</div>
+  <div th:replace="fragments/external_mobile_layout :: footer"></div>
+  <!-- 套這個 -->
+  <script type="text/javascript" th:src="@{/scripts/common/sls-jquery-ajax.js}"></script>
+  <script type="text/javascript" th:src="@{/scripts/respond.js}"></script>
+  <link rel="stylesheet" href="/ods-main/styles/ods_main.css" />
+</body>
+
+</html>

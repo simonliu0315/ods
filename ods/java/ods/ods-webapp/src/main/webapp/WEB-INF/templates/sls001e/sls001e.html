@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta th:substituteby="fragments/head_meta :: meta"></meta>
+
+<meta th:substituteby="fragments/resources :: head_resources"></meta>
+</head>
+
+<body>
+
+  <div class="container">
+    <div th:substituteby="fragments/body_header :: body_header"></div>
+
+    <div class="row" data-ng-app="sls001eApp">
+      <div class="container" data-ng-controller="sls001eController">
+        <div class="row-fluid">
+          <div class="btn-toolbar pull-right">
+            <button type="button" class="btn btn-primary" data-ng-click="validate(sls001eForm)">
+              <i class="glyphicon glyphicon-plus"></i> 驗證整個Form
+            </button>
+            <button type="button" class="btn btn-primary"
+              data-ng-click="validate(sls001eForm.rnoj1, sls001eForm.rnoj2)">
+              <i class="glyphicon glyphicon-plus"></i> 只驗證收件編號
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="doQuery()">
+              <i class="glyphicon glyphicon-plus"></i> 查詢前先驗證支付日期
+            </button>
+            <button type="button" class="btn btn-primary">
+              <i class="glyphicon glyphicon-print"></i> 列印
+            </button>
+          </div>
+        </div>
+
+        <section>
+          <form class="form-inline" name="sls001eForm" data-c-enter-tab data-c-form-validation>
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                  <span th:text="${FUNCTION_ID}"></span> <span class="text-muted">登錄繳款書、支出收回書</span>
+                </h3>
+              </div>
+              <div class="panel-body">
+                <table class="form-group" style="width: 100%;">
+                  <tbody>
+                    <tr class="row">
+                      <th><label class="control-label" for="rnoj1">收件編號1</label></th>
+                      <td><input type="text" class="form-control" id="rnoj1" name="rnoj1"
+                        data-ng-model="rnoj1" required></td>
+                      <th><label class="sr-only" for="rnoj2">收件編號2</label> <input type="text"
+                        class="form-control" id="rnoj2" name="rnoj2" data-ng-model="rnoj2"
+                        data-c-validate="{customValidation:true,messages:{customValidation:'自定檢核'}}">
+                      </th>
+                      <th><label class="control-label" for="txtBarcode"> <i
+                          class="glyphicon glyphicon-barcode"></i> 條碼輸入
+                      </label></th>
+                      <td colspan="2"><input class="form-control" id="txtBarcode"></td>
+                    </tr>
+                    <tr class="row">
+                      <th><label class="control-label">會計年度</label></th>
+                      <td><input class="form-control" disabled></td>
+                      <th><label class="control-label">支用機關</label></th>
+                      <td colspan="3"><input class="form-control" disabled> <input
+                        class="form-control" disabled></td>
+                    </tr>
+                    <tr class="row">
+                      <th><label class="control-label">清單編號</label></th>
+                      <td><input class="form-control" disabled></td>
+                      <th><label class="control-label">支付日期</label></th>
+                      <td colspan="3">
+                        <!-- dateValidation 參數1: model value的格式, 參數2: 語系--> <input
+                        class="form-control" name="payDate" data-ng-model="payDate" required
+                        data-ui-mask="999/99/99"
+                        data-c-validate="{dateValidation : ['yyyMMdd','Minguo']}">
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <table class="form-group" style="width: 100%;">
+                  <tbody>
+                    <tr class="row">
+                      <th><label class="control-label">憑證年度
+                          <p class="text-primary">(ng-pattern範例)</p>
+                      </label></th>
+                      <td><input class="form-control" type="text" name="certYr"
+                        data-ng-model="certYr" data-ng-pattern="exactly3Digits"></td>
+                      <th><label class="control-label">憑證字號</label></th>
+                      <td><input class="form-control"></td>
+                      <th><label class="control-label">填發日期</label></th>
+                      <td><input class="form-control"></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <table class="form-group" style="width: 100%;">
+                  <tbody>
+                    <tr class="row">
+                      <th><label class="control-label">收支併列碼</label></th>
+                      <td><input class="form-control"></td>
+                      <th><label class="control-label">金額</label></th>
+                      <td>
+                        <input class="form-control" data-c-decimal-format
+                        data-c-decimal-format-trigger="change" data-ng-model="model.amt"/> <!-- 數值欄位格式化 -->
+                      <label class="text-info">A: 收支併列, B: 以前年度已撥暫付, 空白: 其他</label>
+                      </td>
+                    </tr>
+                    <tr class="row">
+                      <th><label class="control-label">憑證類別</label></th>
+                      <td colspan="3">
+                        
+                            <label class="radio">
+                              <input type="radio"  name="dataType" id="dataType0"
+                              value="0" data-ng-model="model.dataType"> 類別1
+                            </label>
+                            <label class="radio">
+                              <input type="radio" name="dataType" id="dataType0"
+                              value="1" data-ng-model="model.dataType"> 類別2
+                            </label>
+                      </td>
+                    </tr>
+                    <tr class="row">
+                      <th>受款人清單
+                      </th>
+                      <td colspan="3">
+                        <div class="grid-style" data-ng-grid="itemGrid"
+                          style="display: inline-block; height: 240px; width: 100%;">
+                        </div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                
+              </div>
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div th:substituteby="fragments/body_footer :: footer"></div>
+  <div th:substituteby="fragments/resources :: body_resources"></div>
+
+  <script type="text/javascript" th:src="@{/scripts/sls001e.js}"></script>
+</body>
+
+</html>

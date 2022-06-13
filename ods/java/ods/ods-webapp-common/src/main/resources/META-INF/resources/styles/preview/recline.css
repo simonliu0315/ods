@@ -1,0 +1,28 @@
+body {
+  background-color: #fff;
+}
+
+.recline-data-explorer{
+  position: relative;
+  overflow: auto;
+  max-width:100%;
+}
+
+.loading-dialog {
+  width: 120px;
+}
+
+.recline-slickgrid {
+  height: 600px;
+}
+
+.recline-timeline .vmm-timeline {
+  height: 600px;
+}
+
+.loading-spinner {
+  float: right;
+  background-image: url('../../images/ajaxload-circle.gif');
+  width: 32px;
+  height: 32px;
+}

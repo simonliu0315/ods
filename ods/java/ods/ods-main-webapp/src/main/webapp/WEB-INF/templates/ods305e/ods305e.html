@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta th:substituteby="fragments/external_meta :: meta"></meta>
+<meta th:substituteby="fragments/external_resources :: head_resources"></meta>
+<meta th:substituteby="fragments/resources :: head_resources"></meta>
+<link rel="stylesheet" type="text/css" wro4j:style="odsCommonMCSS" /> 
+<link rel="stylesheet" href="/ods-main/styles/mQuery.css" />  
+</head>
+
+<body th:class='${session.EXTERNAL_USER_STYLE}'>
+  
+<div th:replace="fragments/external_mobile_layout :: header"></div> 
+    <!--  >div th:substituteby="fragments/body_header :: body_header"></div-->
+    
+    
+    <div class="container forIe8" >
+
+        <div class="row">    
+            <div class="panel-title">
+                <span class="title">●主題訂閱</span>  
+            </div>
+        </div>
+    <div class="row">
+        <div th:substituteby="body_alert_header :: alert"></div>
+    </div>
+    <div class="row" style="background-color:#fff">
+    
+      <div class="col-md-offset-9 col-md-3">
+          <a title="回上一頁" accesskey="B" href="javascript:void(0);" onclick="history.back();" onkeypress="history.back();" class="btn btn-primary btn-xs pull-right" role="button">BACK</a>
+      </div>
+      
+      <center>
+          <p>&nbsp;</p>
+            <section>
+            <form class="form-inline" name="ods305eForm" id="ods305eForm">
+              <input type="hidden" name="packageId" id="packageId" th:value="${dynamicContentObjs.packageId}" /> 
+              <input type="hidden" name="packageVer" id="packageVer" th:value="${dynamicContentObjs.packageVer}" />
+              
+                  <div class="row">
+                  <div class="panel-body text-left">
+                    <h2 class="theme3">選擇訂閱主題
+                      <button title="訂閱" id="btnUpdate" type="button" class="btn btn-success btn-xs">
+                        <span class="glyphicon glyphicon-tag"></span>訂閱
+                      </button>
+                      <button title="還原預設" id="btnRefresh" type="button" class="btn btn-success btn-xs">
+                        <span class="glyphicon glyphicon-refresh"></span>還原預設
+                      </button>
+                      <!-- >button id="btnUpdate" type="button" class="btn btn-primary">更新</button>
+                      <button id="btnRefresh" type="button" class="btn btn-primary">還原預設</button -->
+                    </h2>
+                    </div>
+                  </div>
+                  
+                  <div class="container container-sm-height" style="width: 900px">
+                    <div class="row row-sm-height">
+                    <div class="panel panel-default">
+                    <div class="panel-body text-left">
+                      <h3>
+                        <input type="checkbox" id="aaa" name="criteriaSpecial[]" value="V" />
+                         <label for="aaa"><span class="theme2">更新時通知</span></label>
+                      </h3>
+                      <p class="txtgl">此案例內容有更新即通知我。</p>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                 
+                  <div id="content" class="container container-sm-height" style="width: 900px">
+                    <div th:class="'row row-sm-height panel panel-default'" th:each="i: ${#numbers.sequence(0, (#lists.size(dynamicContentObjs.odsResourceCriteriaList)/4 ) )}">
+                      <div th:class="'col-4 col-sm-4 col-lg-4 text-left col-sm-height '" th:each="j: ${#numbers.sequence(1,3)}">                    
+                            <h3 th:if="${j + (3 * i) - 1 } &lt; ${#lists.size(dynamicContentObjs.odsResourceCriteriaList)}">
+                              <input id="criteriaNormal" type="checkbox" name="criteriaNormal[]" th:value="${packageId} + ' ' + ${dynamicContentObjs.odsResourceCriteriaList[j + (3 * i) - 1].resourceId} + ' ' + ${dynamicContentObjs.odsResourceCriteriaList[j + (3 * i) - 1].id}"/>  
+                              <label for="criteriaNormal"><span class="theme2" th:text="${dynamicContentObjs.odsResourceCriteriaList[j + (3 * i) - 1].name}"></span></label>
+                               <p class="txtgl" th:text="${dynamicContentObjs.odsResourceCriteriaList[j + (3 * i) - 1].description}"></p>
+                                </h3>                    
+                      </div>                  
+                    </div>
+                  </div>
+              
+            </form>
+          </section>
+          </center>
+    
+    <div class="col-md-offset-9 col-md-3">
+         <a title="回上一頁" accesskey="B" href="javascript:void(0);" onClick="history.back();" onkeypress="history.back();" class="btn btn-primary btn-xs pull-right" role="button">BACK</a>
+    </div>
+
+    </div>
+  </div>
+
+  <div th:replace="fragments/external_mobile_layout :: footer"></div>
+
+  <script type="text/javascript" th:src="@{/scripts/ods305e.js}"></script>
+  <script type="text/javascript" th:src="@{/scripts/form2object.js}"></script>
+  <script type="text/javascript" th:src="@{/scripts/common/sls-jquery-ajax.js}"></script>
+  <link rel="stylesheet" href="/ods-main/styles/ods_main.css" />
+</body>
+
+</html>

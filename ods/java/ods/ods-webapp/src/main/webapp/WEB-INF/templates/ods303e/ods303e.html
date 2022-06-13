@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta th:substituteby="fragments/head_meta :: meta"></meta>
+
+  <meta th:substituteby="fragments/resources :: head_resources"></meta>
+</head>
+
+<body>
+
+  <div class="container">
+    <div th:substituteby="fragments/body_header :: body_header"></div>
+
+    <div class="row" data-ng-app="ods702eApp">
+      <div class="container"  data-ng-controller="ods702eController">
+
+        <div class="row-fluid">
+          <div class="btn-toolbar pull-right">
+            <button type="button" class="btn btn-primary" data-ng-click="query(model.categoryName, model.categoryDescription, 0)">
+              <i class="glyphicon glyphicon-search"></i>查詢
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="create()" data-ng-disabled="">
+              <i class="glyphicon glyphicon-plus"></i>新增
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="save()" data-ng-disabled="inState('INIT','RESETD')">
+              <i class="glyphicon glyphicon-pencil"></i>修改
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="remove()" data-ng-disabled="inState('INIT','RESETD')">
+              <i class="glyphicon glyphicon-remove"></i>刪除
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="reset()">
+              <i class="glyphicon glyphicon-refresh"></i>清除
+            </button>
+          </div>
+        </div>
+
+        <section>
+          <form class="form-inline"  data-c-enter-tab>
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                  <span th:text="${FUNCTION_ID}"></span> <span class="text-muted">分類管理</span>
+                </h3>
+              </div>
+              <div class="panel-body">
+                <fieldset>
+                  <table class="form-group" style="width: 100%;">
+                    <thead>
+                      <tr class="row">
+                          <th>
+                          </th>
+                          <th>
+                          </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="row" >
+                        <th width="10%" style="text-align:right">
+                          <label for="ped" class="control-label">分類名稱：</label>
+                        </th>
+                        <td width="90%">
+                          <input type="text" id="materialName" name="materialName" class="form-control" data-ng-model="model.categoryName" required>
+                        </td>
+                      </tr>
+                      <tr class="row">
+                        <th style="text-align:right">
+                          <label for="nam" class="control-label">分類說明：</label>
+                        </th>
+                        <td>
+                          <textarea class="form-control" id="materialNote" data-ng-model="model.categoryDescription" rows="5"></textarea>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  
+                  <div class="panel panel-default">
+                      <div class="panel-body">
+                          <div class="row">
+                              <div class="col-md-12">
+                              <input type="hidden" id="id" name="id" class="form-control" data-ng-model="model.categoryId">
+                                  <a class="accordion-toggle" data-toggle="collapse" href="#list">素材及案例</a>
+                                  <button type="button" class="btn btn-primary"  data-ng-click="openChoseResource()">挑選素材及案例</button>
+                              </div>
+                          </div>
+                          <div class="grid-style" data-ng-grid="girdObject1"
+                             style="display: inline-block; height: 240px;">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="panel panel-default">
+                      <div class="panel-body">
+                          <div class="row">
+                              <div class="col-md-12">
+                                  查詢清單
+                              </div>
+                          </div>
+                          
+                      </div>
+                  </div>
+                  <div class="grid-style" data-ng-grid="girdObject2"
+                             style="display: inline-block; height: 240px;">
+                  </div>
+                </fieldset>
+              </div>
+             </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div th:substituteby="fragments/body_footer :: footer"></div>
+  <div th:substituteby="fragments/resources :: body_resources"></div>
+
+  <script type="text/javascript" th:src="@{/scripts/ods702e.js}"></script></body>
+</body>
+
+</html>

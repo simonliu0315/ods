@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta th:substituteby="fragments/head_meta :: meta"></meta>
+
+  <meta th:substituteby="fragments/resources :: head_resources"></meta>
+</head>
+
+<body>
+
+  <div class="container">
+    <div th:substituteby="fragments/body_header :: body_header"></div>
+
+    <div class="row" data-ng-app="ods706eApp">
+      <div class="container"  data-ng-controller="ods706eController">
+
+        <div class="row-fluid">
+          <div class="btn-toolbar pull-right">
+            <button type="button" class="btn btn-primary" data-ng-click="query()">
+              <i class="glyphicon glyphicon-search"></i>查詢
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="create()" data-ng-disabled="inState('QUERYED')">
+              <i class="glyphicon glyphicon-plus"></i>新增
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="save()" data-ng-disabled="inState('INIT','RESETD')">
+              <i class="glyphicon glyphicon-pencil"></i>修改
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="remove()" data-ng-disabled="inState('INIT','RESETD')">
+              <i class="glyphicon glyphicon-remove"></i>刪除
+            </button>
+          </div>
+        </div>
+
+        <section>
+          <form class="form-inline"  data-c-enter-tab>
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                  <span th:text="${FUNCTION_ID}"></span> <span class="text-muted">門檻值管理</span>
+                </h3>
+              </div>
+              <div class="panel-body">
+                <fieldset>
+                  <p>
+                      <ul class="nav nav-tabs">
+                        <li><a href="ods706e.html">基本資料</a></li>
+                        <li class="active"><a href="ods706e_02.html">欄位設定</a></li>
+                      </ul>
+                  </p>
+                  <table class="form-group" style="width: 100%;">
+                    <thead>
+                      <tr class="row">
+                          <th>
+                          </th>
+                          <th>
+                          </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="row" >
+                        <td colspan="2">
+                          <button type="button" class="btn btn-default btn-sm">
+                              <span class="glyphicon glyphicon-plus"></span> 新增門檻值欄位
+                          </button>
+                        </td>
+                      </tr>
+                      <tr class="row" >
+                        <th width="12%" style="text-align:right">
+                          <label for="materialName" class="control-label">欄位：</label>
+                        </th>
+                        <td>
+                          <select class="form-control">
+                              <option>欄位一</option>
+                              <option>欄位二</option>
+                              <option>欄位三</option>
+                              <option>欄位四</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr class="row" >
+                        <th style="text-align:right">
+                          <label for="materialNote" class="control-label">欄位中文名稱：</label>
+                        </th>
+                        <td>
+                          <input type="text" id="materialName" name="materialName" class="form-control" data-ng-model="model.materialName">
+                        </td>
+                      </tr>                      
+                      <tr class="row" >
+                        <th style="text-align:right">
+                          <label for="materialNote" class="control-label">函數：</label>
+                        </th>
+                        <td>
+                          <select class="form-control">
+                              <option>平均</option>
+                              <option>最大值</option>
+                              <option>最小值</option>
+                              <option>加總</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr class="row" >
+                        <th style="text-align:right">
+                          <label for="materialNote" class="control-label">運算：</label>
+                        </th>
+                        <td>
+                          <select class="form-control">
+                              <option>小於</option>
+                              <option>小於等於</option>
+                              <option>等於</option>
+                              <option>大於</option>
+                              <option>大於等於</option>
+                          </select>
+                        </td>
+                      </tr>
+                      <tr class="row" >
+                        <th style="text-align:right">
+                          <label for="materialNote" class="control-label">目標值：</label>
+                        </th>
+                        <td>
+                          <input type="text" id="materialName" name="materialName" class="form-control" data-ng-model="model.materialName">
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  
+                  <div class="panel panel-default">
+                      <div class="panel-body">
+                          <div class="row">
+                                                                            查詢清單
+                          </div>
+                          <div class="grid-style" data-ng-grid="girdObject2"
+                             style="display: inline-block; height: 240px;">
+                          </div>
+                      </div>
+                  </div>
+                </fieldset>
+              </div>
+             </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div th:substituteby="fragments/body_footer :: footer"></div>
+  <div th:substituteby="fragments/resources :: body_resources"></div>
+
+  <script type="text/javascript" th:src="@{/scripts/ods706e.js}"></script></body>
+</body>
+
+</html>

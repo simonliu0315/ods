@@ -1,0 +1,70 @@
+.data-view-sidebar2 {
+  margin-left: 25px;
+}
+
+.data-view-container2 {
+  margin-left: 25px;
+}
+
+@media (max-width: 3840px) {
+    .col-sm-12 {
+        width: 220px;
+        float: left;
+    }
+    
+    .recline-pager2 {
+      float: left;
+      margin: auto;
+      display: block;
+      margin-left: 20px;
+    }
+
+    .recline-query-editor2 {
+      float: right;
+      height: 30px;
+    }
+    
+    .menu-right2 {
+      float: right;
+      margin-left: 5px;
+      padding-left: 5px;
+      border-left: solid 2px #ddd;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .col-sm-12 {
+        width: 100%;
+        float: none;
+    }
+    
+    .recline-pager2 {
+      float: left;
+      margin: auto;
+      display: block;
+    }
+
+    .recline-query-editor2 {
+      float: right;
+      height: 40px;
+      margin-top:15px;
+    }
+    
+    .menu-right2 {
+      float: right;
+      margin-left: 5px;
+      padding-left: 5px;
+      border-left: solid 2px #ddd;
+      margin-top: 15px;
+    }
+}
+
+.recline-pager2 .pagination input {
+  width: 30px;
+  height: 18px;
+  padding: 2px 4px;
+  margin: 0;
+  margin-top: -4px;
+}
+

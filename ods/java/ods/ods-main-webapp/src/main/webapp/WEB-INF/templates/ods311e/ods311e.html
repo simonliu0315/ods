@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hant-TW">
+<head>
+    <meta th:substituteby='fragments/external_meta :: meta'></meta>
+    <meta th:substituteby='fragments/external_resources :: head_resources'></meta>
+    <meta th:substituteby='fragments/resources :: head_resources'></meta>
+    <meta property="og:title" th:if="${og}" th:content="${og.title}"/>
+    <meta property="og:description" th:if="${og}" th:content="${og.description}"/>    
+    <link rel="stylesheet" type="text/css" href="/ods-main/styles/star.css" />
+    <link rel="stylesheet" type="text/css" wro4j:style="odsCommonMCSS" />
+</head>
+<body th:class="${session.EXTERNAL_USER_STYLE}">
+        <div th:replace='fragments/external_mobile_layout :: header'></div>
+    <input type="hidden" name="packageId" id="packageId" th:value="${packageId}" /> 
+    <input type="hidden" name="packageVer" id="packageVer" th:value="${packageVer}" />
+    <input type='hidden' id='parentBreadLink64' th:value='${parentBreadLink64}' />
+    <input type='hidden' id='packageType' th:value='${packageType}' />
+    <input type='hidden' id='packageCode' th:value='${packageCode}' />
+        <div class="container forIe8">
+            <div class="row">
+                <div class="panel-title">
+                    <span class="title">●主題詳細資訊</span>                    
+                </div>
+            </div>
+    
+    <div class="row" style="background-color:#fff">
+        <div>
+            <div style="float: right; margin-right:25px; margin-top:5px;">          
+                <a href="#"><img alt="facebook分享" title="facebook分享" border="0" align="absmiddle" class="share-icon" onclick="shareSocial(&#39;facebook&#39;);" onkeypress="shareSocial(&#39;facebook&#39;);" th:src="@{/images/icon_24_f.png}" /></a>
+                <a href="#"><img alt="google+分享" title="google+分享" border="0" align="absmiddle" class="share-icon" onclick="shareSocial(&#39;google&#39;);" onkeypress="shareSocial(&#39;google&#39;);" th:src="@{/images/icon_24_g.png}" /></a>
+                <a href="#"><img alt="twitter分享" title="twitter分享" border="0" align="texttop" class="share-icon" onclick="shareSocial(&#39;twitter&#39;);" onkeypress="shareSocial(&#39;twitter&#39;);" th:src="@{/images/icon_24_t.png}" /></a>
+            </div>
+        </div>
+
+        <div class="css_table">
+            <div class="css_tr" style="float: right;">
+                <div class="css_td">             </div>
+            </div>
+        </div>
+
+        <div class="container container-sm-height" style="width: 98%;">
+            <div class="col-12 col-sm-12 col-lg-12 col-sm-height">
+                <div class="panel panel-primary">
+                    <div class="panel-heading clearfix" style="text-align:center;">
+                        <h4><span th:text="${packageName}"></span></h4>
+                    </div>
+                    <div class="panel-body">
+                        <div style="float:left;">
+                            <span th:utext="${#strings.replace(packageDescription,'\n','&lt;br&gt;')}"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                                
+    <DIV class="container container-sm-height" style="width: 98%;">
+        <DIV class="col-12 col-sm-12 col-lg-12 col-sm-height">
+
+          <div class="panel panel-info">
+            <div class="panel-body">
+                <div th:if="${isAnonymousUser} == 'Y'">
+                                                     您尚未登入系統，請
+                    <BUTTON title="按此登入" class="btn btn-success btn-sm" id="doSub" type="button">
+                      <SPAN class="glyphicon glyphicon-log-in"></SPAN> 按此
+                    </BUTTON>由電子發票整合服務平台登入。
+                </div>
+            </div>
+          </div>
+        </DIV>
+      </DIV>
+ 
+
+<div class="col-md-offset-9 col-md-3">
+    <a title="回上一頁" accesskey="B" href="javascript:void(0);" onclick="history.back();" onkeypress="history.back();" class="btn btn-primary btn-xs pull-right" role="button">BACK</a>
+</div>
+
+  </div>
+ </div>
+ 
+    <div th:replace='fragments/external_mobile_layout :: footer'></div>
+    <script wro4j:script="odsOds303eJS"></script>
+    <script type="text/javascript" th:src="@{/scripts/common/sls-jquery-ajax.js}"></script>
+    <link rel="stylesheet" type="text/css" wro4j:style="odsOds303eCSS" />
+    <script type="text/javascript" th:src="@{/scripts/ods311e.js}">
+</body>
+</html>

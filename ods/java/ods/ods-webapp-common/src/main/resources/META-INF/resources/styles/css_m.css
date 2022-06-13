@@ -1,0 +1,820 @@
+@charset "utf-8";
+
+html {
+font-size: 100%;
+-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+/*字級大小(s=12px)(m=15px)(b=16px)*/
+
+
+/*------------------6/17新增*/
+
+/*sbgBl 文字無連結(淺藍底黑字)*/
+
+.sbgBl{
+    background-color: #F0F8FF;
+    line-height: 33px;
+    font-family: "新細明體", Arial;
+    font-size: 15px;
+    color: #333;
+    border: 1px solid #FFF;
+    text-indent: 10px;
+}
+
+/*sbgB 文字無連結(淺藍底藍字)*/
+
+.sbgB{
+    background-color: #F0F8FF;
+    line-height: 33px;
+    font-family: "新細明體", Arial;
+    font-size: 15px;
+    color: #039;
+    border: 1px solid #FFF;
+    word-spacing: 10px;
+    text-indent: 10px;
+}
+
+/*sbgBl 文字無連結(淡淺藍底黑字)*/
+
+.sbgBls{
+    background-color: #DEF;
+    line-height: 33px;
+    font-family: "新細明體", Arial;
+    font-size: 15px;
+    color: #333;
+    border: 1px solid #FFF;
+    text-indent: 10px;
+}
+
+/*sbgB 文字無連結(淡淺藍底藍字)*/
+
+.sbgBs{
+    background-color: #DEF;
+    line-height: 33px;
+    font-family: "新細明體", Arial;
+    font-size: 15px;
+    color: #039;
+    border: 1px solid #FFF;
+    word-spacing: 10px;
+    text-indent: 10px;
+}
+
+
+/*theme2 熱門主題標題連結...主題群組列表查詢(藍)------------------6/13新增*/
+
+A.theme2:link {
+    font-family: Arial, "新細明體";
+    font-size: 20px;
+    color: #015faf;
+    text-decoration: none;
+}
+A.theme2:hover {
+    font-family: Arial, "新細明體";
+    font-size: 20px;
+    color: #015faf;
+    text-decoration: underline;
+}
+A.theme2:active {
+    font-family: Arial, "新細明體";
+    font-size: 20px;
+    color: #015faf;
+    text-decoration: none;
+}
+A.theme2:visited {
+    font-family: Arial, "新細明體";
+    font-size: 20px;
+    color: #015faf;
+    text-decoration: none;
+}
+
+
+
+
+.theme2{
+    font-family: Arial, "新細明體";
+    font-size: 20px;
+    color: #015faf;
+    text-decoration: none;
+}
+
+.theme3{
+    font-family: Arial, "新細明體";
+    font-size: 24px;
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+
+
+
+/*download 檔案下載區(底色+邊框)--------------------------6/9新增*/
+
+.download{
+    background-color: #EAEAEA;
+    border: 1px solid #39F;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*-------------------------------按鈕測試-----------------------------------------*/
+
+#menu{
+    width: 115px;
+    height: 25px;
+    margin: 0 auto;	
+    background: url(images/bg_i_l_04.png) no-repeat;
+}
+
+#menu a {
+    font-weight:bold;
+    line-height:1.2;
+    text-decoration:none;
+    color:#FFF;
+    float: right;
+    width: 115px;
+    height: 25px;
+    font-family: "微軟正黑體";
+    font-size: 16px;
+}
+
+#menu a:hover{
+    background: url(images/bg_i_l_04_o.png) no-repeat;
+    color:#FC0;
+}
+
+/*-------------------------------按鈕測試-----------------------------------------*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*title 內頁標題(白)*/
+
+.title{
+    font-family: Arial, "新細明體";
+    /*font-size: 15px;*/
+    /*font-size: 1.7em;*/
+    font-size: 1em;
+    color: #ffffff;
+    height: 31px;
+    letter-spacing: 6px;
+}
+
+
+
+
+/*stitle 內頁次標題(籃底白字)*/
+
+.stitle{
+    font-family: Arial, "新細明體";
+    font-size: 15px;
+    color: #ffffff;
+    height: 31px;
+    letter-spacing: 6px;
+    background-color: #2888C9;
+    border: 1px solid #FFF;
+    line-height: 33px;
+}
+
+
+
+/*stxto1 文字無連結(橘)*/
+
+.stxto1{
+    font-family: Arial, "新細明體";
+    font-size: 15px;
+    color: #FF6500;
+    line-height: 33px;
+}
+
+
+
+
+/*stxto2 文字無連結(橘字灰底)*/
+
+.stxto2{
+    font-family: Arial, "新細明體";
+    font-size: 15px;
+    color: #FF6500;
+    background-color: #eaeaea;
+    line-height: 33px;
+}
+
+
+
+
+
+/*stxto3 文字無連結(藍字白底)*/
+
+.stxto3{
+    font-family: Arial, "新細明體";
+    font-size: 15px;
+    color: #377DDD;
+    line-height: 33px;
+}
+
+
+
+
+/*stxto4 文字無連結(藍字灰底)*/
+
+.stxto4{
+    font-family: Arial, "新細明體";
+    font-size: 15px;
+    color: #377DDD;
+    background-color: #eaeaea;
+    line-height: 33px;
+}
+
+
+
+
+
+
+
+
+
+
+
+/*sbg 文字無連結(灰底)*/
+
+.sbg{
+    background-color: #eaeaea;
+    line-height: 33px;
+}
+
+
+
+/*page 換頁連結(藍)-------------------------------------------------------6/9修改*/
+
+A.page:link {
+    font-family: Arial, "新細明體";
+    font-size: 15px;
+    color: #377DDD;
+    text-decoration: underline;
+}
+A.page:hover {
+    font-family: Arial, "新細明體";
+    font-size: 15px;
+    color: #377DDD;
+    text-decoration: none;
+}
+A.page:active {
+    font-family: Arial, "新細明體";
+    font-size: 15px;
+    color: #377DDD;
+    text-decoration: none;
+}
+A.page:visited {
+    font-family: Arial, "新細明體";
+    font-size: 15px;
+    color: #377DDD;
+    text-decoration: none;
+}
+
+
+
+/*－－－－－－－－－－－－－－－－－－－－－以上為6/3更新－－－－－－－－－－－－－－－－－－－－－－－－－－－*/
+
+
+
+
+/*enews 訂閱電子報(有灰底)*/
+
+.enews{
+    font-family: Arial, "新細明體";
+    font-size: 15px;
+    color: #377ddd;
+    background-color: #E7E7E7;
+    border: 2px solid #1880cb;
+    height: 28px;
+}
+
+
+/*input 搜尋(白底)*/
+
+.input{
+/*     font-family: Arial, "新細明體"; */
+/*     font-size: 15px; */
+/*     color: #377ddd; */
+/*     background-color: #FFF; */
+/*     border: 2px solid #1880cb; */
+/*     height: 28px; */
+    
+    font-size: 0.9375em;
+    color: #377ddd;
+    background-color: #FFF;
+    border: 2px solid #1880cb;
+    height: 34px;
+    line-height: 34px
+}
+
+/*top 上方資訊連結/選單總表第二層(黑灰)*/
+
+A.top:link {
+    font-family: Arial, "新細明體";
+    font-size: 15px;
+    color: #4F4F4F;
+    text-decoration: none;
+}
+A.top:hover {
+    font-family: Arial, "新細明體";
+    font-size: 15px;
+    color: #000;
+    text-decoration: underline;
+}
+A.top:active {
+    font-family: Arial, "新細明體";
+    font-size: 15px;
+    color: #4f4f4f;
+    text-decoration: none;
+}
+A.top:visited {
+    font-family: Arial, "新細明體";
+    font-size: 15px;
+    color: #4f4f4f;
+    text-decoration: none;
+}
+
+
+/*top 黑字無連結*/
+.top{
+    font-family: Arial, "新細明體";
+    font-size: 15px;
+    color: #000;
+}
+
+
+/*keyword 搜尋列下方熱門搜尋關鍵字連結(橘)*/
+
+A.keyword:link {
+    font-family: Arial, "新細明體";
+    font-size: 15px;
+    color: #F60;
+    text-decoration: underline;
+}
+A.keyword:hover {
+    font-family: Arial, "新細明體";
+    font-size: 15px;
+    color: #F60;
+    text-decoration: none;
+}
+A.keyword:active {
+    font-family: Arial, "新細明體";
+    font-size: 15px;
+    color: #F60;
+    text-decoration: none;
+}
+A.keyword:visited {
+    font-family: Arial, "新細明體";
+    font-size: 15px;
+    color: #F60;
+    text-decoration: none;
+}
+
+
+/*news 最新消息連結(藍)*/
+
+A.news:link {
+    font-family: Arial, "新細明體";
+    font-size: 15px;
+    color: #377ddd;
+    text-decoration: none;
+    line-height: 20px;
+}
+A.news:hover {
+    font-family: Arial, "新細明體";
+    font-size: 15px;
+    color: #377ddd;
+    text-decoration: underline;
+    line-height: 20px;
+}
+A.news:active {
+    font-family: Arial, "新細明體";
+    font-size: 15px;
+    color: #377ddd;
+    text-decoration: none;
+    line-height: 20px;
+}
+A.news:visited {
+    font-family: Arial, "新細明體";
+    font-size: 15px;
+    color: #377ddd;
+    text-decoration: none;
+    line-height: 20px;
+}
+
+/*theme 熱門主題連結/選單總表第一層連結(藍)*/
+
+A.theme:link {
+    font-family: Arial, "新細明體";
+    font-size: 16px;
+    color: #015faf;
+    text-decoration: none;
+}
+A.theme:hover {
+    font-family: Arial, "新細明體";
+    font-size: 16px;
+    color: #015faf;
+    text-decoration: underline;
+}
+A.theme:active {
+    font-family: Arial, "新細明體";
+    font-size: 16px;
+    color: #015faf;
+    text-decoration: none;
+}
+A.theme:visited {
+    font-family: Arial, "新細明體";
+    font-size: 16px;
+    color: #015faf;
+    text-decoration: none;
+}
+
+
+
+
+/*txto 文字無連結(橘)電話號碼*/
+
+.txto{
+    font-family: Arial, "新細明體";
+    font-size: 15px;
+    color: #FF6500;
+}
+
+/*txtgl 文字無連結(灰)熱門主題內文*/
+.txtgl{
+    font-family: Arial, "新細明體";
+    font-size: 15px;
+    color: #636160;
+    line-height: 22px;
+}
+
+/*txtr 文字無連結(紅)數據統計*/
+.txtr{
+    font-family: Arial, "新細明體";
+    font-size: 15px;
+    color: #F03;
+    line-height: 21px;
+}
+
+/*txtb 文字無連結(藍)數據統計*/
+.txtb{
+    font-family: Arial, "新細明體";
+    /*font-size: 15px;*/
+    /*font-size: 1.8em;*/
+    font-size: 1em;
+    /*color: #377ddd;*/
+    line-height: 21px;
+}
+
+
+/*txts 字級大小連結(小)*/
+A.txts:link {
+    font-family: Arial, "新細明體";
+    font-size: 12px;
+    color: #333;
+    text-decoration: none;
+    background-color: #FC0;
+    height: 12px;
+    width: 12px;
+}
+A.txts:hover {
+    font-family: Arial, "新細明體";
+    font-size: 12px;
+    color: #C00;
+    text-decoration: underline;
+    height: 12px;
+    width: 12px;
+    background-color: #FFF;
+}
+A.txts:active {
+    font-family: Arial, "新細明體";
+    font-size: 12px;
+    color: #000;
+    text-decoration: none;
+    background-color: #FC0;
+    height: 12px;
+    width: 12px;
+}
+A.txts:visited {
+    font-family: Arial, "新細明體";
+    font-size: 12px;
+    color: #000;
+    text-decoration: none;
+    background-color: #FC0;
+    height: 12px;
+    width: 12px;
+}
+
+
+/*txtm 字級大小連結(中)*/
+
+A.txtm:link {
+    font-family: Arial, "新細明體";
+    font-size: 15px;
+    color: #333;
+    text-decoration: none;
+    background-color: #FC0;
+    height: 15px;
+    width: 15px;
+}
+A.txtm:hover {
+    font-family: Arial, "新細明體";
+    font-size: 15px;
+    color: #C00;
+    text-decoration: underline;
+    height: 15px;
+    width: 15px;
+    background-color: #FFF;
+}
+A.txtm:active {
+    font-family: Arial, "新細明體";
+    font-size: 15px;
+    color: #000;
+    text-decoration: none;
+    background-color: #FC0;
+    height: 15px;
+    width: 15px;
+}
+A.txtm:visited {
+    font-family: Arial, "新細明體";
+    font-size: 15px;
+    color: #000;
+    text-decoration: none;
+    background-color: #FC0;
+    height: 15px;
+    width: 15px;
+}
+
+/*txtb 字級大小連結(大)*/
+
+A.txtb:link {
+    font-family: Arial, "新細明體";
+    font-size: 16px;
+    color: #333;
+    text-decoration: none;
+    background-color: #FC0;
+    height: 18px;
+    width: 18px;
+}
+A.txtb:hover {
+    font-family: Arial, "新細明體";
+    font-size: 16px;
+    color: #C00;
+    text-decoration: underline;
+    height: 18px;
+    width: 18px;
+    background-color: #FFF;
+}
+A.txtb:active {
+    font-family: Arial, "新細明體";
+    font-size: 16px;
+    color: #000;
+    text-decoration: none;
+    background-color: #FC0;
+    height: 16px;
+    width: 18px;
+}
+A.txtb:visited {
+    font-family: Arial, "新細明體";
+    font-size: 16px;
+    color: #000;
+    text-decoration: none;
+    background-color: #FC0;
+    height: 18px;
+    width: 18px;
+}
+
+
+
+/*accesskey 快捷鍵連結(白)(不變動字型大小)*/
+
+A.accesskey:link {
+    font-family: Arial, "新細明體";
+/*     font-size: 12px; */
+/*     color: #FFF; */
+    color: #636160;
+    text-decoration: none;
+    font-size: 1em;
+    position: absolute;
+    margin: 0 0 0 -12px;
+}
+A.accesskey:hover {
+    font-family: Arial, "新細明體";
+/*     font-size: 12px; */
+/*     color: #FFF; */
+    color: #636160;
+    text-decoration: none;
+    font-size: 1em;
+    position: absolute;
+    margin: 0 0 0 -12px;
+}
+A.accesskey:active {
+    font-family: Arial, "新細明體";
+/*     font-size: 12px; */
+/*     color: #FFF; */
+    color: #636160;
+    text-decoration: none;
+    font-size: 1em;
+    position: absolute;
+    margin: 0 0 0 -12px;
+}
+A.accesskey:visited {
+    font-family: Arial, "新細明體";
+/*     font-size: 12px; */
+/*     color: #FFF; */
+    color: #636160;
+    text-decoration: none;    
+    font-size: 1em;
+    position: absolute;
+    margin: 0 0 0 -12px;
+}
+
+
+
+
+/*site 網站路徑連結(藍)*/
+
+A.site:link {
+    font-family: Arial, "新細明體";
+    font-size: 15px;
+    color: #03F;
+    text-decoration: underline;
+}
+A.site:hover {
+    font-family: Arial, "新細明體";
+    font-size: 15px;
+    color: #03F;
+    text-decoration: none;
+}
+A.site:active {
+    font-family: Arial, "新細明體";
+    font-size: 15px;
+    color: #03F;
+    text-decoration: none;
+}
+A.site:visited {
+    font-family: Arial, "新細明體";
+    font-size: 15px;
+    color: #03F;
+    text-decoration: none;
+}
+
+
+
+/*site 網站路徑無連結(藍)*/
+
+.site{
+    font-family: Arial, "新細明體";
+    font-size: 15px;
+    color: #06F;
+}
+
+
+
+
+
+
+
+
+/*copyright1 版權宣告無連結(黑)(不變動字型大小)*/
+
+.copyright1 {
+    font-family: Arial, "新細明體";
+    font-size: 12px;
+    color: #000;
+    text-decoration: none;
+    line-height: 16px;
+}
+
+/*copyright2 版權宣告無連結(紅)(不變動字型大小)*/
+
+.copyright2 {
+    font-family: Arial, "新細明體";
+    font-size: 12px;
+    color: #F00;
+    text-decoration: none;
+    line-height: 16px;
+}
+
+/*copyright3 版權宣告無連結(藍)(不變動字型大小)*/
+
+.copyright3 {
+    font-family: Arial, "新細明體";
+    font-size: 12px;
+    color: #06C;
+    text-decoration: none;
+    line-height: 16px;
+}
+
+/* columns of same height styles */
+
+.container{
+    max-width:100%; 
+    width: 1006px ;
+}
+[class*="col-"] {
+    padding-top:10px;
+    padding-bottom:15px;
+    /*border:0px solid #ddddff;*/
+    background:#ffffff;
+}
+[class*="col-"]:before {
+    display:block;position:relative;
+    margin-bottom:8px;
+    font-family:sans-serif;
+    font-size:10px;
+    letter-spacing:1px;
+    color:#658600;
+    text-align:left;
+}
+.container-xs-height {
+    display:table;
+    padding-left:0px;
+    padding-right:0px;
+}
+.row-xs-height {
+    display:table-row;
+}
+.col-xs-height {
+    display:table-cell;
+    float:none;
+}
+@media (min-width: 768px) {
+    .container-sm-height {
+        display:table;
+        padding-left:0px;
+        padding-right:0px;
+    }
+    .row-sm-height {
+        display:table-row;
+    }
+    .col-sm-height {
+        display:table-cell;
+        float:none;
+    }
+}
+@media (min-width: 992px) {
+    .container-md-height {
+        display:table;
+        padding-left:0px;
+        padding-right:0px;
+    }
+    .row-md-height {
+        display:table-row;
+    }
+    .col-md-height {
+        display:table-cell;
+        float:none;
+    }
+}
+@media (min-width: 1200px) {
+    .container-lg-height {
+        display:table;
+        padding-left:0px;
+        padding-right:0px;
+    }
+    .row-lg-height {
+        display:table-row;
+    }
+    .col-lg-height {
+        display:table-cell;
+        float:none;
+    }
+}

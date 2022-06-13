@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <link rel="stylesheet" type="text/css" href="../styles/ui.jqgrid.css"/>
+  <meta th:replace="fragments/external_meta :: meta"></meta>
+  <meta th:replace="fragments/external_resources :: head_resources"></meta>  
+  <meta th:substituteby='fragments/resources :: head_resources'></meta><!-- 套這個 -->
+  <link rel="stylesheet" type="text/css" wro4j:style="odsCommonMCSS" />   <!-- 套這個 -->
+  <style type="text/css">
+  <!--  
+  .lessContent{
+    overflow: hidden;
+    max-height: 132px;
+  }
+  -->
+
+
+.center { margin-left: 20px; margin-right: auto; }
+
+
+.ui-dialog { position: absolute; padding: .2em; width: 300px; overflow: hidden; font-size: 15px;}
+.ui-dialog .ui-dialog-titlebar { padding: .5em 1em .3em; position: relative;  }
+.ui-dialog .ui-dialog-title { float: left; margin: .1em 16px .2em 0; } 
+.ui-dialog .ui-dialog-titlebar-close { position: absolute; right: .3em; top: 50%; width: 19px; margin: -10px 0 0 0; padding: 1px; height: 18px;                 visibility: hidden;}
+.ui-dialog .ui-dialog-titlebar-close span { display: block; margin: 1px; }
+.ui-dialog .ui-dialog-titlebar-close:hover, .ui-dialog .ui-dialog-titlebar-close:focus { padding: 0; }
+.ui-dialog .ui-dialog-content { border: 0; padding: .5em 1em; background: none; overflow: auto; zoom: 1; }
+.ui-dialog .ui-dialog-buttonpane { text-align: left; border-width: 1px 0 0 0; background-image: none; margin: .5em 0 0 0; padding: .3em 1em .5em .4em; }
+.ui-dialog .ui-dialog-buttonpane button { float: right; margin: .2em .2em .2em 0; cursor: pointer; padding: .0em .1em .1em .1em; line-height: 1.4em; width:auto; overflow:visible; }
+.ui-dialog .ui-resizable-se { width: 14px; height: 14px; right: 3px; bottom: 3px; }
+.ui-draggable .ui-dialog-titlebar { cursor: move; }
+
+  </style>
+</head>
+
+<body th:class="${session.EXTERNAL_USER_STYLE}">
+  <div th:replace="fragments/external_header :: header"></div>
+
+  
+      <!-- div class="row" data-ng-app="ods352eApp">
+      <div class="container" data-ng-controller="ods352eController" -->
+      
+
+  <div class="container">
+  <div th:substituteby="body_alert_header :: alert"></div>
+      <div class="row">
+            <form class="form-inline" name="ods352eForm" id="ods352eForm">
+        <table width="1010" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr class="txtb">
+              <td height="33" th:background="@{/images/title_bg_b.png}">
+                <table width="200" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td width="30">&nbsp;</td>
+                    <td width="162" class="title">編輯訂閱資訊</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr class="txtb">
+            <td valign="top" bgcolor="#FFFFFF"><br />
+                    
+        <!-- table id="list4" ></table -->
+        <div class="center">
+        <table id="list2"></table>
+        </div>
+<!-- div id="pagerDiv"></div -->
+<div align = "center" >
+                                            <button id="btnDelete" type="button" class="btn btn-primary">
+                                                <i class="glyphicon glyphicon-remove"></i> 取消訂閱
+                                            </button>
+                                                                <!-- button id="btnUpdate" type="button" class="btn btn-success btn-xs">
+                      <span class="glyphicon glyphicon-tag"></span>訂閱
+                    </button -->
+
+</div>
+                                            
+<!-- table id="list1"></table>
+<div id="pager1"></div -->
+
+
+              <table width="90%" border="0" align="center" cellpadding="2" cellspacing="0">
+              <tbody><tr>
+                <td>
+                   <div id="content" class="container">
+                    <!--div class="col-md-offset-9 col-md-3">
+                                        依
+                    <select id="orderByType" onchange="odsPackageQuery();">
+                        <option value="0">更新時間</option>
+                        <option value="1">熱門排名</option>
+                    </select>
+                                        排序
+                    <a href="javascript:void(0);" onclick="history.back();" class="btn btn-primary btn-xs pull-right" role="button">BACK</a>
+                    </div-->
+                      
+                      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                          <tbody>
+                            <tr><td>
+                            <!-- div class="row">
+                                <div class="col-md-3">
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <h4>關鍵字</h4>
+                                            <input type="text" class="form-control" id="packageName" placeholder="請輸入關鍵字"/>
+                                            <button type="button" class="btn btn-default btn-sm" onclick="odsPackageQuery();">
+                                                <span class="glyphicon glyphicon-search"></span> 查詢
+                                            </button>
+                                            <button type="button" class="btn btn-warning btn-xs" onclick="clearPackageName()">
+                                                <span class="glyphicon glyphicon-remove"></span> 清除條件
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <h4>分類標籤</h4>
+                                            <div id="tags" class="list-group lessContent">
+                                            </div>
+                                            <h6 onclick="showMore('tags')">更多標籤...</h6>
+                                            <button type="button" class="btn btn-warning btn-xs" onclick="clearSelectedObject('tags')">
+                                                <span class="glyphicon glyphicon-remove"></span> 清除條件
+                                            </button>                         
+                                        </div>
+                                    </div>
+                                    <div class="panel panel-default">
+                                        <div class="panel-body">
+                                            <h4>檔案格式</h4>
+                                            <div id="fileExts" class="list-group lessContent">
+                                            </div>
+                                            <button type="button" class="btn btn-warning btn-xs" onclick="clearSelectedObject('fileExts')">
+                                                <span class="glyphicon glyphicon-remove"></span> 清除條件
+                                            </button>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="col-md-9">
+                                  <div id="odsPackages" class="panel panel-default"></div>
+                                </div>
+                            </div -->
+                            </td><tr>
+                          </tbody>
+                      </table>
+                      <!-- div class="panel panel-default">
+                          <div class="panel-body">
+                              <div class="grid-style" data-ng-grid="girdObject1"
+                                 style="display: inline-block; height: 240px;">
+                              </div>
+                          </div>
+                      </div -->
+                    <a href="javascript:void(0);" onClick="history.back();" class="btn btn-primary btn-xs pull-right" role="button">BACK</a>
+                    
+                   </div>
+                </td>
+              </tr></tbody>
+              </table>
+            </td>
+            </tr>
+            </tbody>
+        </table>
+
+  </form>    
+  <div id="deleteConfirmDialog">是否確定刪除？ </div>    
+      </div>  
+  </div>
+
+  
+
+  
+      <!-- /div>
+  </div -->
+  
+  
+  <div th:substituteby="fragments/external_footer :: footer"></div>
+  <div th:substituteby="fragments/external_resources :: body_resources"></div>
+  <div th:substituteby="fragments/resources :: body_resources"></div>
+  
+    <script type="text/javascript" th:src="@{/scripts/ods352e.js}"></script>
+    <script type="text/javascript" th:src="@{/scripts/form2object.js}"></script>
+    <script type="text/javascript" th:src="@{/scripts/jquery-ui.min.js}"></script>
+
+<script type="text/javascript" th:src="@{/scripts/grid.locale-tw.js}"></script>
+    <script type="text/javascript" th:src="@{/scripts/jquery.jqGrid.src.js}"></script>
+    
+    <script type="text/javascript" th:src="@{/scripts/common/sls-jquery-ajax.js}"></script>
+</body>
+
+</html>

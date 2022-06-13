@@ -1,0 +1,40 @@
+
+<!-- 可在此設定 modal 的寬度，預設為 600px  -->
+  <style type="text/css">
+  .modal-dialog {
+     width:800px 
+  }
+  </style>
+
+        <div class='modal-header'>
+          <h3>挑選素材及案例</h3>
+          <div class="btn-toolbar">
+            <button type="button" class="btn btn-primary" data-ng-click="queryPackage()">
+              <i class="glyphicon glyphicon-search"></i>查詢
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="addPackage()">
+                <span class="glyphicon glyphicon-plus"></span> 加入
+            </button>
+          </div>
+        </div>
+        <div class='modal-body'>
+          <div class="row">
+            <div class="form-group col-sm-12">
+              <label class="control-label" for="name">素材及案例名稱 【若查無資料代表無此數據或是已存在於該分類中】</label>
+              <input class="form-control" id="resoureName" style="width: 60%;" data-ng-model="pkg.pkgGupName">
+            </div>
+          </div>
+          <!-- div class="row">
+            <div class="form-group col-sm-12">
+              <label class="control-label" for="phone">素材及案例分類</label>
+                <select class="form-control" data-ng-model="resource.catId">
+                  <option value=""></option>
+                  <option data-ng-repeat="item in category track by $index" value="{{item.id}}">{{item.name}}</option>
+                </select>
+            </div>
+          </div -->
+          
+          <div class="grid-style" data-ng-grid="chosePackageGird"
+           style="display: inline-block; height: 360px;">
+          </div>
+        </div>

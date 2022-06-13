@@ -1,0 +1,844 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ods304p" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d1c3bf81-aa19-4e0e-ad82-0a34f472e482">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<subDataset name="Table Dataset" uuid="4d896d1f-7519-48a5-9546-02a5d9832813">
+		<parameter name="metadata" class="java.util.List">
+			<parameterDescription><![CDATA[]]></parameterDescription>
+		</parameter>
+		<field name="dataKey" class="java.lang.String"/>
+		<field name="dataValue" class="java.lang.String"/>
+		<field name="field1" class="java.lang.String"/>
+		<field name="field2" class="java.lang.String"/>
+		<field name="field3" class="java.lang.String"/>
+		<field name="field4" class="java.lang.String"/>
+		<field name="field5" class="java.lang.String"/>
+		<field name="field6" class="java.lang.String"/>
+		<field name="field7" class="java.lang.String"/>
+		<field name="field8" class="java.lang.String"/>
+		<field name="field9" class="java.lang.String"/>
+		<field name="field10" class="java.lang.String"/>
+	</subDataset>
+	<parameter name="SUBREPORT" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DATA_SOURCE" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<parameter name="title" class="java.lang.String"/>
+	<parameter name="description" class="java.lang.String"/>
+	<parameter name="url_link" class="java.lang.String"/>
+	<parameter name="tags" class="java.lang.String"/>
+	<parameter name="metadata" class="java.util.List"/>
+	<parameter name="showAtt" class="java.lang.String"/>
+	<field name="dataKey" class="java.lang.String"/>
+	<field name="dataValue" class="java.lang.String"/>
+	<field name="row0_name" class="java.lang.String"/>
+	<field name="row0_description" class="java.lang.String"/>
+	<field name="row1_name" class="java.lang.String"/>
+	<field name="row1_description" class="java.lang.String"/>
+	<field name="row2_name" class="java.lang.String"/>
+	<field name="row2_description" class="java.lang.String"/>
+	<field name="pattern" class="java.lang.String"/>
+	<field name="metadata" class="java.util.List"/>
+	<field name="format0" class="java.lang.String"/>
+	<field name="format1" class="java.lang.String"/>
+	<field name="format2" class="java.lang.String"/>
+	<field name="imagePath0" class="java.io.InputStream"/>
+	<field name="imagePath1" class="java.io.InputStream"/>
+	<field name="imagePath2" class="java.io.InputStream"/>
+	<field name="gridDatas0" class="java.util.List"/>
+	<field name="gridDatas1" class="java.util.List"/>
+	<field name="gridDatas2" class="java.util.List"/>
+	<pageHeader>
+		<band height="63" splitType="Stretch">
+			<staticText>
+				<reportElement key="staticText" x="102" y="0" width="317" height="24" uuid="8438f280-fe1f-4093-8061-94461f0bf172"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="標楷體" size="14"/>
+				</textElement>
+				<text><![CDATA[電子發票智慧好生活]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true" hyperlinkType="Reference" hyperlinkTarget="Blank">
+				<reportElement x="102" y="24" width="317" height="20" forecolor="#0000CC" uuid="71eed8ea-e5cd-4818-a997-62133ddd0eb2"/>
+				<textElement textAlignment="Center">
+					<font fontName="標楷體"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{url_link}]]></textFieldExpression>
+				<hyperlinkReferenceExpression><![CDATA[$P{url_link}]]></hyperlinkReferenceExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText" x="495" y="0" width="60" height="24" uuid="f9594bba-c40a-41d9-9833-7c0d36c2175c">
+					<printWhenExpression><![CDATA[$P{showAtt}.equals("yes")]]></printWhenExpression>
+				</reportElement>
+				<box>
+					<pen lineWidth="1.5"/>
+					<topPen lineWidth="1.5"/>
+					<leftPen lineWidth="1.5"/>
+					<bottomPen lineWidth="1.5"/>
+					<rightPen lineWidth="1.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="標楷體" size="14"/>
+				</textElement>
+				<text><![CDATA[附  件]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="439" y="33" width="50" height="15" uuid="80e887d2-7c08-49bb-a988-ec7fbb8b1981"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[程式代號：]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="489" y="48" width="65" height="15" uuid="f012b20e-8bd4-4dd1-8c7e-010d5ba0b651"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[String.valueOf(Integer.parseInt(new java.text.SimpleDateFormat("yyyy").format(new java.util.Date()))-1911)+"年"+new java.text.SimpleDateFormat("MM月dd日").format(new java.util.Date())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="489" y="33" width="65" height="15" uuid="bb21fd64-78b5-4bdc-9f78-bc9e2b79f829"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($P{showAtt}!=null && $P{showAtt}.equals("yes"))?"ODS703E":"ODS304E"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="439" y="48" width="50" height="15" uuid="d28a09e8-5c85-4adc-be9c-a48fc5d87ff5"/>
+				<textElement>
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[製表日期：]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="135" splitType="Stretch">
+			<printWhenExpression><![CDATA[$V{PAGE_NUMBER} == 1]]></printWhenExpression>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="80" y="20" width="464" height="20" uuid="52eb4b27-8d4c-4087-90a6-a989019883cb"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="標楷體"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{description}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText" positionType="Float" x="30" y="60" width="72" height="20" uuid="c8c4606e-58b6-4aa5-9a46-12b90d1407f0"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="標楷體" size="10"/>
+				</textElement>
+				<text><![CDATA[額外的資訊：]]></text>
+			</staticText>
+			<componentElement>
+				<reportElement key="table" style="table" positionType="Float" x="30" y="82" width="514" height="36" uuid="2d083c91-3e64-4698-8e1b-3b0c00b0131d"/>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Table Dataset" uuid="416813b4-10cf-4679-8b86-d7a51b9ece83">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRMapCollectionDataSource($P{metadata})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:column width="171" uuid="3a95c460-5fba-4369-b3f1-e30b3b58e351">
+						<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement x="14" y="0" width="132" height="30" uuid="acc645ce-3f0f-439d-8883-b9df738d8bee"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{dataKey}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+					<jr:column width="206" uuid="f5944c24-4c10-43bc-b84e-02f0e0736cd7">
+						<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+							<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+								<reportElement x="14" y="0" width="137" height="30" uuid="9dd08cb8-176c-4ab7-87e1-2fc4e0188a7b"/>
+								<textElement verticalAlignment="Middle"/>
+								<textFieldExpression><![CDATA[$F{dataValue}]]></textFieldExpression>
+							</textField>
+						</jr:detailCell>
+					</jr:column>
+				</jr:table>
+			</componentElement>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" x="30" y="40" width="514" height="20" uuid="195916b8-5464-46b7-bab9-734696a2bd3f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="標楷體"/>
+				</textElement>
+				<textFieldExpression><![CDATA["標　　籤：" + $P{tags}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="1" y="134" width="553" height="1" uuid="29062158-e470-4997-a92e-4654824eb3b5"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement key="staticText" positionType="Float" x="30" y="20" width="50" height="20" uuid="9a2cd6de-ec6a-4be5-a0e4-f81a6e48aa0d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="標楷體" size="10"/>
+				</textElement>
+				<text><![CDATA[主題說明：]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="80" y="0" width="464" height="20" uuid="01748fad-ea2d-4706-b448-ad9f9b733ad2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="標楷體"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{title}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement key="staticText" x="30" y="0" width="50" height="20" uuid="3bb297de-c3b4-4129-bacf-9d5e34634f31"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="標楷體" size="10"/>
+				</textElement>
+				<text><![CDATA[主題名稱：]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="77">
+			<printWhenExpression><![CDATA[$F{pattern}.equals( "3" )]]></printWhenExpression>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="0" y="0" width="176" height="20" uuid="051a6b04-9370-4168-a6e0-b7335fcb236d"/>
+				<textElement>
+					<font fontName="標楷體"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{row0_name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="0" y="20" width="176" height="20" uuid="e212a54e-98c2-4147-b07b-29e9be21e4ba"/>
+				<textElement>
+					<font fontName="標楷體"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{row0_description}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="186" y="0" width="176" height="20" uuid="c5bbb83d-2983-4f19-95aa-4438ca5accf9"/>
+				<textElement>
+					<font fontName="標楷體"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{row1_name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="186" y="20" width="176" height="20" uuid="51ecb80f-2a03-4207-b16a-0011957b5c60"/>
+				<textElement>
+					<font fontName="標楷體"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{row1_description}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="377" y="0" width="176" height="20" uuid="d2a5aae1-b9fe-410b-a303-b524acb990bb"/>
+				<textElement>
+					<font fontName="標楷體"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{row2_name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="377" y="20" width="176" height="20" uuid="930e8dd9-37a7-4075-89b7-382e2e591a8d"/>
+				<textElement>
+					<font fontName="標楷體"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{row2_description}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="RealSize">
+				<reportElement positionType="Float" x="186" y="53" width="176" height="22" uuid="72ed0dd9-3b60-46c2-86f7-c173b98161e9">
+					<printWhenExpression><![CDATA[$F{format1}.equals( "image" )]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA[$F{imagePath1}]]></imageExpression>
+			</image>
+			<image scaleImage="RealSize">
+				<reportElement positionType="Float" x="377" y="53" width="176" height="22" uuid="45f981ae-a6b1-48ba-90b5-1ea63c266491">
+					<printWhenExpression><![CDATA[$F{format2}.equals( "image" )]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA[$F{imagePath2}]]></imageExpression>
+			</image>
+			<image scaleImage="RealSize">
+				<reportElement positionType="Float" x="0" y="53" width="176" height="22" uuid="46626681-2b5f-4621-a3d6-6c8e1d270edb">
+					<printWhenExpression><![CDATA[$F{format0}.equals( "image" )]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA[$F{imagePath0}]]></imageExpression>
+			</image>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="1" y="76" width="553" height="1" uuid="552291b2-9b53-4c5d-b214-e8c2f5ba9cad"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="180" y="0" width="1" height="75" isPrintWhenDetailOverflows="true" uuid="5637fca2-dafb-48cc-99a1-d2c27e660f40"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="370" y="1" width="1" height="75" isPrintWhenDetailOverflows="true" uuid="d2e4ec97-006e-4e31-b645-e50daa8e2d69"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<componentElement>
+				<reportElement key="table" style="table" positionType="Float" x="1" y="53" width="175" height="21" uuid="4d8b7b99-3eda-460f-a9c9-450c6f4ffce2">
+					<printWhenExpression><![CDATA[$F{format0}.equals( "dataset" )]]></printWhenExpression>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Table Dataset" uuid="8103af1b-3b7f-4d96-92ec-46e146f724e6">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRMapCollectionDataSource($F{gridDatas0})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:columnGroup width="150" uuid="5de98e64-5e1d-4222-9100-6a7dc4952a10">
+						<jr:tableFooter height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="150" height="30" uuid="290fbd96-9d02-45d1-8036-9ba7e01b565a"/>
+								<box leftPadding="5"/>
+								<text><![CDATA[註:資料僅列出前十筆，每筆資料列出前三欄]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:column width="50" uuid="870bd3fb-b258-40eb-a4a9-c8fc3a4032c8">
+							<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="50" height="30" uuid="7736a6ed-44db-42f9-98d3-512a52c3c1ed"/>
+									<box leftPadding="5"/>
+									<textElement verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$F{field1}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="50" uuid="ca92e18f-fd93-4034-a092-048262cf2109">
+							<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="50" height="30" uuid="b0e13aa9-7466-42ea-a1ee-9f6db87d16b7"/>
+									<box leftPadding="5"/>
+									<textElement verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$F{field2}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="50" uuid="b04425a0-fd99-49b7-85de-2c5aa4197680">
+							<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="50" height="30" uuid="d2129662-e866-4496-bf12-78fc1e977f71"/>
+									<box leftPadding="5"/>
+									<textElement verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$F{field3}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:columnGroup>
+				</jr:table>
+			</componentElement>
+			<componentElement>
+				<reportElement key="table" style="table" positionType="Float" x="186" y="53" width="175" height="21" uuid="95a1c0cf-64ed-4160-a44e-c2e3ef5492fa">
+					<printWhenExpression><![CDATA[$F{format1}.equals( "dataset" )]]></printWhenExpression>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Table Dataset" uuid="c9e64e26-df57-4c1b-a72d-b70a86e50491">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRMapCollectionDataSource($F{gridDatas1})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:columnGroup width="150" uuid="6226158b-83f5-4d26-a96a-1fc8c5fc14b9">
+						<jr:tableFooter height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="150" height="30" uuid="70d49b48-5c24-48a8-b101-41965e35dded"/>
+								<box leftPadding="5"/>
+								<text><![CDATA[註:資料僅列出前十筆，每筆資料列出前三欄]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:column width="50" uuid="ae23c017-837f-496d-a7d5-f187090044d0">
+							<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="50" height="30" uuid="637cb428-39bc-4806-a220-f9b3a653f134"/>
+									<box leftPadding="5"/>
+									<textElement verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$F{field1}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="50" uuid="3fa65d98-40f0-415a-b702-4d64b18aff06">
+							<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="50" height="30" uuid="43c8d16e-7858-4824-9616-408a69acd244"/>
+									<box leftPadding="5"/>
+									<textElement verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$F{field2}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="50" uuid="608bffc8-2fad-4ed7-9579-617470d4aba9">
+							<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="50" height="30" uuid="e80f5ffb-d4dc-4842-a910-e8c68135ac3d"/>
+									<box leftPadding="5"/>
+									<textElement verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$F{field3}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:columnGroup>
+				</jr:table>
+			</componentElement>
+			<componentElement>
+				<reportElement key="table" style="table" positionType="Float" x="377" y="53" width="175" height="21" uuid="09b43ba9-a3bf-495d-9387-a772a4f76348">
+					<printWhenExpression><![CDATA[$F{format2}.equals( "dataset" )]]></printWhenExpression>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Table Dataset" uuid="ba921673-a305-4435-97af-70708e91ee5c">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRMapCollectionDataSource($F{gridDatas2})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:columnGroup width="150" uuid="06d0a112-af19-4cd9-a197-37ba4f3b7134">
+						<jr:tableFooter height="30" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="150" height="30" uuid="1fca48d9-c64b-49fb-9a34-428c80763965"/>
+								<box leftPadding="5"/>
+								<text><![CDATA[註:資料僅列出前十筆，每筆資料列出前三欄]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:column width="50" uuid="9a1200cf-b475-47fb-a4a5-a1c684652d2c">
+							<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="50" height="30" uuid="a23045c9-492f-4d21-8133-3b5ac00a1835"/>
+									<box leftPadding="5"/>
+									<textElement verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$F{field1}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="50" uuid="56dc36c9-82b5-40b4-9285-c7a3358d2c41">
+							<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="50" height="30" uuid="11a3df98-bb4a-41d5-9265-9c1edd3629c6"/>
+									<box leftPadding="5"/>
+									<textElement verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$F{field2}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="50" uuid="b21f749c-f19e-47e3-aca0-0a16fef3979a">
+							<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="50" height="30" uuid="ed8b1f39-c239-42ac-b6a1-17a9c68b2f8b"/>
+									<box leftPadding="5"/>
+									<textElement verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$F{field3}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:columnGroup>
+				</jr:table>
+			</componentElement>
+		</band>
+		<band height="78">
+			<printWhenExpression><![CDATA[$F{pattern}.equals( "2" )]]></printWhenExpression>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="30" y="0" width="228" height="20" uuid="cc8ef204-147f-4267-87e0-81153e808749"/>
+				<textElement>
+					<font fontName="標楷體"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{row0_name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="30" y="20" width="228" height="20" uuid="3be5864c-4a08-418c-8882-799a2129991e"/>
+				<textElement>
+					<font fontName="標楷體"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{row0_description}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="303" y="0" width="228" height="20" uuid="bd4dd1cb-630e-43ad-9344-10d42940e622"/>
+				<textElement>
+					<font fontName="標楷體"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{row1_name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="303" y="20" width="228" height="20" uuid="24a409e5-4a19-4a1b-a18c-5b3c84b8e1ed"/>
+				<textElement>
+					<font fontName="標楷體"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{row1_description}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="RealSize">
+				<reportElement positionType="Float" x="30" y="54" width="228" height="22" uuid="99683f8d-a49f-4a29-beb1-06e26684993f">
+					<printWhenExpression><![CDATA[$F{format0}.equals( "image" )]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA[$F{imagePath0}]]></imageExpression>
+			</image>
+			<image scaleImage="RealSize">
+				<reportElement positionType="Float" x="303" y="54" width="228" height="22" uuid="2ddfaefa-6df7-4c14-a327-3551eddc7e7f">
+					<printWhenExpression><![CDATA[$F{format1}.equals( "image" )]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA[$F{imagePath1}]]></imageExpression>
+			</image>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="1" y="77" width="553" height="1" uuid="345124f7-89a6-4f14-b4b9-ef55928d1398"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToBandHeight" x="278" y="0" width="1" height="75" isPrintWhenDetailOverflows="true" uuid="ea6d5956-55aa-400a-a61c-2f45ec4b568c"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<componentElement>
+				<reportElement key="table" style="table" positionType="Float" x="20" y="54" width="228" height="21" uuid="05426688-7e8f-486e-9861-5ed86f99d711">
+					<printWhenExpression><![CDATA[$F{format0}.equals( "dataset" )]]></printWhenExpression>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Table Dataset" uuid="d04e422e-5b21-4835-b6d2-701476adb48a">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRMapCollectionDataSource($F{gridDatas0})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:columnGroup width="252" uuid="48833172-ae1a-4cb2-8fdd-93f12d5e9f9f">
+						<jr:tableFooter height="20" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="252" height="20" uuid="de180d6b-d563-443b-87c3-ab7f2f5afbf4"/>
+								<box leftPadding="5"/>
+								<text><![CDATA[註:資料僅列出前十筆，每筆資料列出前五欄]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:column width="50" uuid="08091254-cca9-42c5-bea1-e78666780f95">
+							<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement mode="Opaque" x="0" y="0" width="50" height="30" uuid="a4e51235-74ce-40c7-8438-352202ac9ea4"/>
+									<box leftPadding="5"/>
+									<textElement verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$F{field1}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="52" uuid="40500476-a188-42cc-ad4c-d55ec47506a3">
+							<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="52" height="30" uuid="41a20470-baea-4c69-98f5-9d49a35063a3"/>
+									<box leftPadding="5"/>
+									<textElement verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$F{field2}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="50" uuid="57cb724c-658f-4fb4-9ea8-82747372293a">
+							<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="50" height="30" uuid="3bb488a3-101c-424e-a123-0267795185de"/>
+									<box leftPadding="5"/>
+									<textElement verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$F{field3}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="50" uuid="3fda5ae7-3836-4ea6-a9af-c74493c774db">
+							<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="50" height="30" uuid="32d32c75-6406-4810-b56e-94dc24aed990"/>
+									<box leftPadding="5"/>
+									<textElement verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$F{field4}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="50" uuid="e3a2b6b2-0b68-4feb-abb9-9ad964fafb82">
+							<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="30" height="30" uuid="1dff04ea-0029-45c3-b885-65f2737425fb"/>
+									<box leftPadding="5"/>
+									<textElement verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$F{field5}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:columnGroup>
+				</jr:table>
+			</componentElement>
+			<componentElement>
+				<reportElement key="table" style="table" positionType="Float" x="293" y="54" width="228" height="21" uuid="04f8a32d-2101-4d1d-8267-22a13bf42022">
+					<printWhenExpression><![CDATA[$F{format1}.equals( "dataset" )]]></printWhenExpression>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Table Dataset" uuid="4f11ed80-a9ed-498f-a5dc-b30e1a46fa3e">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRMapCollectionDataSource($F{gridDatas1})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:columnGroup width="250" uuid="06ce6377-4e0a-410c-8db2-d16a980d13a8">
+						<jr:tableFooter height="20" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="250" height="20" uuid="7f0bd1cb-a3bc-4fc0-b495-c9a8892b2303"/>
+								<box leftPadding="5"/>
+								<text><![CDATA[註:資料僅列出前十筆，每筆資料列出前五欄]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:column width="50" uuid="2a54837a-2d3e-49d3-b071-697be80d6cda">
+							<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="50" height="30" uuid="ec5acb51-9aa8-489e-a66d-e08137eaddc8"/>
+									<box leftPadding="5"/>
+									<textElement verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$F{field1}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="50" uuid="35dcd192-1ab2-461c-9752-bce5f16704a2">
+							<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="50" height="30" uuid="6a981022-a1dd-4df5-8fa3-eca376400196"/>
+									<box leftPadding="5"/>
+									<textElement verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$F{field2}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="50" uuid="fb5563fd-bfbe-49c4-8599-090ee7062f3b">
+							<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="50" height="30" uuid="46c1d83d-2b2e-400a-b9f2-cd3dbf818d2d"/>
+									<box leftPadding="5"/>
+									<textElement verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$F{field3}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="50" uuid="944d16e8-670a-4702-b35c-212d0d908b81">
+							<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="50" height="30" uuid="f61dc3b6-d669-4b83-846d-3850bfc1d788"/>
+									<box leftPadding="5"/>
+									<textElement verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$F{field4}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="50" uuid="872bacd5-40ae-4731-81b2-2244e53a3178">
+							<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="50" height="30" uuid="69aa682b-c111-4368-aae1-33fe743a13d2"/>
+									<box leftPadding="5"/>
+									<textElement verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$F{field5}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:columnGroup>
+				</jr:table>
+			</componentElement>
+		</band>
+		<band height="81">
+			<printWhenExpression><![CDATA[$F{pattern}.equals( "1" )]]></printWhenExpression>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement x="121" y="0" width="329" height="20" uuid="64d1fd7b-960a-4680-9d78-b54424dcc8ec"/>
+				<textElement>
+					<font fontName="標楷體"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{row0_name}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement positionType="Float" x="121" y="20" width="329" height="20" uuid="bfbd1193-b641-4c65-b211-06dcda3b1584"/>
+				<textElement>
+					<font fontName="標楷體"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{row0_description}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="RealSize">
+				<reportElement positionType="Float" x="41" y="53" width="470" height="22" uuid="391489d1-419c-41d7-9a08-fa7a54eabd50">
+					<printWhenExpression><![CDATA[$F{format0}.equals( "image" )]]></printWhenExpression>
+				</reportElement>
+				<imageExpression><![CDATA[$F{imagePath0}]]></imageExpression>
+			</image>
+			<line direction="BottomUp">
+				<reportElement positionType="FixRelativeToBottom" x="1" y="80" width="553" height="1" uuid="0354fa29-e515-4311-98cd-1f5ebf05f2c8"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<componentElement>
+				<reportElement key="table" style="table" positionType="Float" x="41" y="54" width="470" height="21" uuid="61ecabd9-1382-4201-8084-f977dc7f7985">
+					<printWhenExpression><![CDATA[$F{format0}.equals( "dataset" )]]></printWhenExpression>
+				</reportElement>
+				<jr:table xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="Table Dataset" uuid="72f5ff63-8061-4cb8-8c02-3a311e025ac2">
+						<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRMapCollectionDataSource($F{gridDatas0})]]></dataSourceExpression>
+					</datasetRun>
+					<jr:columnGroup width="506" uuid="beb0b246-660b-465c-a612-aa7961d725f0">
+						<jr:tableFooter height="20" rowSpan="1">
+							<staticText>
+								<reportElement x="0" y="0" width="506" height="20" uuid="5164e9b1-0c5c-4330-ac4e-ad9fbff51bdb"/>
+								<box leftPadding="5"/>
+								<text><![CDATA[註:資料僅列出前十筆，每筆資料列出前十欄]]></text>
+							</staticText>
+						</jr:tableFooter>
+						<jr:column width="50" uuid="2f25e829-7d58-44a5-b4ac-baf82446b253">
+							<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="50" height="30" uuid="878a8f65-5823-47c9-9349-8062a1f1982f"/>
+									<box leftPadding="5"/>
+									<textElement verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$F{field1}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="52" uuid="12c2aa6d-d459-4f3c-be8a-0042edf75fed">
+							<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="52" height="30" uuid="2d0e14de-4d6e-45fe-b39c-6631033c005e"/>
+									<box leftPadding="5"/>
+									<textElement verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$F{field2}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="50" uuid="75bfb04e-a537-4a8f-9327-0ddb24c47674">
+							<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="50" height="30" uuid="a0ab0ae5-4d58-4acf-8aa2-b91f01ddf2b2"/>
+									<box leftPadding="5"/>
+									<textElement verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$F{field3}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="50" uuid="d655278f-0459-4a6b-8be3-2fc330ea20a7">
+							<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="50" height="30" uuid="49e84642-6cd0-4397-b421-01d8ab22f450"/>
+									<box leftPadding="5"/>
+									<textElement verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$F{field4}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="50" uuid="0ffadf1c-27b4-46bf-ae34-eaa49d11949d">
+							<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="50" height="30" uuid="14b2e49f-5b44-4056-96e0-924fbad9144b"/>
+									<box leftPadding="5"/>
+									<textElement verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$F{field5}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="50" uuid="2dab6263-79d4-41de-899d-cec4c8f7cb21">
+							<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="50" height="30" uuid="5743912d-1322-4f6e-8e02-518f4af3ad71"/>
+									<box leftPadding="5"/>
+									<textElement verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$F{field6}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="51" uuid="4af2f4ac-5f91-4470-b455-43bb93a7b758">
+							<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="50" height="30" uuid="0aaed090-53d3-41fd-a882-d7750c6ac12a"/>
+									<box leftPadding="5"/>
+									<textElement verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$F{field7}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="51" uuid="ae80e8d8-8ac3-41ef-a7e1-c561691724c4">
+							<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="50" height="30" uuid="e971fd96-8d80-4702-9e1c-1f82ab413a63"/>
+									<box leftPadding="5"/>
+									<textElement verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$F{field8}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="51" uuid="3896834b-08a2-46b3-bf2f-2b5ce9f8813a">
+							<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="50" height="30" uuid="5efc17a0-7844-4089-8ddc-6c4445548482"/>
+									<box leftPadding="5"/>
+									<textElement verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$F{field9}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+						<jr:column width="51" uuid="e3702f1a-673b-40c0-8001-c5620c063e90">
+							<jr:detailCell style="table 1_TD" height="30" rowSpan="1">
+								<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+									<reportElement x="0" y="0" width="50" height="30" uuid="19b13961-5b01-4ca3-9861-53f99d04af47"/>
+									<box leftPadding="5"/>
+									<textElement verticalAlignment="Middle"/>
+									<textFieldExpression><![CDATA[$F{field10}]]></textFieldExpression>
+								</textField>
+							</jr:detailCell>
+						</jr:column>
+					</jr:columnGroup>
+				</jr:table>
+			</componentElement>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="19">
+			<staticText>
+				<reportElement x="207" y="0" width="30" height="15" uuid="d3f0c5fe-8ef3-4259-bae9-98156d1593ce"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" rotation="None">
+					<font fontName="細明體" size="10" isBold="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[頁次：]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="237" y="0" width="15" height="15" uuid="84e33b1b-7f32-4eab-9a9b-1432f43e2ea6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="細明體" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="256" y="0" width="40" height="15" uuid="cc8b2421-16cb-44b3-9786-770047742156"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="細明體" size="10"/>
+				</textElement>
+				<text><![CDATA[總頁數：]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="297" y="0" width="15" height="15" uuid="2cd83677-613e-45b6-a622-cd701851fd20"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="細明體" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="312" y="0" width="18" height="15" uuid="b08d7a73-7b7a-47cb-ae34-d791dd6e5cdf"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="細明體" size="10"/>
+				</textElement>
+				<text><![CDATA[頁]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

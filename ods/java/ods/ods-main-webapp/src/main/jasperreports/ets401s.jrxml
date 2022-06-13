@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ETS401P" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="256cde32-963e-4b08-a5a3-2e677bcf0226">
+	<property name="ireport.zoom" value="1.4641000000000033"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="seqNm" class="java.lang.String"/>
+	<field name="amt1" class="java.math.BigDecimal"/>
+	<field name="amt2" class="java.math.BigDecimal"/>
+	<field name="amt3" class="java.math.BigDecimal"/>
+	<columnHeader>
+		<band height="17" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="44f02aa2-855e-428c-992a-ff6fe22f9662" key="staticText" x="414" y="0" width="110" height="16"/>
+				<textElement textAlignment="Center">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[本年度累計金額]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f3bbb55e-b633-4861-ac39-f2b877f8b846" key="staticText" x="304" y="0" width="110" height="16"/>
+				<textElement textAlignment="Center">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[本月份累計金額]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8ec08a60-4d5f-445a-8152-85b639356737" key="staticText" x="194" y="0" width="110" height="16"/>
+				<textElement textAlignment="Center">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[本  日  金  額]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="817dc293-4244-4fba-84d7-9d3cdaca8fcf" key="staticText" x="0" y="0" width="194" height="16"/>
+				<textElement textAlignment="Center">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[項          目]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="552a7eb5-e234-4d08-941e-790a8e0f31f6" x="0" y="16" width="553" height="1"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="fb94cf8c-487d-423e-86a9-e200b44ec7ae" x="0" y="0" width="194" height="16"/>
+				<textElement>
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{seqNm}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="d85c7c8c-021b-486e-8c77-355a6ce4d36f" x="194" y="0" width="110" height="16"/>
+				<textElement textAlignment="Right">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{amt1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="6c78922f-1af4-476d-8164-caf5bef058f4" x="304" y="0" width="110" height="16"/>
+				<textElement textAlignment="Right">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{amt2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00" isBlankWhenNull="true">
+				<reportElement uuid="20642c9f-2151-467b-94f0-bb0d0cb190cd" x="414" y="0" width="110" height="16"/>
+				<textElement textAlignment="Right">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{amt3}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

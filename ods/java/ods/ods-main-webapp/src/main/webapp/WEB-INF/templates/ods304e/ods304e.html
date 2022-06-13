@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta th:replace="fragments/external_meta :: meta"></meta>
+  <meta th:replace="fragments/external_resources :: head_resources"></meta>  
+</head>
+
+<body th:class="${session.EXTERNAL_USER_STYLE}">
+  <div th:replace="fragments/external_header :: header"></div>
+  <div class="content">
+  <form name='uiCommonPostParamForm' method='post' action='" + url + "' accept-charset='UTF-8'>
+  
+  </div>
+  <script type='text/javascript'>document.forms['uiCommonPostParamForm'].submit();</script>
+  <div th:replace="fragments/external_footer :: footer"></div>
+  <div th:replace="fragments/external_resources :: body_resources"></div>  
+</body>
+
+</html>

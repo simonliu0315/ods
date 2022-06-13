@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- XML document cannot be validated, refer to: https://issues.jboss.org/browse/WFLY-943 -->
+<jboss-deployment-structure>
+    <deployment>
+        
+        <!-- http://stackoverflow.com/questions/9518687/logback-and-jboss-7-dont-work-together -->
+        <!-- Exclusions allow you to prevent the server from automatically adding some dependencies -->
+        <exclusions>
+            <module name="org.apache.commons.logging" />
+            <module name="org.apache.log4j" />
+            <module name="org.jboss.logging" />
+            <module name="org.jboss.logging.jul-to-slf4j-stub" />
+            <module name="org.jboss.logmanager" />
+            <module name="org.jboss.logmanager.log4j" />
+            <module name="org.slf4j" />
+        </exclusions>
+    </deployment>
+</jboss-deployment-structure>

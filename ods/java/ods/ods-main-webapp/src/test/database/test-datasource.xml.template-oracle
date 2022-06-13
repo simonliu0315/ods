@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd">
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName">
+            <value>oracle.jdbc.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@192.168.31.181:1521:NTAORC01</value>
+        </property>
+        <property name="username">
+            <value>AP_PSR</value>
+        </property>
+        <property name="password">
+            <value>appsr</value>
+        </property>
+    </bean>
+
+</beans>

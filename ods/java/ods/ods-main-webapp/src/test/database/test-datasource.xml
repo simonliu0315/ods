@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd">
+
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName">
+            <value>net.sourceforge.jtds.jdbc.Driver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:jtds:sqlserver://192.168.30.114:1433/SLS_DB</value>
+        </property>
+        <property name="username">
+            <value>AP_SLS</value>
+        </property>
+        <property name="password">
+            <value>apsls</value>
+        </property>
+    </bean>
+
+    <bean id="odsDataStoreDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName">
+            <value>net.sourceforge.jtds.jdbc.Driver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:jtds:sqlserver://192.168.30.114:1433/ODS_DB</value>
+        </property>
+        <property name="username">
+            <value>AP_ODS</value>
+        </property>
+        <property name="password">
+            <value>apods</value>
+        </property>
+    </bean>
+    
+    <bean id="sls2DataStoreDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName">
+            <value>oracle.jdbc.OracleDriver</value>
+        </property>
+        <property name="url">
+            <value>jdbc:oracle:thin:@192.168.31.200:1521:PCOMM</value>
+        </property>
+        <property name="username">
+            <value>ap_test</value>
+        </property>
+        <property name="password">
+            <value>1234qwer</value>
+        </property>
+    </bean>
+</beans>

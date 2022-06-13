@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta th:substituteby="fragments/head_meta :: meta"></meta>
+
+  <meta th:substituteby="fragments/resources :: head_resources"></meta>
+  
+  <link rel="stylesheet" href="../styles/tab2.css">
+  
+
+</head>
+
+<body>
+
+  <div class="container">
+    <div th:substituteby="fragments/body_header :: body_header"></div>
+
+    <div class="row" data-ng-app="ods706eApp">
+      <div class="container"  data-ng-controller="ods706Controller">
+
+        <div class="row-fluid">
+          <div class="btn-toolbar pull-right">
+            <button type="button" class="btn btn-primary" data-ng-click="query(model.name, model.description, 0)">
+              <i class="glyphicon glyphicon-search"></i>查詢
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="(tabNum == 1 && !validate(ods706eForm.criName)) ||
+            (tabNum == 2 && !validate(ods706eForm.criDataField, ods706eForm.criAggregateFunc, ods706eForm.criOperator, ods706eForm.criTarget)) 
+            || create() " >
+              <i class="glyphicon glyphicon-plus"></i>新增
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="(tabNum == 1 && !validate(ods706eForm.criName)) ||
+            (tabNum == 2 && !validate(ods706eForm.criDataField, ods706eForm.criAggregateFunc, ods706eForm.criOperator, ods706eForm.criTarget)) 
+            || save()" data-ng-disabled="inState('INIT','RESETD')">
+              <i class="glyphicon glyphicon-pencil"></i>修改
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="remove()" data-ng-disabled="inState('INIT','RESETD')">
+              <i class="glyphicon glyphicon-remove"></i>刪除
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="reset()">
+              <i class="glyphicon glyphicon-refresh"></i>清除
+            </button>
+          </div>
+        </div>
+
+        <section>
+          <form id="ods706eForm" name="ods706eForm" class="form-inline"  data-c-enter-tab data-ng-init="init()" data-c-form-validation>
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                  <span th:text="${FUNCTION_ID}"></span> <span class="text-muted">門檻值管理</span>
+                </h3>
+              </div>
+              <div class="panel-body">
+<!--         <ul class="cus_css"> -->
+<!--             <li data-ng-repeat="tab in tabs"  -->
+<!--                 data-ng-class="{active:isActiveTab(tab.url)}"  -->
+<!--                 data-ng-click="onClickTab(tab)">{{tab.title}}</li> -->
+<!--         </ul> -->
+<!--         <div id="mainView"> -->
+<!--             <div data-ng-include="currentTab"></div> -->
+<!--             <input type="hidden" class="form-control" id="tabNum" name="tabNum" data-ng-model="tabNum" > -->
+<!--         </div> -->
+        <fieldset>
+        <p>
+            <ul class="tabs">
+                <li><a href="#baseInfo">基本資料</a></li>
+                <li><a href="#editFormula">欄位設定</a></li>
+            </ul>
+<!--         <ul class="nav nav-tabs"> -->
+<!--           <li class="active"><a href="#baseInfo" data-toggle="tab">基本資料</a></li> -->
+<!--           <li><a href="#editFormula" data-toggle="tab">欄位設定</a></li> -->
+<!--         </ul> -->
+        </p>
+    
+<!--                    <script type="text/ng-template" id="one.tpl.html"> -->
+                 <div>
+                    <div id="baseInfo">
+                             <table class="form-group" style="width: 100%;">
+                                <thead>
+                                  <tr class="row">
+                                      <th>
+                                      </th>
+                                      <th>
+                                      </th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr class="row" >
+                                    <th width="10%" style="text-align:right">
+                                      <label  class="control-label">方案名稱：</label>
+                                    </th>
+                                    <td width="90%">
+                                      <input type="text" class="form-control" id="criName" name="criName" data-ng-model="model.name" required style="width:630px">
+                                    </td>
+                                  </tr>
+                                  <tr class="row" >
+                                    <th style="text-align:right">
+                                      <label  class="control-label">方案說明：</label>
+                                    </th>
+                                    <td>
+                                      <textarea  class="form-control" data-ng-model="model.description" rows="5" style="width:630px"></textarea>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                              
+                              <div class="panel panel-default">
+                                  <div class="panel-body">
+                                  <input type="hidden" id="id" name="id" class="form-control" data-ng-model="model.criteriaId">
+                                      <!-- div class="row">
+                                                                                        查詢清單
+                                      </div -->
+                                      <div class="grid-style" data-ng-grid="girdObject3"
+                                         style="display: inline-block; height: 360px; width: 1076px;">
+                                      </div>
+                                  </div>
+                             </div>
+                         </div>
+<!--                               </script> -->
+<!--                         <script type="text/ng-template" id="two.tpl.html"> -->
+                         <div id="editFormula">
+                              <div class="row">
+                                  <div class="col-md-12">
+                                      <button type="button" class="btn btn-primary"  data-ng-click="openAddFormula()">新增運算式</button>
+                                  </div>
+                              </div>
+<!--                               <table class="form-group" style="width: 100%;"> -->
+<!--                                   <thead> -->
+<!--                                     <tr class="row"> -->
+<!--                                         <th> -->
+<!--                                         </th> -->
+<!--                                         <th> -->
+<!--                                         </th> -->
+<!--                                     </tr> -->
+<!--                                   </thead> -->
+<!--                                   <tbody> -->
+<!--                                      tr class="row" >
+<!--                                       <td colspan="2"> -->
+<!--                                         <button type="button" class="btn btn-default btn-sm"> -->
+<!--                                             <span class="glyphicon glyphicon-plus"></span> 新增門檻值欄位 -->
+<!--                                         </button> -->
+<!--                                       </td> -->
+<!--                                     </tr> -->
+<!--                                     <tr class="row" > -->
+<!--                                       <th width="12%" style="text-align:right"> -->
+<!--                                         <label  class="control-label">欄位：</label> -->
+<!--                                       </th> -->
+<!--                                       <td> -->
+                                      
+<!--                                       <select id="criDataField" name="criDataField" data-ng-model = "formula.dataField" -->
+<!--                                             class="form-control" data-ng-options="datasetCol.columnName  as datasetCol.columnName for datasetCol in datasetCols" required> -->
+<!--                                       </select>【當下拉選單空白代表該資料集未偵測到有數值型態之欄位資料】 -->
+                                      
+<!--                                          select class="form-control"> -->
+<!--                                             <option>欄位一</option> -->
+<!--                                             <option>欄位二</option> -->
+<!--                                             <option>欄位三</option> -->
+<!--                                             <option>欄位四</option> -->
+<!--                                         </select> -->
+<!--                                       </td> -->
+<!--                                     </tr> -->
+<!--                                     tr class="row" >
+<!--                                       <th style="text-align:right"> -->
+<!--                                         <label  class="control-label">欄位中文名稱：</label> -->
+<!--                                       </th> -->
+<!--                                       <td> -->
+<!--                                         <input type="text" class="form-control" /> -->
+<!--                                       </td> -->
+<!--                                     </tr>                   -->
+<!--                                     <tr class="row" > -->
+<!--                                       <th style="text-align:right"> -->
+<!--                                         <label  class="control-label">函數：</label> -->
+<!--                                       </th> -->
+<!--                                       <td> -->
+<!--                                         <select class="form-control" id="criAggregateFunc" name="criAggregateFunc" data-ng-model="formula.aggregateFunc" required> -->
+<!--                                         select class="form-control"   -->
+<!--                                             <option value="AVG">AVG</option> -->
+<!--                                             <option value="MAX">MAX</option> -->
+<!--                                             <option value="MIN">MIN</option> -->
+<!--                                             <option value="SUM">SUM</option> -->
+<!--                                             <option value="COUNT">COUNT</option> -->
+<!--                                         </select> -->
+<!--                                       </td> -->
+<!--                                     </tr> -->
+<!--                                     <tr class="row" > -->
+<!--                                       <th style="text-align:right"> -->
+<!--                                         <label class="control-label">運算：</label> -->
+<!--                                       </th> -->
+<!--                                       <td> -->
+<!--                                         <select class="form-control" id="criOperator" name="criOperator" data-ng-model="formula.operator" required> -->
+<!--                                         select -->
+<!--                                             <option value="＜">＜</option> -->
+<!--                                             <option value="＜＝">＜＝</option> -->
+<!--                                             <option value="＝">＝</option> -->
+<!--                                             <option value="＞＝">＞＝</option> -->
+<!--                                             <option value="＞">＞</option> -->
+<!--                                         </select> -->
+<!--                                       </td> -->
+<!--                                     </tr> -->
+<!--                                     <tr class="row" > -->
+<!--                                       <th style="text-align:right"> -->
+<!--                                         <label  class="control-label">目標值：</label> -->
+<!--                                       </th> -->
+<!--                                       <td> -->
+<!--                                         <input type="text" class="form-control" id="criTarget" name="criTarget" data-ng-model="formula.target" data-c-validate="{decimal:true}" required> -->
+<!--                                         <input type="hidden" class="form-control" data-ng-model="model.condition"> -->
+<!--                                       </td> -->
+<!--                                     </tr> -->
+<!--                                   </tbody> -->
+<!--                               </table> -->
+                                
+                              <div class="panel panel-default">
+                                  <div class="panel-body">
+                                      <!-- div class="row">
+                                                                                        查詢清單
+                                      </div -->
+                                      <div class="grid-style" data-ng-grid="girdObject4"
+                                         style="display: inline-block; height: 360px; width: 1076px;">
+                                      </div>
+                                  </div>
+                              </div>
+                              
+                             </div> 
+                       
+<!--                     </script> -->
+
+         
+                 </div>
+                 </fieldset>
+              </div>
+             </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div th:substituteby="fragments/body_footer :: footer"></div>
+  <div th:substituteby="fragments/resources :: body_resources"></div>
+
+  <script type="text/javascript" th:src="@{/scripts/ods706e.js}"></script></body>
+</body>
+
+</html>

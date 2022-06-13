@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+  <div th:fragment="header">
+    <div th:if="${isMobileDevice} == false"><div th:replace="fragments/external_header :: header"></div></div>  
+    <a title="回到首頁" th:href="@{~/sip-main/mobile/}" class="top"><div th:if="${isMobileDevice} == true" class="header-mobile" style="max-width:100%"><img alt="回到首頁" title="回到首頁" th:src="@{~/sip-main/images/external/mobile_header.png}" style="max-width:100%"></div></a>
+    
+    <div th:if="${isMobileDevice} == true" class="crumb-row">
+        <span class="crumb">
+          <a id="guiding-brick-content" href="#guiding-brick-content" class="accesskey" accesskey="C" title="中央主要內容區">:::</a>
+          <a title="連結到 首頁" th:href="@{~/sip-main/}" class="crumb">首頁</a>
+        </span>
+        <span th:replace="fragments/external_breadcrumb :: breadcrumb"></span>
+    </div>
+    
+    <iframe align="center" TITLE="SIP131I" LONGDESC=" " th:src="@{'~/sip-main/sip131i/'}" height="0px" width="0px" scrolling="no" frameborder="0">
+    </iframe>
+  </div>
+  
+  <div th:fragment="footer">
+    <div th:if="${isMobileDevice} == false">
+      <div th:replace="fragments/external_footer :: footer"></div>
+      <div th:replace="fragments/external_resources :: body_resources"></div>
+      <div th:substituteby='fragments/resources :: body_resources'></div>
+    </div>
+    <div th:if="${isMobileDevice} == true" class="footer-mobile">
+      <div class="footer-mobile-text">客服專線：0800-521-988  電子發票智慧好生活平台 版權所有<br>copyrights © 2014 All Rights Reserved</div>
+      <div th:replace="fragments/external_resources :: body_resources"></div>
+      <div th:substituteby='fragments/resources :: body_resources'></div>
+    </div>
+  </div>
+</body>
+
+</html>

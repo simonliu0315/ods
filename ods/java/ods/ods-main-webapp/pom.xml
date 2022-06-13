@@ -1,0 +1,226 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>gov.sls.ods</groupId>
+        <artifactId>ods</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>ods-main-webapp</artifactId>
+    <packaging>war</packaging>
+
+    <name>ODS :: Web Main Application</name>
+
+    <properties>
+        <m2eclipse.wtp.contextRoot>/ods-main</m2eclipse.wtp.contextRoot>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>gov.sls.ods</groupId>
+            <artifactId>ods-service</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>gov.sls.ods</groupId>
+            <artifactId>ods-webapp-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>gov.sls.sub.commons</groupId>
+            <artifactId>sls-sub-commons-web</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>gov.sls.sub.commons</groupId>
+            <artifactId>sls-sub-commons-webui</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>gov.sls.sub.commons</groupId>
+            <artifactId>sls-sub-commons-test</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.opencsv</groupId>
+            <artifactId>opencsv</artifactId>
+            <version>2.3</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <configuration>
+                    <includeEmptyDirs>true</includeEmptyDirs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <configuration>
+                    <sort>true</sort>
+                    <outputFile>${project.build.outputDirectory}/dependency-list</outputFile>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jvnet.localizer</groupId>
+                <artifactId>maven-localizer-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <fileMask>Messages.properties</fileMask>
+                            <outputDirectory>${project.build.directory}/generated-sources/localizer</outputDirectory>
+                            <outputEncoding>UTF-8</outputEncoding>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--plugin> <groupId>gov.sls</groupId> <artifactId>gentest-maven-plugin</artifactId> <version>0.0.1-SNAPSHOT</version> 
+                <executions> <execution> <goals> <goal>generate</goal> </goals> </execution> </executions> <configuration> 
+                <extendBaseTests>true</extendBaseTests> <generatePackages> <param>gov.sls.ods.scheduler</param> <param>gov.sls.ods.web.config</param> 
+                <param>gov.sls.ods.web.controller</param> <param>gov.sls.ods.web.dto</param> <param>gov.sls.ods.web.rest</param> 
+                </generatePackages> </configuration> </plugin -->
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>production</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>gov.sls.commons</groupId>
+                    <artifactId>sls-commons-persistence</artifactId>
+                    <version>1.0.0-SNAPSHOT</version>
+                    <scope>provided</scope>
+                </dependency>
+                <dependency>
+                    <groupId>gov.sls.commons</groupId>
+                    <artifactId>sls-commons-service</artifactId>
+                    <version>1.0.0-SNAPSHOT</version>
+                    <scope>provided</scope>
+                </dependency>
+                <dependency>
+                    <groupId>gov.sls.commons</groupId>
+                    <artifactId>sls-commons-web</artifactId>
+                    <version>1.0.0-SNAPSHOT</version>
+                    <scope>provided</scope>
+                </dependency>
+                <dependency>
+                    <groupId>gov.sls.sub.commons</groupId>
+                    <artifactId>sls-sub-commons-servlet3-stub</artifactId>
+                    <version>1.0.0-SNAPSHOT</version>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.alexnederlof</groupId>
+                        <artifactId>jasperreports-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>compile-jasperreports-reports</id>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>jasper</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <outputDirectory>${project.build.outputDirectory}/META-INF/jasperreports</outputDirectory>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>development</id>
+            <!-- This DEVELOPMENT profile is only activated when building in Eclipse with m2e -->
+            <activation>
+                <property>
+                    <name>m2e.version</name>
+                </property>
+            </activation>
+
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>build-helper-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>add-database-test-resource</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>add-resource</goal>
+                                </goals>
+                                <configuration>
+                                    <resources>
+                                        <resource>
+                                            <directory>src/test/database</directory>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>add-jasperreports-reports</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>add-resource</goal>
+                                </goals>
+                                <configuration>
+                                    <resources>
+                                        <resource>
+                                            <directory>src/main/jasperreports</directory>
+                                            <targetPath>META-INF/jasperreports</targetPath>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+
+            <dependencies>
+                <!-- Oracle Database JDBC Driver -->
+                <dependency>
+                    <groupId>com.oracle.jdbc</groupId>
+                    <artifactId>oracle.jdbc</artifactId>
+                    <version>11.2.0.4</version>
+                    <classifier>java-6</classifier>
+                </dependency>
+
+                <!-- Microsoft SQL Server JDBC Driver -->
+                <dependency>
+                    <groupId>net.sourceforge.jtds</groupId>
+                    <artifactId>jtds</artifactId>
+                    <version>1.3.1</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.hsqldb</groupId>
+                    <artifactId>hsqldb</artifactId>
+                    <version>2.3.2</version>
+                </dependency>
+
+            </dependencies>
+        </profile>
+    </profiles>
+</project>

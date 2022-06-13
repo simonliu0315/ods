@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ets401p1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d1c3bf81-aa19-4e0e-ad82-0a34f472e482">
+	<property name="ireport.zoom" value="1.610510000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ACC_YY" class="java.lang.String"/>
+	<parameter name="YY" class="java.lang.String"/>
+	<parameter name="MM" class="java.lang.String"/>
+	<parameter name="DD" class="java.lang.String"/>
+	<parameter name="CHECK_CHAR" class="java.lang.String"/>
+	<parameter name="SUBREPORT" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DATA_SOURCE" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="109" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="8438f280-fe1f-4093-8061-94461f0bf172" key="staticText" x="102" y="0" width="317" height="24"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="標楷體" size="14"/>
+				</textElement>
+				<text><![CDATA[國庫統制會計收支狀況日報表]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a8343db7-2dac-4fee-8082-f450f08c98c8" key="staticText" x="102" y="24" width="317" height="21"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="標楷體" size="14"/>
+				</textElement>
+				<text><![CDATA[( 測試子報表用 )]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="4edbf9ce-f7ca-458f-ace9-1d83fbab72d2" key="staticText" x="420" y="58" width="71" height="16"/>
+				<textElement>
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[國庫署編製]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="d2b25e2a-d7ed-4f84-9658-f867aaa6f6bd" key="staticText" x="69" y="60" width="29" height="16"/>
+				<textElement>
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[年度]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="e00d293a-ef8d-4cd7-8a5f-63beb4106e7c" key="staticText" x="415" y="74" width="80" height="16"/>
+				<textElement>
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[台財庫會字第]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="6823a339-d697-4636-a69c-8678abf93937" key="staticText" x="534" y="74" width="20" height="16"/>
+				<textElement>
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[號]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="da8a66c7-7904-44cb-8729-258ec2162484" key="staticText" x="170" y="74" width="53" height="16"/>
+				<textElement>
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[中華民國]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="b0dd8e72-96b9-4ba4-96cf-288339385a85" x="221" y="74" width="29" height="16"/>
+				<textElement>
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{YY}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="f8bb7de8-e6a8-4be9-943e-87b76f1e863d" key="staticText" x="250" y="74" width="20" height="16"/>
+				<textElement>
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[年]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="ecd7a407-a8b2-4ba8-902b-915caf91cee6" key="staticText" x="298" y="74" width="20" height="16"/>
+				<textElement>
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[月]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="8ee10409-66c5-4e81-9ec3-ff7c7391ee0e" x="269" y="74" width="29" height="16"/>
+				<textElement>
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{MM}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="90c4f0cb-b966-463d-ad70-7209139fcb35" x="318" y="74" width="29" height="16"/>
+				<textElement>
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{DD}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="b3909793-9ce5-416a-bb25-b944556cef6b" key="staticText" x="347" y="74" width="20" height="16"/>
+				<textElement>
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[日]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="8b1ca87c-625f-45c2-be00-590659e501d5" key="staticText" x="21" y="74" width="77" height="16"/>
+				<textElement>
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[單位: 新台幣元]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="882cf452-6b12-423c-88ae-0086bb04d25b" x="21" y="60" width="47" height="16"/>
+				<textElement>
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ACC_YY}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="true">
+				<reportElement uuid="a85fc865-088c-4071-93bd-8c9fcfd24b49" x="533" y="29" width="20" height="16"/>
+				<textElement>
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="c41b082b-a52c-4acf-b64a-4806e897ad90" key="staticText" x="525" y="29" width="8" height="16"/>
+				<textElement>
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[/]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement uuid="912cfd43-b39e-46f0-9e22-2413d88a97ad" x="505" y="29" width="20" height="16"/>
+				<textElement textAlignment="Right">
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="ba3b090a-ab19-456d-8486-620d2e4251d3" key="staticText" x="469" y="29" width="36" height="16"/>
+				<textElement>
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[頁次:]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="40">
+			<subreport>
+				<reportElement uuid="11a60bff-dccf-4052-99e8-fa63a6edfe3b" x="0" y="0" width="554" height="40"/>
+				<dataSourceExpression><![CDATA[$P{SUBREPORT_DATA_SOURCE}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="78" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="40d87137-1a87-4dd9-92a7-fdc8b776c1a1" x="346" y="55" width="196" height="11"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{CHECK_CHAR}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement uuid="3ad02fb9-7fa7-4d1a-8ed4-9c1d0fbd0924" x="350" y="28" width="216" height="35"/>
+				<imageExpression><![CDATA[net.sf.jasperreports.renderers.BatikRenderer.getInstance(getClass().getResource("META-INF/jasperreports/nta_stamp.svg"))]]></imageExpression>
+			</image>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="16" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="175a3127-b7f4-4ee8-8635-0e4b02641d30" key="staticText" x="24" y="0" width="101" height="16"/>
+				<textElement>
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[會  計  主  任 :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="1601a007-1e68-46c9-a4da-faa3fceed40a" key="staticText" x="414" y="0" width="77" height="16"/>
+				<textElement>
+					<font fontName="標楷體" size="12"/>
+				</textElement>
+				<text><![CDATA[製    表 :]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

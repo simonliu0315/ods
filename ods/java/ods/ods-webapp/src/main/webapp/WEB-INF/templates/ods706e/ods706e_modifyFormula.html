@@ -1,0 +1,105 @@
+
+<!-- 可在此設定 modal 的寬度，預設為 600px  -->
+  <style type="text/css">
+  .modal-dialog {
+     width:800px 
+  }
+  </style>
+
+        <div class='modal-header'>
+          <h3>挑選素材及案例</h3>
+          <div class="btn-toolbar">
+            <button type="button" class="btn btn-primary" data-ng-click=" !validate(ods706eModifyForm.criDataField, ods706eModifyForm.criAggregateFunc, ods706eModifyForm.criOperator, ods706eModifyForm.criTarget) || modifyFormula()">
+                <span class="glyphicon glyphicon-pencil"></span> 確定
+            </button>
+          </div>
+        </div>
+        <form id="ods706eModifyForm" name="ods706eModifyForm" class="form-inline" data-c-form-validation>
+        <div class='modal-body'>
+          <table class="form-group" style="width: 40%;">
+                                  <thead>
+                                    <tr class="row">
+                                        <th>
+                                        </th>
+                                        <th>
+                                        </th>
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <!--  tr class="row" >
+                                      <td colspan="2">
+                                        <button type="button" class="btn btn-default btn-sm">
+                                            <span class="glyphicon glyphicon-plus"></span> 新增門檻值欄位
+                                        </button>
+                                      </td>
+                                    </tr-->
+                                    <tr class="row" >
+                                      <th width="25%" style="text-align:right">
+                                        <label  class="control-label">欄位：</label>
+                                      </th>
+                                      <td>
+                                      
+                                      <select id="criDataField" name="criDataField" data-ng-model = "formula.dataField"
+                                            class="form-control" data-ng-options="datasetCol.columnName  as datasetCol.columnName for datasetCol in datasetCols" required>
+                                      </select>【當下拉選單空白代表該資料集未偵測到有數值型態之欄位資料】
+                                      
+                                         <!-- select class="form-control">
+                                            <option>欄位一</option>
+                                            <option>欄位二</option>
+                                            <option>欄位三</option>
+                                            <option>欄位四</option>
+                                        </select -->
+                                      </td>
+                                    </tr>
+                                    <!-- tr class="row" >
+                                      <th style="text-align:right">
+                                        <label  class="control-label">欄位中文名稱：</label>
+                                      </th>
+                                      <td>
+                                        <input type="text" class="form-control" />
+                                      </td>
+                                    </tr -->                  
+                                    <tr class="row" >
+                                      <th style="text-align:right">
+                                        <label  class="control-label">函數：</label>
+                                      </th>
+                                      <td>
+                                        <select class="form-control" id="criAggregateFunc" name="criAggregateFunc" data-ng-model="formula.aggregateFunc" required>
+                                        <!-- select class="form-control"   -->
+                                            <option value="AVG">AVG</option>
+                                            <option value="MAX">MAX</option>
+                                            <option value="MIN">MIN</option>
+                                            <option value="SUM">SUM</option>
+                                            <option value="COUNT">COUNT</option>
+                                        </select>
+                                      </td>
+                                    </tr>
+                                    <tr class="row" >
+                                      <th style="text-align:right">
+                                        <label class="control-label">運算：</label>
+                                      </th>
+                                      <td>
+                                        <select class="form-control" id="criOperator" name="criOperator" data-ng-model="formula.operator" required>
+                                        <!-- select -->
+                                            <option value="＜">＜</option>
+                                            <option value="＜＝">＜＝</option>
+                                            <option value="＝">＝</option>
+                                            <option value="＞＝">＞＝</option>
+                                            <option value="＞">＞</option>
+                                        </select>
+                                      </td>
+                                    </tr>
+                                    <tr class="row" >
+                                      <th style="text-align:right">
+                                        <label  class="control-label">目標值：</label>
+                                      </th>
+                                      <td>
+                                        <input type="text" class="form-control" id="criTarget" name="criTarget" data-ng-model="formula.target" data-c-validate="{decimal:true}" required>
+                                        <input type="hidden" class="form-control" data-ng-model="model.condition">
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                              </table>
+
+        </div>
+        </form>

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta th:substituteby="fragments/head_meta :: meta"></meta>
+
+  <meta th:substituteby="fragments/resources :: head_resources"></meta>
+  
+  <link rel="stylesheet" href="../styles/tab2.css">
+
+</head>
+
+<body>
+
+  <div class="container">
+    <div th:substituteby="fragments/body_header :: body_header"></div>
+
+    <div class="row" data-ng-app="ods703eApp">
+      <div class="container"  data-ng-controller="ods703eController">
+
+        <div class="row-fluid">
+          <div class="btn-toolbar pull-right">
+            <button type="button" class="btn btn-primary" data-ng-click="query(model.name, model.description, 0)">
+              <i class="glyphicon glyphicon-search"></i>查詢
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="create()">
+                <span class="glyphicon glyphicon-plus"></span> 新增
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="save()" data-ng-disabled="inState('INIT','RESETD')">
+                <span class="glyphicon glyphicon-edit"></span> 修改
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="remove()" data-ng-disabled="inState('INIT','RESETD')">
+                <span class="glyphicon glyphicon-remove"></span> 刪除
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="reset()">
+              <i class="glyphicon glyphicon-refresh"></i>清除
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="verEdit()" data-ng-disabled="inState('INIT','RESETD')">
+                <span class="glyphicon glyphicon-list-alt"></span> 版本管理
+            </button>
+          </div>
+        </div>
+
+        <section>
+          <form class="form-inline" id="ods703eForm" name="ods703eForm" data-c-enter-tab data-c-form-validation={ignoreHidden:false}>
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                  <span th:text="${FUNCTION_ID}"></span> <span class="text-muted">主題管理</span>
+                </h3>
+              </div>
+              <div class="panel-body">
+                <fieldset>
+                  <p>
+                      <ul class="tabs">
+                          <li><a href="#packageInfo">基本資料</a></li>
+                          <li><a href="#metadata">詮釋資料</a></li>
+                          <li><a href="#docUpload">文件上傳</a></li>
+                      </ul>
+                      
+<!--                       <ul class="nav nav-tabs"> -->
+<!--                         <li class="active"><a href="#packageInfo" data-toggle="tab">基本資料</a></li> -->
+<!--                         <li><a href="#metadata" data-toggle="tab">詮釋資料</a></li> -->
+<!--                       </ul> -->
+                      
+<!--                       <ul class="cus_css"> -->
+<!--                           <li data-ng-repeat="tab in tabs"  -->
+<!--                               data-ng-class="{active:isActiveTab(tab.url)}"  -->
+<!--                               data-ng-click="onClickTab(tab)">{{tab.title}}</li> -->
+<!--                       </ul> -->
+<!--                       <div id="mainView"> -->
+<!--                           <div data-ng-include="currentTab"></div> -->
+<!--                       </div> -->
+                  </p>
+                  <div>
+                    <div id="packageInfo">
+<!--                   <script type="text/ng-template" id="packageInfo"> -->
+                      <table class="form-group" style="width: 100%;">
+                        <thead>
+                          <tr class="row">
+                              <th>
+                              </th>
+                              <th>
+                              </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="row" >
+                            <th width="10%" style="text-align:right">
+                              <label for="name" class="control-label">主題名稱：</label>
+                            </th>
+                            <td width="90%">
+                              <input type="text" id="name" name="name" class="form-control" data-ng-model="model.name" required placeholder="請輸入主題名稱…" style="width:630px">
+                            </td>
+                          </tr>
+                          <tr class="row" >
+                            <th style="text-align:right">
+                              <label for="description" class="control-label">主題說明：</label>
+                            </th>
+                            <td>
+                              <textarea id="description" name="description" class="form-control" data-ng-model="model.description" rows="5" style="width:630px"></textarea>
+                            </td>
+                          </tr>
+                          <tr class="row" >
+                            <th width="10%" style="text-align:right">
+                              <label for="imageUrl" class="control-label">主題圖示：</label>
+                            </th>
+                            <td width="90%">                              
+                              <input type="text" id="uploadFileName" name="uploadFileName" class="form-control" style="width:250px;" data-ng-readonly="true"
+                              data-ng-model="files[0].name">
+                              <div class="form-control btn btn-primary" style="position: relative; width:100px;">
+                                                                                                                                                               選擇檔案
+                                  <div style="width:100%;height:100%; position: absolute; top: 0; left: 0;">
+                                    <input type="file" id="uploadLocalFile"  class="form-control"  value="選擇檔案" 
+                                       data-ng-file-select="onSelect($files)" data-ng-model="files"
+                                       style="opacity: 0; height:100%; width:100%; filter: alpha(opacity=0);">
+                                  </div>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr class="row" >
+                            <th style="text-align:right">
+                              <label for="type" class="control-label">主題類型：</label>
+                            </th>
+                            <td>
+                              <select class="form-control" data-ng-model="model.type">
+                                <option value="01">01:一般對外主題</option>
+                                <option value="02">02:個別化主題</option>
+                              </select>
+                            </td>
+                          </tr>
+                          <tr ng-if="model.type == '02'" class="row" >
+                            <th style="text-align:right">
+                              <label for="code" class="control-label">主題代碼：</label>
+                            </th>
+                            <td>
+                              <input type="text" class="form-control" data-ng-model="model.code">
+                            </td>
+                          </tr>
+                          <tr class="row" >
+                            <th width="10%" style="text-align:right">
+                              <label for="tagName" class="control-label">標籤：</label>
+                            </th>
+                            <td>
+                              <button type="button" class="btn btn-default btn-xl" data-ng-click="addTag()">
+                                  <span class="glyphicon glyphicon-plus"></span> 新增標籤
+                              </button>
+                            </td>
+                          </tr>
+                          <tr class="row" data-ng-repeat="item in packageTags track by $index">
+                            <th width="10%" style="text-align:right">
+<!--                               <label for="tagName{{$index}}" class="control-label" data-ng-if="$index == 0">標籤：</label> -->
+                            </th>
+                            <td width="90%">
+                              <input type="text" class="form-control" data-ng-model="item.tagName">
+                              <button type="button" class="btn btn-danger btn-sm" data-ng-click="removeTag($index)"><span class="glyphicon glyphicon-remove"></span></button>
+                            </td>                            
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div class="panel panel-default">
+                          <div class="panel-body">
+                              <div class="grid-style" data-ng-grid="girdObject"
+                                 style="display: inline-block; height: 360px; width: 1076px;">
+                              </div>
+                          </div>
+                      </div>
+                    </div>
+<!--                    </script> -->
+                    <div id="metadata">
+<!--                    <script type="text/ng-template"  id="metadata"> -->
+                        <table class="form-group" style="width: 100%;">
+                        <thead>
+                          <tr class="row">
+                              <th>
+                              </th>
+                              <th>
+                              </th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="row" data-ng-repeat="item in commonMetadata track by $index">
+                            <th width="20%" style="text-align:right">
+                              <label for="dataKey{{$index}}" class="control-label">{{item.dataKey}}：</label>
+                            </th>
+                            <td width="80%">
+                              <input ng-if="item.dataType == 'text'" type="text" class="form-control" data-ng-model="item.dataValue">
+                              <input ng-if="item.dataType == 'date'" type="text" class="form-control" data-ng-model="item.dataValue" data-c-date-picker="{chrono : 'Minguo', format : 'yyy/MM/dd', converter : 'Raw', trigger : 'focus'}"/>
+                            </td>
+                          </tr>                          
+                        </tbody>
+                      </table>
+                      
+                      <div class="panel panel-default">
+                        <div class="panel-body">
+                          <table class="form-group" style="width: 100%;">
+                            <thead>
+                              <tr class="row">
+                                  <th>
+                                  </th>
+                                  <th>
+                                  </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr class="row" >
+                                <td colspan="5">
+                                  <p>
+                                    <label for="materialName" class="control-label">自訂其他詮釋資料：</label>
+                                    <button type="button" class="btn btn-default btn-xl" data-ng-click="addMetadata()">
+                                        <span class="glyphicon glyphicon-plus"></span> 新增詮釋資料項目
+                                    </button>
+                                  </p>
+                                </td>
+                              </tr>
+                              <tr class="row" data-ng-repeat="item in extraMetadata track by $index">
+                                <th style="text-align:right">
+                                  <label for="materialNote" class="control-label">鍵項：</label>
+                                </th>
+                                <td>
+                                  <input type="text" class="form-control" data-ng-model="item.dataKey">
+                                </td>
+                                <th style="text-align:right">
+                                  <label for="materialNote" class="control-label">鍵值：</label>
+                                </th>
+                                <td>
+                                  <input type="text" class="form-control" data-ng-model="item.dataValue">
+                                </td>
+                                <td>
+                                  <button type="button" class="btn btn-danger btn-sm" data-ng-click="removeMetadata($index)"><span class="glyphicon glyphicon-remove"></span></button>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+<!--                     </script> -->
+                  </div>
+                  
+                  <div id="docUpload">
+                      <table class="form-group" style="width: 100%;">
+                        <thead>
+                          <tr class="row">
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr class="row" >
+                            <th width="10%" style="text-align:right">
+                              <label for="docFile" class="control-label">文件說明：</label>
+                            </th>
+                            <td colspan="2">
+                              <input type="text" class="form-control" data-ng-model="docDescription">
+                            </td>
+                          </tr>                              
+                          <tr class="row" >
+                            <th width="10%" style="text-align:right">
+                              <label for="docFile" class="control-label">文件檔案：</label>
+                            </th>
+                            <td colspan="2">                              
+                              <input type="text" id="docUploadFileName" name="docUploadFileName" class="form-control" style="width:250px;" data-ng-readonly="true"
+                              data-ng-model="docs[0].name">
+                              <div class="form-control btn btn-primary" style="position: relative; width:100px;">
+                                                                                                                                                               選擇檔案
+                                  <div style="width:100%;height:100%; position: absolute; top: 0; left: 0;">
+                                    <input type="file" id="docUploadFile"  class="form-control"  value="選擇檔案" 
+                                       data-ng-file-select="onDocSelect($files)" data-ng-model="docs"
+                                       style="opacity: 0; height:100%; width:100%; filter: alpha(opacity=0);"
+                                       data-ng-disabled="inState('INIT','RESETD')">
+                                  </div>
+                              </div>
+                            </td>
+                          </tr>
+                          <tr class="row" >
+                            <td colspan="3">
+                              <button type="button" class="btn btn-default btn-xl" data-ng-click="onDocUpload()" data-ng-disabled="inState('INIT','RESETD')">
+                                  <span class="glyphicon glyphicon-plus"></span> 上傳文件
+                              </button>
+                            </td>
+                          </tr>                              
+                        </tbody>
+                      </table>
+                      <div class="panel panel-default">
+                          <div class="panel-body">
+                              <div class="grid-style" data-ng-grid="packageDocumentGrid"
+                                 style="display: inline-block; height: 360px; width: 1076px;">
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  
+                  </div>
+                </fieldset>
+              </div>
+             </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div th:substituteby="fragments/body_footer :: footer"></div>
+  <div th:substituteby="fragments/resources :: body_resources"></div>
+
+  <script type="text/javascript" th:src="@{/scripts/ods703e.js}"></script>
+  <script type="text/javascript" th:src="@{/scripts/filters/commonFilter.js}"></script>
+</body>
+
+</html>

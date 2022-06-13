@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta th:substituteby="fragments/head_meta :: meta"></meta>
+
+  <meta th:substituteby="fragments/resources :: head_resources"></meta>
+</head>
+
+<body>
+
+  <div class="container">
+    <div th:substituteby="fragments/body_header :: body_header"></div>
+
+    <div class="row" data-ng-app="ods701eApp">
+      <div class="container"  data-ng-controller="ods701e05Controller">
+
+        <div class="row-fluid">
+          <div class="btn-toolbar pull-right">
+            <button type="button" class="btn btn-primary" data-ng-click="queryNdelMkVerById(model.name, model.description, 0)">
+              <i class="glyphicon glyphicon-search"></i>查詢
+            </button>
+            <!-- button type="button" class="btn btn-primary" data-ng-click="create()" -->
+            <button type="button" class="btn btn-primary" data-ng-click="createAndUpload()">
+                <span class="glyphicon glyphicon-plus"></span> 新增版本
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="save()" data-ng-disabled="inState('INIT','RESETD')">
+                <span class="glyphicon glyphicon-edit"></span> 修改
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="fileRefresh()" data-ng-disabled="( fmt != 'dataset' || (today < model.toDatastoreDateGrid || 'Y' == model.toDatastoreSuccessGrid))">
+                <span class="glyphicon glyphicon-edit"></span> 重新上傳
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="reset()">
+              <i class="glyphicon glyphicon-refresh"></i>清除
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="queryAllVerById()">
+                <span class="glyphicon glyphicon-search"></span> 顯示含標記刪除的版本
+            </button>
+          </div>
+        </div>
+
+        <section>
+          <form class="form-inline"  data-c-enter-tab data-ng-init="init()">
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                  <span th:text="${FUNCTION_ID}"></span> <span class="text-muted">素材及案例版本管理</span>
+                </h3>
+              </div>
+              <div class="panel-body">
+                <fieldset>
+                  
+                  
+                  <div class="tabbable">
+                  
+                  
+                      <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab1"  data-toggle="tab">基本資料</a></li>
+                        <!-- li><a href="#tab2"  data-toggle="tab">素材及案例瀏覽</a></li -->
+                      </ul>
+                      
+                      <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+                  
+                  <table class="form-group" style="width: 100%;">
+                    <thead>
+                      <tr class="row">
+                          <th>
+                          </th>
+                          <th>
+                          </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="row" >
+                        <th width="12%" style="text-align:right">
+                          <label for="materialName05" class="control-label">素材及案例來源：</label>
+                        </th>
+                        <td>
+                          <input type="hidden" data-ng-model="fmt">
+                          <!-- button id="uploadBtn" type="button" class="btn btn-primary" disabled="disabled">自行上傳</button -->
+                          <div class="panel-body" data-ng-hide="fmt != 'dataset' ">  
+                              <button id="csvBtn" type="button" class="btn btn-primary"  disabled="disabled" data-ng-click="csvPreview()">資料集　預覽</button>【請先選取下方表格版本後再按預覽按鈕】
+                          </div>
+                          <div class="panel-body" data-ng-hide="fmt != 'pdf' ">  
+                              <button id="pdfBtn" type="button" class="btn btn-primary" disabled="disabled" data-ng-click="pdfPreview()">PDF　預覽</button>【請先選取下方表格版本後再按預覽按鈕】
+                          </div>
+                          <div class="panel-body" data-ng-hide="fmt != 'image' ">  
+                              <button id="pngBtn" type="button" class="btn btn-primary" disabled="disabled" data-ng-click="pngPreview()">圖片　預覽</button>【請先選取下方表格版本後再按預覽按鈕】
+                          </div>
+                          
+                        </td>
+                      </tr>
+                      <tr class="row" >
+                        <th width="12%" style="text-align:right">
+                          <label for="materialName05" class="control-label">素材及案例名稱：</label>
+                        </th>
+                        <td>
+                          <input type="text" id="materialName05" name="materialName05" class="form-control" value="素材及案例1" data-ng-model="model.name" required style="width:630px">
+                          <input style="display:none;" id="materialName05Backup" name="materialName05Backup" class="form-control" >
+                          <input type="hidden" id="resVer" name="resVer" class="form-control"  data-ng-model="model.ver" >
+                        </td>
+                      </tr>
+                      <tr class="row" >
+                        <th style="text-align:right">
+                          <label for="materialNote05" class="control-label">素材及案例說明：</label>
+                        </th>
+                        <td>
+                          <textarea id="materialNote05" name="materialNote05" class="form-control" data-ng-model="model.description" rows="5" style="width:630px">素材及案例1說明</textarea>
+                          <textarea style="display:none;" id="materialNote05Backup" name="materialNote05Backup" class="form-control" rows="5"></textarea>
+                        </td>
+                      </tr>
+                      <tr class="row" >
+                        <th style="text-align:right">
+                          <label for="materialDelMk05" class="control-label">刪除註記：</label>
+                        </th>
+                        <td>
+                          <select class="form-control" id="materialDelMk05" name="materialDelMk05"
+                    data-ng-model="model.delMk">
+                            <option selected="selected" value="N">N</option>
+                            <option value="Y">Y</option>
+                          </select>
+                          <input type="hidden" id="materialDelMk05Backup" name="materialDelMk05Backup" class="form-control" >
+                        </td>
+                      </tr>
+
+                       
+                      <tr class="row" >
+                        <th width="25%" style="text-align:right">
+                        <input type="hidden" data-ng-model="wbkName">
+                          <div data-ng-hide="wbkName">  
+                              <label for="materialFile" class="control-label">素材及案例上傳【新增、重傳用】：</label>
+                          </div>
+                        </th>
+                        <td width="85%">　
+                          <div data-ng-hide="wbkName">
+                            <input type="text" id="uploadFileName" name="uploadFileName" class="form-control" style="width:250px;" data-ng-readonly="true"
+                            data-ng-model="files[0].name">
+                            <div class="form-control btn btn-primary" style="position: relative; width:100px;">
+                                                                                                                                                             選擇檔案
+                                <div style="width:100%;height:100%; position: absolute; top: 0; left: 0;">
+                                  <input type="file" id="uploadLocalFile"  class="form-control"  value="選擇檔案" 
+                                     data-ng-file-select="onFileSelect($files)" data-ng-model="files"
+                                     style="opacity: 0; height:100%; width:100%; filter: alpha(opacity=0);">
+                                </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr class="row" >
+                        <th width="20%" style="text-align:right">
+                            <div data-ng-hide="wbkName">  
+                                <label for="materialFile" class="control-label">資料集傳送設定【新增、重傳用】：</label>
+                            </div>
+                        </th>
+                        <td width="85%">
+                            <div data-ng-hide="wbkName">  
+                                      <label class="checkbox">
+                                          <input type="checkbox" name="optionscheck" id="optionscheck" data-ng-model="model.toDatastoreSync" data-ng-true-value="1" data-ng-false-value="0" data-ng-change="syncCheck(model.toDatastoreSync)"> 立即傳送【傳送日期：
+                                          <!-- input type="text" id="toDatastoreDate" name="toDatastoreDate" class="form-control" data-ng-maxlength="10" data-ng-model="model.toDatastoreDate"  
+                                    style="width:20%" data-c-date-picker="{format : 'yyyy/MM/dd'}"  -->
+                                          <input type="text" id="toDatastoreDate" name="toDatastoreDate" class="form-control" data-ng-maxlength="10" data-ng-model="model.toDatastoreDate"  
+                                    style="width:20%"  data-c-date-picker="{format : 'yyy/MM/dd'}" data-ng-disabled='model.toDatastoreSync==1' >：建議1mb以上的資料集指定往後日期執行批次】
+                                    <!-- data-ng-change="model.datastoreDateChange(model.toDatastoreDate)" -->
+                                       <br/>
+                                      </label>   
+                            </div>                     
+                        </td>
+                      </tr>
+                      
+                    </tbody>
+                  </table>
+                  
+                  <div class="panel panel-default">
+                      <div class="panel-body">
+                          <!-- div class="row">
+                                                                            版本清單
+                          </div -->
+                          <div class="grid-style" data-ng-grid="girdObject2"
+                             style="display: inline-block; height: 240px;" >
+                          </div>
+                      </div>
+                  </div>
+                  
+                  
+                  
+                  </div>
+    <!-- div class="tab-pane" id="tab2">
+                  
+                  
+                  <p>Howdy, I'm in Section 2. {{ model.image }} </p>
+
+<img    src="data:image/png;base64,/9j/4AAQSkZJRgABAQEAYABgAAD/2wBDAAgGBgcGBQgHBwcJCQgKDBQNDAsLDBkSEw8UHRofHh0aHBwgJC4nICIsIxwcKDcpLDAxNDQ0Hyc5PTgyPC4zNDL/2wBDAQkJCQwLDBgNDRgyIRwhMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjL/wAARCAAwACkDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwD3+vO/ib8UoPAYt7G2tVu9WuU8xI3bakSZIDNjk5IIAHoeRgZ9EryDxktxpnxTlnWO0+z6jpsCyy3SKweNJiJbcBs8OpXJ7ZH1pSkoq7Gk27IyfC/x6vZ9Wgt/Eum2sFnO/li6tQyiI8ZJDE7gMjOCCAc89D7rXzN40Wa0+HY0oavBfRWhhIi8tVCMHfdIuMkSMZQCCfuq55zhfojw/cfbPDel3O/f51pFJuznOUBzU06kaivB3Q5RcXaRo0UUVZIjMqIXdgqqMkk4AFePeE4IPij4417xReiSTRbMf2bpkYZlDDhmfggg4wcEf8tMH7tbvxt1qXR/htcxwMUfUZksi4PRWyz/AJqrL/wKrnwgi0+D4badHp8iuA0hmxjcshckhvcAr9RtPQik0nowTsJ4m+Gml6n4O1DS7CELfSIGguJnLMJFO5Rk/dUkYOB0OeTXnHwa8eXGi6j/AMIfrqSRQy3DQ2jS5Bt584aFgemW6ejHHO7j6Br5e+LDQw+O/FEUR8pg1vPHsOD53lJyMdDhmJ96FFJWQ223dn1DRVTSrpr7R7K7fG6e3jlOPVlB/rVumI8/8b3UWqXn9kXFpBJBaSJLieMPvfbwQDxgBj+NYHhXTYdF8bJqdtqUmn2EyFLmwSIeTK2CFJORtAJB6HHOCAxrtdf8JzanqL31rcxq7qAY5QcZHGQw6DpxisGLwvrhu1ha1CITgzmRWRR64B3H6YGfbqPJq/WoVnKKbX4WO6HsZU7M7nWr5NO0S8vGmSIxxHY7kAbzwg57liAB3JArwfX/AAc/iDxEdQuL8fY5ijTxbP3p2jGA/o3c9cnvgV6VdfCfSLwxtcatrkzwuJYvNvNyRyDkMqbdowewAFTad4JuvPH9pTwiBD923ZiZB7kgbfwyfcda6MTGu5xdLtYxpOnytTNHwZfGXTTp5TBswArD7uwk7VHptAxj0ArpqitrWCzhENtCkUY6KgwPr9alrqowlCCjJ3aMpyUpNo//2Q=="/>
+    </div -->
+  </div>
+</div>
+                  
+                  
+                </fieldset>
+              </div>
+             </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div th:substituteby="fragments/body_footer :: footer"></div>
+  <div th:substituteby="fragments/resources :: body_resources"></div>
+
+  <script type="text/javascript" th:src="@{/scripts/ods701e.js}"></script></body>
+  <script type="text/javascript" th:src="@{/scripts/filters/commonFilter.js}"></script>
+</body>
+
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta th:substituteby="fragments/head_meta :: meta"></meta>
+
+  <meta th:substituteby="fragments/resources :: head_resources"></meta>
+</head>
+
+<body>
+
+  <div class="container">
+    <div th:substituteby="fragments/body_header :: body_header"></div>
+
+    <div class="row" data-ng-app="ods704eApp">
+      <div class="container"  data-ng-controller="ods704eController">
+
+        <div class="row-fluid">
+          <div class="btn-toolbar pull-right">
+            <button type="button" class="btn btn-primary" data-ng-click="create()" data-ng-disabled="inState('QUERYED')">
+              <i class="glyphicon glyphicon-plus"></i>新增主題群組
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="query()">
+              <i class="glyphicon glyphicon-search"></i>查詢
+            </button>
+          </div>
+        </div>
+
+        <section>
+          <form class="form-inline"  data-c-enter-tab>
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                  <span th:text="${FUNCTION_ID}"></span> <span class="text-muted">主題群組管理</span>
+                </h3>
+              </div>
+              <div class="panel-body">
+                <fieldset>
+                  <table class="form-group" style="width: 100%;">
+                    <thead>
+                      <tr class="row">
+                          <th>
+                          </th>
+                          <th>
+                          </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="row" >
+                        <th width="12%" style="text-align:right">
+                          <label for="ped" class="control-label">主題群組名稱：</label>
+                        </th>
+                        <td>
+                          <input type="text" id="caseName" name="caseName" class="form-control" data-ng-model="model.materialName" style="width:630px">
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  
+                  <table class="form-group" style="width: 100%;">
+                    <thead>
+                      <tr class="row">
+                          <th>
+                          </th>
+                          <th>
+                          </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="row" >
+                        <td width="32%">
+                          <div style="float:left;margin-right:5px"><img class="img-thumbnail" src="../images/tax.jpg" style="max-width:100px;"></div>
+                          <div>
+                              <h2><a href="ods704e_02.html">零售業分析</a></h2>
+                              <p>主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明</p>
+                              <p><a class="btn btn-default" href="#" role="button">詳細資訊</a></p>
+                            </div>
+                        </td>
+                        <td width="2%">　</td>
+                        <td width="32%">
+                          <div style="float:left;margin-right:5px"><img class="img-thumbnail" src="../images/invoice.jpg" style="max-width:100px;"></div>
+                            <div>
+                              <h2><a href="ods704e_02.html">電子發票區</a></h2>
+                              <p>主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明</p>
+                              <p><a class="btn btn-default" href="#" role="button">詳細資訊</a></p>
+                            </div>
+                        </td>
+                        <td width="2%">　</td>
+                        <td width="32%">
+                          <div style="float:left;margin-right:5px"><img class="img-thumbnail" src="../images/god.jpg" style="max-width:100px;"></div>
+                            <div>
+                              <h2><a href="ods704e_02.html">主題群組WWW</a></h2>
+                              <p>主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組</p>
+                              <p><a class="btn btn-default" href="#" role="button">詳細資訊</a></p>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr class="row" >
+                        <td>　</td>
+                        <td>　</td>
+                        <td>　</td>
+                        <td>　</td>
+                        <td>　</td>
+                      </tr>
+                      <tr class="row" >
+                        <td>
+                          <div style="float:left;margin-right:5px"><img class="img-thumbnail" src="../images/god.jpg" style="max-width:100px;"></div>
+                            <div>
+                              <h2><a href="ods704e_02.html">主題群組ZZZZZ</a></h2>
+                              <p>主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組</p>
+                              <p><a class="btn btn-default" href="#" role="button">詳細資訊</a></p>
+                            </div>
+                        </td>
+                        <td>　</td>
+                        <td>
+                          <div style="float:left;margin-right:5px"><img class="img-thumbnail" src="../images/tax.jpg" style="max-width:100px;"></div>
+                            <div>
+                              <h2><a href="ods704e_02.html">主題群組YYYY</a></h2>
+                              <p>主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明</p>
+                              <p><a class="btn btn-default" href="#" role="button">詳細資訊</a></p>
+                            </div>
+                        </td>
+                        <td>　</td>
+                        <td>
+                          <div style="float:left;margin-right:5px"><img class="img-thumbnail" src="../images/invoice.jpg" style="max-width:100px;"></div>
+                            <div>
+                              <h2><a href="ods704e_02.html">主題群組XXXX</a></h2>
+                              <p>主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明</p>
+                              <p><a class="btn btn-default" href="#" role="button">詳細資訊</a></p>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr class="row" >
+                        <td>　</td>
+                        <td>　</td>
+                        <td>　</td>
+                        <td>　</td>
+                        <td>　</td>
+                      </tr>
+                      <tr class="row" >
+                        <td>
+                          <div style="float:left;margin-right:5px"><img class="img-thumbnail" src="../images/invoice.jpg" style="max-width:100px;"></div>
+                            <div>
+                              <h2><a href="ods704e_02.html">主題群組XXXX</a></h2>
+                              <p>主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明</p>
+                              <p><a class="btn btn-default" href="#" role="button">詳細資訊</a></p>
+                            </div>
+                        </td>
+                        <td>　</td>
+                        <td>
+                          <div style="float:left;margin-right:5px"><img class="img-thumbnail" src="../images/god.jpg" style="max-width:100px;"></div>
+                            <div>
+                              <h2><a href="ods704e_02.html">主題群組ZZZZZ</a></h2>
+                              <p>主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組</p>
+                              <p><a class="btn btn-default" href="#" role="button">詳細資訊</a></p>
+                            </div>
+                        </td>
+                        <td>　</td>
+                        <td>
+                          <div style="float:left;margin-right:5px"><img class="img-thumbnail" src="../images/invoice.jpg" style="max-width:100px;"></div>
+                            <div style="float:left;margin-right:5px"><img class="img-thumbnail" src="../images/tax.jpg" style="max-width:100px;"></div>
+                            <div>
+                              <h2><a href="ods704e_02.html">主題群組YYYY</a></h2>
+                              <p>主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明主題群組中文說明</p>
+                              <p><a class="btn btn-default" href="#" role="button">詳細資訊</a></p>
+                            </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </fieldset>
+              </div>
+             </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div th:substituteby="fragments/body_footer :: footer"></div>
+  <div th:substituteby="fragments/resources :: body_resources"></div>
+
+  <script type="text/javascript" th:src="@{/scripts/ods704e.js}"></script></body>
+</body>
+
+</html>

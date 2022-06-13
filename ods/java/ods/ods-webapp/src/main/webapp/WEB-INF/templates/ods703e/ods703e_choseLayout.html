@@ -1,0 +1,39 @@
+
+<!-- 可在此設定 modal 的寬度，預設為 600px  -->
+  <style type="text/css">
+  .modal-dialog {
+     width:800px 
+  }
+  </style>
+
+        <div class='modal-header'>
+          <h3>匯入範本</h3>
+          <div class="btn-toolbar">
+            <button type="button" class="btn btn-primary" data-ng-click="queryLayout()">
+              <i class="glyphicon glyphicon-search"></i>查詢
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="importLayout()">
+                <span class="glyphicon glyphicon-plus"></span> 匯入
+            </button>
+          </div>
+        </div>
+        <div class='modal-body'>
+          <div class="row">
+            <div class="form-group col-sm-12">
+              <label for="name" class="control-label">範本名稱：</label>
+              <input type="text" class="form-control" data-ng-model="layout.name">
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-sm-12">
+              <label for="materialFile" class="control-label">範本預覽：</label>
+                <div data-ng-repeat="item in patternData track by $index">
+                  <img src="../images/column{{item}}.jpg" class="img-polaroid" height="100" width="650">
+                </div>
+            </div>
+          </div>
+          
+          <div class="grid-style" data-ng-grid="choseLayoutGird"
+           style="display: inline-block; height: 360px;">
+          </div>
+        </div>

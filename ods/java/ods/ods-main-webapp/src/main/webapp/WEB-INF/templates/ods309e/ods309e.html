@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta th:substituteby="fragments/external_meta :: meta"></meta>
+<meta th:substituteby="fragments/external_resources :: head_resources"></meta>
+<meta th:substituteby="fragments/resources :: head_resources"></meta>
+<link rel="stylesheet" type="text/css" wro4j:style="odsCommonMCSS" />
+<link rel="stylesheet" href="../styles/jquery.fancybox.css" type="text/css" media="screen" />
+
+<style type="text/css">
+.img-thumbnail {
+  position: relative;
+  z-index: 0;
+  background-color: transparent;
+}
+
+.img-thumbnail:hover {
+  background-color: transparent;
+  z-index: 50;
+  position:absolute;
+  left:0;
+  right:0;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.img-thumbnail span { /*CSS for enlarged image*/
+  position: absolute;
+  background-color: lightyellow;
+  padding: 5px;
+  left: -1000px;
+  border: 1px dashed gray;
+  visibility: hidden;
+  color: black;
+  text-decoration: none;
+}
+
+.img-thumbnail span img { /*CSS for enlarged image*/
+  border-width: 0;
+  padding: 2px;
+}
+
+.img-thumbnail:hover span { /*CSS for enlarged image on hover*/
+  visibility: visible;
+  top: 0;
+  left: 60px; /*position where enlarged image should offset horizontally */
+  position:absolute;
+  left:0;
+  right:0;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+#spyDiv{
+  z-index: 9;
+  position:relative;
+  background-color: white;
+  height: 280px;
+}
+
+#myNav{
+  background-color: white;
+}
+
+@media (max-width: 768px) {
+    .showIntro {
+        display:none;
+    }
+}
+</style>
+
+
+</head>
+
+<body data-spy="scroll" data-target="#spyDiv" th:class="${session.EXTERNAL_USER_STYLE}">
+
+<div th:replace="fragments/external_mobile_layout :: header"></div> 
+  <!--  >div th:substituteby="fragments/body_header :: body_header"></div-->
+
+
+  <div class="container forIe8" >
+    <div th:substituteby="body_alert_header :: alert"></div>
+    
+    <div class="row">
+        <div class="panel-title">
+            <span class="title">●操作說明</span>  
+        </div>
+    </div>
+    
+    <div class="row" style="background-color:#fff">
+        <div class="col-md-offset-9 col-md-3">
+          <a title="回上一頁" accesskey="B" href="javascript:void(0);" onclick="history.back();" onkeypress="history.back();" class="btn btn-primary btn-xs pull-right" role="button">BACK</a>
+          <br/>
+        </div>
+        
+        <div class="col-3 col-sm-3 col-lg-3 showIntro">
+          <div id="spyDiv" class="clearfix">
+            <ul class="nav nav-tabs nav-stacked"  id="myNav">
+              <li>
+                <a title="主題基本功能說明" href="#level1-intro1">主題基本功能說明</a>
+                <ul id="subNav1">
+                  <li><a title="下載電子檔" href="#level2-intro1">下載電子檔</a></li>
+                  <li><a title="下載分析檔" href="#level2-intro2">下載分析檔</a></li>
+                  <li><a title="主題訂閱" href="#level2-intro3">主題訂閱</a></li>
+                  <li><a title="我要評分" href="#level2-intro4">我要評分</a></li>
+                  <li><a title="瀏覽主題其他版本" href="#level2-intro5">瀏覽主題其他版本</a></li>
+                  <li><a title="轉貼分享" href="#level2-intro6">轉貼分享</a></li>
+                </ul>
+              </li>
+              <li>
+                <a title="素材及案例功能說明" href="#level1-intro2">素材及案例功能說明</a>
+                <ul id="subNav2">
+                  <li><a title="素材及案例類型" href="#level2-intro7">素材及案例類型</a></li>
+                  <li><a title="素材及案例資料瀏覽" href="#level2-intro8">素材及案例資料瀏覽</a></li>
+                  <li><a title="資料集視覺化分析功能" href="#level2-intro9">資料集視覺化分析功能</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+        
+        <div class="col-8 col-sm-8 col-lg-8">
+          <h3 id="level1-intro1"><div class="alert alert-warning" role="alert">主題基本功能說明</div></h3>
+<!--                           <DIV class="img-thumbnail" href="#thumb"><img alt="主題基本功能說明圖片小" th:src="@{/images/ods309e.png}" -->
+<!--                             width="400px" border="0" /><span><img alt="主題基本功能說明圖片大" -->
+<!--                               th:src="@{/images/ods309e.png}" /><br /></span></DIV> -->
+          <DIV>                              
+              <a href="../images/ods309e.png" class="fancybox" title="主題基本功能說明圖片"><img alt="主題基本功能說明圖片" src="../images/ods309e.png" width="400px" border="0" /></a>
+          </DIV>
+
+          <h4 id="level2-intro1"><div class="alert alert-success" role="alert">(1)下載電子檔</div></h4>
+                                              可下載目前瀏覽主題的相關內容之PDF檔。
+         
+          <h4 id="level2-intro2"><div class="alert alert-success" role="alert">(2)下載分析檔</div></h4>
+                                              可下載主題Tableau資料分析檔案，民眾可於Tableau官方網站下載Tableau Reader，以進一步進行資料分析及操作。
+          <a title="下載Tableau Reader" href="http://www.tableausoftware.com/products/reader">http://www.tableausoftware.com/products/reader</a>
+          
+          <h4 id="level2-intro3"><div class="alert alert-success" role="alert">(3)主題訂閱</div></h4>
+                                              依主題內容性質，將提供多種不同的訂閱方案，民眾可選擇有興趣之方案加以訂閱，當主題資料達到訂閱方案的條件時，本網站將以電子郵件的方式通知以便民眾追縱最新分析報告。
+                                              
+          <h4 id="level2-intro4">
+          <div class="alert alert-success" role="alert">(4)我要評分</div></h4>
+                                              民眾可依個人喜好對於每個主題進行評分，本網站也將參考民眾回饋之評分結果調整提供的主題內容，以更符合民眾對主題分析之需求。
+
+          <h4 id="level2-intro5">
+          <div class="alert alert-success" role="alert">(5)瀏覽主題其他版本</div></h4>
+                                              電子發票智慧好生活網提供之主題內容依不同性質將會定期更新，本網站將會保存歷次更新版本，民眾若想查看該主題其他版本時，可於此下拉選單選擇版本。
+
+
+          <h4 id="level2-intro6">
+          <div class="alert alert-success" role="alert">(6)轉貼分享</div></h4>
+                                              民眾可將主題內容轉貼分享至Facebook、Google+、Twitter。
+          <p/>
+          <h3 id="level1-intro2"><div class="alert alert-warning" role="alert">素材及案例功能說明</div></h3>
+          <h4 id="level2-intro7"><div class="alert alert-success" role="alert">(1)素材及案例類型</div></h4>
+                                              每個主題可能包含一至多個素材及案例，而素材及案例共有圖片、資料集以及PDF三種類型。
+          <ul>
+            <li>圖片：可下載另存成PNG檔
+              <span>                            
+                  <a href="../images/ods309e-r1.png" class="fancybox" title="素材及案例圖片說明"><img alt="素材及案例圖片說明" src="../images/ods309e-r1.png" width="50px" border="0" /></a>
+              </span>
+<!--                               <span class="img-thumbnail" href="#thumb"> -->
+<!--                                 <img alt="圖片小" th:src="@{/images/ods309e-r1.png}" width="50px" border="0" /> -->
+<!--                                 <span> -->
+<!--                                 <img alt="圖片大" th:src="@{/images/ods309e-r1.png}" /></span> -->
+<!--                               </span> -->
+            </li>
+            <li>資料集：可下載該資料集之CSV檔
+              <span>                            
+                  <a href="../images/ods309e-r2.png" class="fancybox" title="素材及案例資料集說明"><img alt="素材及案例資料集說明" src="../images/ods309e-r2.png" width="100px" border="0" /></a>
+              </span>
+<!--                               <span class="img-thumbnail" href="#thumb"> -->
+<!--                                 <img alt="資料集小" th:src="@{/images/ods309e-r2.png}" width="100px" border="0" /> -->
+<!--                                 <span> -->
+<!--                                 <img alt="資料集大" th:src="@{/images/ods309e-r2.png}" /></span> -->
+<!--                               </span> -->
+            </li>
+            <li>PDF：可下載另存成PDF檔
+              <span>                            
+                  <a href="../images/ods309e-r3.png" class="fancybox" title="素材及案例PDF說明"><img alt="素材及案例PDF說明" src="../images/ods309e-r3.png" width="100px" border="0" /></a>
+              </span>
+<!--                               <span class="img-thumbnail" href="#thumb"> -->
+<!--                                 <img alt="PDF小" th:src="@{/images/ods309e-r3.png}" width="100px" border="0" /> -->
+<!--                                 <span> -->
+<!--                                 <img alt="PDF大" th:src="@{/images/ods309e-r3.png}" /></span> -->
+<!--                               </span> -->
+            </li>
+          </ul>
+          <h4 id="level2-intro8"><div class="alert alert-success" role="alert">(2)素材及案例資料瀏覽</div></h4>
+                                              每個素材及案例都可按下資料瀏覽以便瀏覽便詳細資訊，圖片及PDF類型可看到完整的資訊，資料集則可進一步進行線上之視覺化分析功能。
+          <span>                            
+              <a href="../images/ods309e-r4.png" class="fancybox" title="素材及案例資料瀏覽"><img alt="素材及案例資料瀏覽" src="../images/ods309e-r4.png" width="50px" border="0" /></a>
+          </span>
+<!--                           <span class="img-thumbnail" href="#thumb"> -->
+<!--                               <img alt="素材及案例資料瀏覽小" th:src="@{/images/ods309e-r4.png}" width="50px" border="0" /> -->
+<!--                               <span> -->
+<!--                               <img alt="素材及案例資料瀏覽大" th:src="@{/images/ods309e-r4.png}" /></span> -->
+<!--                           </span> -->
+          <h4 id="level2-intro9"><div class="alert alert-success" role="alert">(3)資料集視覺化分析功能</div></h4>
+                                              當素材及案例為資料集時，本網提供兩種資料呈現方式：
+          <ul>
+            <li>表格：以表格的方式呈現資料集內容，資料內容預設以每頁100筆顯示，民眾可自行於如圖片中標示「1」的地方調整每頁顯示之筆數與範圍。民眾亦可如圖片中標示「2」的地方設定資料篩選條件，設定完成後表格僅顯示符合篩選條件之資料。
+              <br/>
+              <div>                            
+                  <a href="../images/ods309e-r5.png" class="fancybox" title="表類類型"><img alt="表類類型" src="../images/ods309e-r5.png" width="50px" border="0" /></a>
+              </div>
+<!--                               <div class="img-thumbnail" href="#thumb"> -->
+<!--                                 <img alt="表類類型小" th:src="@{/images/ods309e-r5.png}" width="50px" border="0" /> -->
+<!--                                 <span> -->
+<!--                                 <img alt="表類類型大" th:src="@{/images/ods309e-r5.png}" /></span> -->
+<!--                               </div> -->
+            </li>
+            <li>圖形：支援「視覺化資料圖形瀏覽，民眾可於右方區域自訂「圖形類型」、「X軸」、「Y軸」後，網頁將依目前「表格」頁籤中顯示之資料，繪製對應之統計圖形。
+              <div>                            
+                  <a href="../images/ods309e-r6.png" class="fancybox" title="圖形類型"><img alt="圖形類型" src="../images/ods309e-r6.png" width="50px" border="0" /></a>
+              </div>
+<!--                               <div class="img-thumbnail" href="#thumb"> -->
+<!--                                 <img alt="圖形類型小" th:src="@{/images/ods309e-r6.png}" width="50px" border="0" /> -->
+<!--                                 <span> -->
+<!--                                 <img alt="圖形類型大" th:src="@{/images/ods309e-r6.png}" /></span> -->
+<!--                               </div> -->
+              <ul>
+                <li>圖形類型：支援「折線與散佈圖」、「折線圖」、「散佈圖」、「橫條圖」、「長條圖」、「圓餅圖」等六種視覺化資料統計圖形</li>
+                <li>X軸：設定統計圖型之X軸欄位，建議選擇質性資料類型欄位，如地區、性別等。</li>
+                <li>Y軸：設定統計圖型之Y軸欄位，建議選擇量化資料類型欄位，如金額、數量等。</li>
+              </ul>
+            </li>
+          </ul>
+                                              常見問題
+          <ul>
+              <li>問：為什麼圖片X軸看起來很擠？讓我看不清楚X軸文字？
+                  <span>                            
+                      <a href="../images/ods309e-r7.png" class="fancybox" title="資料量筆數過多"><img alt="資料量筆數過多" src="../images/ods309e-r7.png" width="100px" border="0" /></a>
+                  </span> 
+              </li>
+              <li>答：因為智慧好生活提供的資料集種類繁多，當資料集資料量較多時，就有可能有此狀況。建議您善用「搜尋資料」或「過濾條件」等功能，篩選出有興趣的資料條件，縮小資料筆數，就可以改善這個問題。若「搜尋資料」或「過濾條件」功能無法滿足您的需求，建議您參考「<a title="下載分析檔" href="https://sip.einvoice.nat.gov.tw/ods-main/ODS309E/#level2-intro2">下載分析檔</a>」說明，透過Tableau Reader開啟分析檔，可對主題資料做更進一步的資料操作。
+              　　　　　　　　　　　　<span>                            
+                      <a href="../images/ods309e-r8.png" class="fancybox" title="搜尋資料－表格"><img alt="搜尋資料－表格" src="../images/ods309e-r8.png" width="100px" border="0" /></a>
+                  </span> 
+                  <span>                            
+                      <a href="../images/ods309e-r9.png" class="fancybox" title="搜尋資料－圖片"><img alt="搜尋資料－圖片" src="../images/ods309e-r9.png" width="100px" border="0" /></a>
+                  </span>
+              </li>
+          </ul>
+          
+        </div>
+        
+        <div class="col-md-offset-9 col-md-3">
+          <a title="回上一頁" accesskey="B" href="javascript:void(0);" onclick="history.back();" onkeypress="history.back();" class="btn btn-primary btn-xs pull-right" role="button">BACK</a>
+        </div>
+
+    </div>
+  </div>
+
+  <div th:replace="fragments/external_mobile_layout :: footer"></div>  
+  
+  <script type="text/javascript" th:src="@{/scripts/jquery.fancybox.pack.js}"></script>
+  <script type="text/javascript" th:src="@{/scripts/form2object.js}"></script>
+  <script type="text/javascript" th:src="@{/scripts/ods309e.js}"></script>
+  <script type="text/javascript" th:src="@{/scripts/common/sls-jquery-ajax.js}"></script>
+  <link rel="stylesheet" href="../styles/ods_main.css" />
+</body>
+
+</html>

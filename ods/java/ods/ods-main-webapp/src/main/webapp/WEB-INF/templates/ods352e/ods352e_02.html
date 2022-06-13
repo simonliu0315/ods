@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta th:replace="fragments/external_meta :: meta"></meta>
+  <meta th:replace="fragments/external_resources :: head_resources"></meta>  
+  <meta th:substituteby='fragments/resources :: head_resources'></meta><!-- 套這個 -->
+  <link rel="stylesheet" type="text/css" wro4j:style="odsCommonMCSS" />   <!-- 套這個 -->
+  <style type="text/css">
+  <!--  
+  .lessContent{
+    overflow: hidden;
+    max-height: 132px;
+  }
+  -->
+  </style>
+</head>
+
+<body th:class="${session.EXTERNAL_USER_STYLE}">
+  <div th:replace="fragments/external_header :: header"></div>
+  <div class="container">
+      <div class="row">
+        <table width="1010" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr class="txtb">
+              <td height="33" th:background="@{/images/title_bg_b.png}">
+                <table width="200" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td width="30">&nbsp;</td>
+                    <td width="162" class="title">訂閱資訊</td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+            <tr class="txtb">
+            <td valign="top" bgcolor="#FFFFFF"><br />
+              <table width="980" border="0" align="center" cellpadding="2" cellspacing="0">
+              <tbody><tr>
+                <td>
+                   <div id="content" class="container">
+                    <div class="col-md-offset-9 col-md-3">
+                    <a href="javascript:void(0);" onclick="history.back();" class="btn btn-primary btn-xs pull-right" role="button">BACK</a>
+                    </div>
+                      <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                          <tbody>
+                            <tr><td>
+                            
+                            <div class="row">
+                                <ul>
+                                    <div  th:each="odsUserFollowPackage : ${data.top5UserFollowPackage}" style="height: 30px">
+                                      <th:block th:if="${odsUserFollowPackage.type} != '02'">
+                                         <li>
+                                          <a th:href="@{'/ODS303E/'+${odsUserFollowPackage.pkgId}+'/0/'}">
+                                          <span th:text="${odsUserFollowPackage.pkgName}"></span></a>
+                                        </li>
+                                      </th:block>
+                                      <th:block th:if="${odsUserFollowPackage.type} == '02'">
+                                         <li>
+                                          <a th:href="@{'/ODS311E/'+${odsPackage.id}+'/0/' + ${odsPackage.type} + '/' + ${odsPackage.code} + '/'}">
+                                          <span th:text="${odsUserFollowPackage.pkgName}"></span></a>
+                                        </li>
+                                      </th:block>
+                                    </div>
+                                </ul>
+                            </div>
+                            
+
+                            
+                            </td></tr>
+
+                          </tbody>
+                      </table>
+                    <a href="javascript:void(0);" onClick="history.back();" class="btn btn-primary btn-xs pull-right" role="button">BACK</a>
+                   </div>
+                </td>
+              </tr></tbody>
+              </table>
+            </td>
+            </tr>
+            </tbody>
+        </table>
+      </div>  
+  </div>
+  <div th:replace="fragments/external_footer :: footer"></div>
+  <div th:replace="fragments/external_resources :: body_resources"></div>  
+    <div th:substituteby='fragments/resources :: body_resources'></div><!-- 套這個 -->
+    <script type="text/javascript" th:src="@{/scripts/common/sls-jquery-ajax.js}"></script>
+</body>
+
+</html>

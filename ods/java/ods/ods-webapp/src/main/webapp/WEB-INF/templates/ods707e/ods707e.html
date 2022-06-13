@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta th:substituteby="fragments/head_meta :: meta"></meta>
+
+  <meta th:substituteby="fragments/resources :: head_resources"></meta>
+</head>
+
+<body>
+
+  <div class="container">
+    <div th:substituteby="fragments/body_header :: body_header"></div>
+
+    <div class="row" data-ng-app="ods707eApp">
+      <div class="container"  data-ng-controller="ods707eController">
+
+        <div class="row-fluid">
+          <div class="btn-toolbar pull-right">
+            <button type="button" class="btn btn-primary" data-ng-click="query()">
+              <i class="glyphicon glyphicon-search"></i>查詢
+            </button>
+            <button type="button" class="btn btn-primary" data-ng-click="reset()">
+              <i class="glyphicon glyphicon-refresh"></i>清除
+            </button>
+          </div>
+        </div>
+
+        <section>
+          <form class="form-inline"  data-c-enter-tab>
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                  <span th:text="${FUNCTION_ID}"></span> <span class="text-muted">主題流量及訂閱統計</span>
+                </h3>
+              </div>
+              <div class="panel-body">
+                <fieldset>
+                  <table class="form-group" style="width: 100%;">
+                    <thead>
+                      <tr class="row">
+                          <th>
+                          </th>
+                          <th>
+                          </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="row" >
+                        <th width="10%" style="text-align:right">
+                          <label for="startDate" class="control-label">查詢區間：</label>
+                        </th>
+                        <td width="90%">
+                        <input class="form-control" data-ng-model="startDate" data-c-validate="{dateValidation : ['yyyMMdd','Minguo']}" data-c-date-picker="{format : 'yyy/MM/dd'}"/>
+                                                                ～
+                        <input class="form-control" data-ng-model="endDate" data-c-validate="{dateValidation : ['yyyMMdd','Minguo']}" data-c-date-picker="{format : 'yyy/MM/dd'}"/>
+                        </td>
+                      </tr>
+                      <tr class="row" >
+                        <th width="10%" style="text-align:right">
+                          <label for="packageName" class="control-label">主題名稱：</label>
+                        </th>
+                        <td width="90%">
+                          <input type="text" class="form-control" data-ng-model="model.packageName" style="width:630px">
+                        </td>
+                      </tr>
+                      <tr class="row" >
+                        <th style="text-align:right">
+                          <label for="packageDescription" class="control-label">主題說明：</label>
+                        </th>
+                        <td>
+                          <textarea class="form-control" data-ng-model="model.packageDescription" rows="5" style="width:630px"></textarea>
+                        </td>
+                      </tr>
+<!--                       <tr class="row" > -->
+<!--                         <th style="text-align:right"> -->
+<!--                           <label for="tagName" class="control-label">標籤：</label> -->
+<!--                         </th> -->
+<!--                         <td> -->
+<!--                         </td> -->
+<!--                       </tr> -->
+<!--                       <tr class="row" data-ng-repeat="item in packageTags track by $index"> -->
+<!--                         <th style="text-align:right"> -->
+<!--                         </th> -->
+<!--                         <td> -->
+<!--                           <input type="text" class="form-control" data-ng-model="item.tagName"> -->
+<!--                         </td>                             -->
+<!--                       </tr> -->
+                    </tbody>
+                  </table>
+                  
+                  <div class="panel panel-default">
+                      <div class="panel-body">
+                          <div class="grid-style" data-ng-grid="girdObject"
+                             style="display: inline-block; height: 360px;">
+                          </div>
+                      </div>
+                  </div>
+                </fieldset>
+              </div>
+             </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div th:substituteby="fragments/body_footer :: footer"></div>
+  <div th:substituteby="fragments/resources :: body_resources"></div>
+
+  <script type="text/javascript" th:src="@{/scripts/ods707e.js}"></script>
+</body>
+
+</html>

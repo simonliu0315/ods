@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta th:replace="fragments/external_meta :: meta"></meta>
+<meta th:replace="fragments/external_resources :: head_resources"></meta>
+<meta th:substituteby='fragments/resources :: head_resources'></meta>
+<meta name="viewport"
+  content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  
+<!-- 套這個 -->
+<link rel="stylesheet" type="text/css" wro4j:style="odsCommonMCSS" />
+<!-- 套這個 -->
+<link rel="stylesheet" href="/ods-main/styles/mQuery.css" />
+
+<style type="text/css">
+<!--
+.lessContent {
+  overflow: hidden;
+  max-height: 132px;
+}
+-->
+</style>
+</head>
+
+<body th:class="${session.EXTERNAL_USER_STYLE}">
+
+<div th:replace="fragments/external_mobile_layout :: header"></div> 
+
+  <div class="container forIe8" >
+
+    <div id="content">
+      <div class="row">
+
+        <div class="panel-title">
+          <span class="title">●主題群組列表查詢</span>
+        </div>
+
+        <noscript>
+          <p style="font-size: 30px; color: red; margin-left: 20px;">
+            您的瀏覽器不支援Javascript. <a accesskey="R" href="/ods-main/ODS301E/noscript/">((請按我))</a>導向無動態網頁版本.
+          </p>
+          <!--                        <p style="font-size:30px;color:red;margin-left:20px;">您的瀏覽器不支援Javascript. 即將導向無動態網頁版本，或 <a accesskey="R" href="/ods-main/ODS302E/noscript/">((請按我))</a>.</p> -->
+          <!--                        <meta HTTP-EQUIV="REFRESH" content="3; url=noscript/">  -->
+        </noscript>
+        </div>
+        <div class="row" style="background-color:#fff">
+          <div class="col-md-offset-9 col-md-3">
+            <label for="orderByType">排序條件</label>
+            <select id="orderByType" onchange="odsGroupQuery();" th:value="${orderByType}">
+              <option value="0" th:selected="${orderByType=='0'}">更新時間</option>
+              <option value="1" th:selected="${orderByType=='1'}">熱門排名</option>
+            </select>
+            <a title="回上一頁" accesskey="B" href="javascript:void(0);" onclick="history.back();"
+              onkeypress="history.back();" class="btn btn-primary btn-xs pull-right" role="button">BACK</a>
+          </div>
+
+        <div class="col-md-3">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <h4><label for="groupName">關鍵字</label></h4>
+              <input type="text" class="form-control" id="groupName" placeholder="請輸入關鍵字" />
+              <button title="查詢" type="button" class="btn btn-default btn-sm" onclick="odsGroupQuery();"
+                onkeypress="odsGroupQuery();">
+                <span class="glyphicon glyphicon-search"></span> 查詢
+              </button>
+              <button title="清除條件" type="button" class="btn btn-warning btn-xs" onclick="clearGroupName();"
+                onkeypress="clearGroupName();">
+                <span class="glyphicon glyphicon-remove"></span> 清除條件
+              </button>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <h4>分類標籤</h4>
+              <div id="tags" class="list-group lessContent"></div>
+              <h6 onclick="showMore('tags')" onkeypress="showMore('tags')">更多標籤...</h6>
+              <button title="清除條件" type="button" class="btn btn-warning btn-xs"
+                onclick="clearSelectedObject('tags')" onkeypress="clearSelectedObject('tags')">
+                <span class="glyphicon glyphicon-remove"></span> 清除條件
+              </button>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <h4>檔案格式</h4>
+              <div id="fileExts" class="list-group lessContent"></div>
+              <button title="清除條件" type="button" class="btn btn-warning btn-xs"
+                onclick="clearSelectedObject('fileExts')"
+                onkeypress="clearSelectedObject('fileExts')">
+                <span class="glyphicon glyphicon-remove"></span> 清除條件
+              </button>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <h4>分眾推廣群</h4>
+              <div id="identitys" class="list-group lessContent"></div>
+              <h6 onclick="showMore('identitys')" onkeypress="showMore('identitys')">更多推廣群...</h6>
+              <button title="清除條件" type="button" class="btn btn-warning btn-xs"
+                onclick="clearSelectedObject('identitys')"
+                onkeypress="clearSelectedObject('identitys')">
+                <span class="glyphicon glyphicon-remove"></span> 清除條件
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-md-9">
+          <div id="odsGroups" class="row"></div>
+
+            <a title="回上一頁" accesskey="B" href="javascript:void(0);" onClick="history.back();" onkeypress="history.back();" class="btn btn-primary btn-xs pull-right" role="button">BACK</a>
+          </div>
+      </div>
+    </div>
+  </div>
+  <div th:replace="fragments/external_mobile_layout :: footer"></div>
+  <!-- 套這個 -->
+  <script type="text/javascript" th:src="@{/scripts/ods301e.js}"></script>
+  <script type="text/javascript" th:src="@{/scripts/common/sls-jquery-ajax.js}"></script>
+  <script type="text/javascript" th:src="@{/scripts/respond.js}"></script>
+  <link rel="stylesheet" href="/ods-main/styles/ods_main.css" />
+</body>
+
+</html>

@@ -1,0 +1,21 @@
+
+<!-- 可在此設定 modal 的寬度，預設為 600px  -->
+  <style type="text/css">
+  .modal-dialog {
+     width:800px 
+  }
+  </style>
+
+        <div class='modal-header'>
+          <h3>挑選素材及案例版本</h3>
+          <div class="btn-toolbar">
+            <button type="button" class="btn btn-primary" data-ng-click="choseVersion()">
+                <span class="glyphicon glyphicon-plus"></span> 確定
+            </button>
+          </div>
+        </div>
+        <div class='modal-body'>          
+          <div class="grid-style" data-ng-grid="choseResourceVerGird"
+           style="display: inline-block; height: 360px;">
+          </div>
+        </div>

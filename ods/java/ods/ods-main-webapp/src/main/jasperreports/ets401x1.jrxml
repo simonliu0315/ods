@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ets401x1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="d1c3bf81-aa19-4e0e-ad82-0a34f472e482">
+	<property name="ireport.zoom" value="1.6105100000000017"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ACC_YY" class="java.lang.String"/>
+	<parameter name="YY" class="java.lang.String"/>
+	<parameter name="MM" class="java.lang.String"/>
+	<parameter name="DD" class="java.lang.String"/>
+	<parameter name="CHECK_CHAR" class="java.lang.String"/>
+	<parameter name="SUBREPORT" class="net.sf.jasperreports.engine.JasperReport" isForPrompting="false">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DATA_SOURCE" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<columnHeader>
+		<band height="18" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="8438f280-fe1f-4093-8061-94461f0bf172" key="staticText" x="0" y="0" width="555" height="18"/>
+				<textElement textAlignment="Center">
+					<font fontName="標楷體" size="13"/>
+				</textElement>
+				<text><![CDATA[國庫統制會計收支狀況日報表( 測試XLS子報表用 )]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="40">
+			<subreport>
+				<reportElement uuid="11a60bff-dccf-4052-99e8-fa63a6edfe3b" x="0" y="0" width="555" height="40"/>
+				<dataSourceExpression><![CDATA[$P{SUBREPORT_DATA_SOURCE}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

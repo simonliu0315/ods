@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<div th:fragment="information" th:remove="tag">
+
+  <div class="alert alert-warning">
+    <p>
+      <span class="glyphicon glyphicon-cutlery"></span>
+      各系統可以自訂 <code>WEB-INF/templates/login_information.html</code>，在登入頁中顯示額外的資訊。
+    <p>
+    <p>
+      <span class="glyphicon glyphicon-pencil"></span>
+      也可以參照到自己專案中的資源，只要把檔案放在
+      <code>src/main/webapp</code> 的 <code>docs</code> 或 <code>files</code> 目錄下，就能透過
+      <code>&lt;a th:href="@{/docs/...}"&gt;</code> 這種方式存取。
+    </p>
+  </div>
+
+</div>
+
+<body>
+</body>
+
+</html>

@@ -1,0 +1,194 @@
+#css_table {
+      display:table;
+}
+.css_tr {
+        display: table-row;
+      width: 621px;
+        height: 160px;
+        padding: 0px;
+}
+.css_tr3 {
+    border: 5px dashed #DDC5B5;
+    width: 591px;
+    height: 150px;
+    padding: 0px;
+}
+
+.css_td {
+        display: table-cell;   
+        float:left;
+        border-width:4px 4px 0px 0px;
+        border-style: dashed;
+        border-color: rgb(112, 140, 52);
+        padding: 0px;
+}
+.css_td_left {
+    border-width:4px 4px 0px 4px;
+    border-style: dashed;
+    border-color: rgb(112, 140, 52);
+}
+.css_cell {
+        height: 158px;
+        background-color:rgb(234,242,221)
+}
+.css_td2a {
+        display: table-cell;
+        float:left;
+        border-width:4px 4px 0px 4px;
+        border-style: dashed;
+        border-color: rgb(112, 140, 52);
+        width: 303px;
+        padding: 0px;
+}
+.css_td2b {
+        display: table-cell;
+        border-width:4px 4px 0px 0px;
+        border-style: dashed;
+        border-color: rgb(112, 140, 52);
+        width: 304px;
+        padding: 0px;
+}
+.css_td3c {
+        display: table-cell;   
+        float:left;
+        border-width:4px 4px 0px 4px;
+        border-style: dashed;
+        border-color: rgb(112, 140, 52);
+        width: 607px;
+        padding: 0px;
+}
+.css_td3 {
+        float:left;
+        width: 607px;
+        height: 159px;
+        padding: 0px;
+        border: 4px dashed rgb(112, 140, 52);
+}
+.mark {
+        display: table-cell;      
+        width: 197px;
+        height: 150px;
+        padding: 0px;
+}
+.mark2 {
+        display: table-cell;      
+        width: 303px;
+        height: 150px;
+        padding: 0px;
+}
+.mark3 {
+        display: table-cell;      
+        width: 607px;
+        height: 150px;
+        padding: 0px;
+}
+#left {
+            width: 220px;
+            height: 110px;
+            float: left;
+            margin-right: 20px;
+}
+
+/* make left and right DIV container scrollable */
+#main_container #left,#right{
+    /*  http://www.howtocreate.co.uk/tutorials/javascript/browserspecific (Element position with scrolling offsets)
+    make sure that every element with an overflow of anything other than "visible" also has a position
+    style set to something other than the default "static". This way, they will all appear in the offsetParent
+    chain, and can be easily subtracted in the same loop that adds the offsetLeft and offsetTop. */
+    overflow: auto;
+    position: relative;
+}
+
+.drag{
+    cursor: move;
+    margin: auto;
+    z-index: 10;
+    /*background-color: white;*/
+    text-align: center;
+    /*font-size: 10pt;  needed for cloned object */
+    /*opacity: 0.7;
+    filter: alpha(opacity=70);*/
+    /* without width, IE6/7 will not apply filter/opacity to the element ?! */
+    /* IE needs element layout */
+    /*width: 185px;*/
+    height: 150px;
+    line-height: 35px;
+    /* round corners */
+    border-radius: 4px; /* Opera, Chrome */
+    -moz-border-radius: 4px; /* FF */
+    
+}
+ /* div inside drag div */
+    .nodrag {
+        cursor: default;
+        font-size: 15pt;  /* needed for cloned object */
+        background-color: white;
+        height: 30px;
+    }
+.trash {
+    color: white;
+    background-color: CornflowerBlue;
+    text-align: center;
+    font-size: 20pt;
+    width: 621px;
+    height: 150px;
+}
+.dark{
+    color: #444;
+    border: 4px dashed rgb(112, 140, 52);
+    width: 120px;
+    height: 170px;
+    background-color:rgb(234,242,221);
+}
+
+#trash_id {
+    color: white;
+    background-color: #aaa;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.share-icon{
+    width:30px;
+}
+
+.ui-widget.success-dialog {
+    font-family: Verdana,Arial,sans-serif;
+    font-size: .8em;
+}
+
+.ui-widget-content.success-dialog {
+    background: #F9F9F9;
+    border: 1px solid #90d93f;
+    color: #222222;
+}
+
+.ui-dialog.success-dialog {
+    left: 0;
+    outline: 0 none;
+    padding: 0 !important;
+    position: absolute;
+    top: 0;
+}
+
+.ui-dialog.success-dialog .ui-dialog-content {
+    background: none repeat scroll 0 0 transparent;
+    border: 0 none;
+    overflow: auto;
+    position: relative;
+    padding: 0 !important;
+    margin: 0;
+}
+
+.ui-dialog.success-dialog .ui-widget-header {
+    background: #b0de78;
+    border: 0;
+    color: #fff;
+    font-weight: normal;
+}
+
+.ui-dialog.success-dialog .ui-dialog-titlebar {
+    padding: 0.1em .5em;
+    position: relative;
+    font-size: 1em;
+}

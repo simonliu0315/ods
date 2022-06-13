@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta th:substituteby="fragments/head_meta :: meta"></meta>
+
+  <meta th:substituteby="fragments/resources :: head_resources"></meta>
+</head>
+
+<body>
+
+  <div class="container">
+    <div th:substituteby="fragments/body_header :: body_header"></div>
+
+    <div class="row" data-ng-app="ods701eApp">
+      <div class="container"  data-ng-controller="ods701eController">
+
+        <div class="row-fluid">
+          <div class="btn-toolbar pull-right">
+            <button type="button" class="btn btn-primary" data-ng-click="query()">
+              <i class="glyphicon glyphicon-search"></i>查詢
+            </button>
+            <button type="button" class="btn btn-primary">
+                <span class="glyphicon glyphicon-plus"></span> 新增
+            </button>
+            <button type="button" class="btn btn-primary">
+                <span class="glyphicon glyphicon-edit"></span> 修改
+            </button>
+            <button type="button" class="btn btn-primary" onclick="window.open('../ODS706E/')">
+                <span class="glyphicon glyphicon-stats"></span> 門檻值管理
+            </button>
+            <button type="button" class="btn btn-primary" onclick="window.open('ods701e_05.html')">
+                <span class="glyphicon glyphicon-list-alt"></span> 版本管理
+            </button>
+          </div>
+        </div>
+
+        <section>
+          <form class="form-inline"  data-c-enter-tab>
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                  <span th:text="${FUNCTION_ID}"></span> <span class="text-muted">素材及案例管理</span>
+                </h3>
+              </div>
+              <div class="panel-body">
+                <fieldset>
+                  <p>
+                      <ul class="nav nav-tabs">
+                        <li><a href="ods701e_01.html">基本資料</a></li>
+                        <li class="active"><a href="ods701e_03.html">素材及案例瀏覽</a></li>
+                      </ul>
+                  </p>
+                  <table class="form-group" style="width: 100%;">
+                    <thead>
+                      <tr class="row">
+                          <th>
+                          </th>
+                          <th>
+                          </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="row" >
+                        <td>
+                          <img src="../images/ODS001_04.png">
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </fieldset>
+              </div>
+             </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div th:substituteby="fragments/body_footer :: footer"></div>
+  <div th:substituteby="fragments/resources :: body_resources"></div>
+
+  <script type="text/javascript" th:src="@{/scripts/ods701e.js}"></script></body>
+</body>
+
+</html>

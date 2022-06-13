@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html lang="zh-Hant-TW">
+<meta charset="utf-8">
+<title>作業功能範例</title>
+<link href="./styles/theme/common.css" rel="stylesheet" />
+<body style="background-color: lightYellow;">
+  <div class="jumbotron" style="background-color: yellow;">
+    <h1 style="color: olive;">作業功能範例</h1>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3>前端功能展示</h3>
+          </div>
+          <div class="panel-body">
+            <ul>
+              <li><a href="SLS001E/">基本編排 (SLS001E)</a></li>
+              <li><a href="SLS002E/">基本 CRUD (SLS002E)</a></li>
+              <li><a href="ODS701E/">素材與案例管理 (ODS701E)</a></li>
+              <li><a href="ODS702E/">分類管理 (ODS702E)</a></li>
+              <li><a href="ODS703E/">主題管理 (ODS703E)</a></li>
+              <li><a href="ODS704E/ods704e_02.html">主題群組管理 (ODS704E)</a></li>
+              <li><a href="ODS705E/">範本管理 (ODS705E)</a></li>
+              <li><a href="ODS706E/">門檻值管理 (ODS706E)</a></li>
+              <li><a href="ODS707E/">主題流量及訂閱統計 (ODS707E)</a></li>              
+              <li><a href="ODS771X/">概念性驗證素材同步批次程式 (ODS771X)</a></li>
+              <li><a href="ODS772X/">主題訂閱通知批次程式 (ODS772X)</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
+

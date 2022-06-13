@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta th:substituteby="fragments/head_meta :: meta"></meta>
+
+<meta th:substituteby="fragments/resources :: head_resources"></meta>
+</head>
+
+<body>
+
+  <div class="container">
+    <div th:substituteby="fragments/body_header :: body_header"></div>
+
+    <div class="row" data-ng-app="ods702eApp">
+      <div class="container" data-ng-controller="ods702eController">
+        <div class="row-fluid">
+          <div class="btn-toolbar pull-right">
+            <button type="button" class="btn btn-primary">
+                <span class="glyphicon glyphicon-ok"></span> 確定
+            </button>
+          </div>
+        </div>
+
+        <section>
+          <form class="form-inline" name="ods702eForm" data-c-enter-tab data-c-form-validation>
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h3 class="panel-title">
+                  <span th:text="${FUNCTION_ID}"></span> <span class="text-muted">挑選素材及案例</span>
+                </h3>
+              </div>
+              <div class="panel-body">              
+                <table class="form-group" style="width: 100%;">
+                  <tbody>
+                    <tr class="row">
+                      <td colspan="3">
+                        <input type="text" style="width:210px">
+                        <button type="button" class="btn btn-default btn-sm">
+                            <span class="glyphicon glyphicon-search"></span> 
+                        </button>
+                      </td>                      
+                    </tr>
+                    <tr class="row">
+                      <td>
+                        <select multiple style="width:250px; height:200px">
+                          <option>素材及案例一</option>
+                          <option>素材及案例二</option>
+                          <option>素材及案例三</option>
+                          <option>素材及案例四</option>
+                          <option>素材及案例五</option>
+                        </select>
+                      </td>
+                      <td class="text-center" style="height:200px">
+                        <div class="vcenter"><button type="button" class="btn btn-default btn-sm">&gt;&gt;</button></div>
+                        <div class="vcenter"><button type="button" class="btn btn-default btn-sm">&lt;&lt;</button></div>
+                      </td>
+                      <td>
+                        <select multiple style="width:250px; height:200px">
+                          <option>素材及案例一</option>
+                        </select>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </form>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div th:substituteby="fragments/body_footer :: footer"></div>
+  <div th:substituteby="fragments/resources :: body_resources"></div>
+
+  <script type="text/javascript" th:src="@{/scripts/ods702e.js}"></script>
+</body>
+
+</html>

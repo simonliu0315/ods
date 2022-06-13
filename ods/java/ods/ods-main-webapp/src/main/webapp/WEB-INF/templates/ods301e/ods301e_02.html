@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta th:replace="fragments/external_meta :: meta"></meta>
+  <meta th:replace="fragments/external_resources :: head_resources"></meta>  
+  <meta th:substituteby='fragments/resources :: head_resources'></meta><!-- 套這個 -->
+  <meta name="viewport"
+  content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  
+  <link rel="stylesheet" type="text/css" wro4j:style="odsCommonMCSS" />   <!-- 套這個 -->
+  <link rel="stylesheet" href="/ods-main/styles/mQuery.css" />
+  <style type="text/css">
+  <!--  
+  .lessContent{
+    overflow: hidden;
+    max-height: 132px;
+  }
+  -->
+  </style>
+</head>
+
+<body th:class="${session.EXTERNAL_USER_STYLE}">
+
+<div th:replace="fragments/external_mobile_layout :: header"></div> 
+
+  <div class="container forIe8" >
+      <div class="row">      
+        <div class="panel-title">
+          <span class="title">●主題清單</span>
+        </div>
+      </div>
+        
+        <div class="row" style="background-color:#fff">
+            <div class="col-md-offset-9 col-md-3">
+              <a title="回上一頁" accesskey="B" href="javascript:void(0);" onclick="history.back();" onkeypress="history.back();" class="btn btn-primary btn-xs pull-right" role="button">BACK</a>
+            </div>
+
+            <div class="row">
+                <div style="float: left; margin-left: 20px; margin-right: 5px">
+                  <img th:alt="${data.odsGroup.description}" th:title="${data.odsGroup.description}" class="img-thumbnail" 
+                  th:src="@{'/ODS308E/public/group/'+${data.odsGroup.id}+'/image/'+${data.odsGroup.imageUrl}}"
+                   style="max-width: 100px;">
+                </div>
+                <div style="float: left;">
+                  <h1 th:text="${data.odsGroup.name}"></h1>
+                  <h4 th:text="${data.odsGroup.description}"></h4>
+                </div>
+              </div>
+
+          <div class="col-md-12">
+             <div class="row">
+              <div class="col-6 col-sm-6 col-lg-3" th:each="odsPackage : ${data.odsPackage}">
+                <div class="panel panel-default col-lg-height-3 col-sm-height-6" style="overflow:hidden;">
+                  <div class="panel-body">
+                    <h5>
+                      <th:block th:if="${breadData != null}">
+                        <th:block th:if="${odsPackage.type} != '02'">
+                          <a th:title="'連結到 ' + ${odsPackage.name}" th:href="@{'/ODS303E/'+${odsPackage.id}+'/'+ ${odsPackage.latestVer} +'/' + ${data.getBreadLink()} + '/'}">
+                            <div style="float: left; margin-right: 5px">
+                              <img class="img-thumbnail" th:alt="'連結到 ' + ${odsPackage.name}" th:title="'連結到 ' + ${odsPackage.name}" th:src="@{'/ODS308E/public/package/'+${odsPackage.id}+'/image/'+${odsPackage.imageUrl}}" style="width:100%;">
+                            </div>                                    
+                          <span th:text="${odsPackage.name}"></span></a>
+                        </th:block>
+                        <th:block th:if="${odsPackage.type} == '02'">
+                          <a th:title="'連結到 ' + ${odsPackage.name}" th:href="@{'/ODS311E/'+${odsPackage.id}+'/'+ ${odsPackage.latestVer} +'/' + ${data.getBreadLink()} + '/' + ${odsPackage.type} + '/' + ${odsPackage.code} + '/'}">
+                            <div style="float: left; margin-right: 5px">
+                              <img class="img-thumbnail" th:alt="'連結到 ' + ${odsPackage.name}" th:title="'連結到 ' + ${odsPackage.name}" th:src="@{'/ODS308E/public/package/'+${odsPackage.id}+'/image/'+${odsPackage.imageUrl}}" style="width:100%;">
+                            </div>                                    
+                          <span th:text="${odsPackage.name}"></span></a>
+                        </th:block>
+                      </th:block>
+                      <th:block th:if="${breadData == null}">
+                        <th:block th:if="${odsPackage.type} != '02'">
+                          <a th:title="'連結到 ' + ${odsPackage.name}" th:href="@{'/ODS303E/'+${odsPackage.id}+'/'+ ${odsPackage.latestVer} +'/0/'}">
+                            <div style="float: left; margin-right: 5px">
+                              <img class="img-thumbnail" th:alt="'連結到 ' + ${odsPackage.name}" th:title="'連結到 ' + ${odsPackage.name}" th:src="@{'/ODS308E/public/package/'+${odsPackage.id}+'/image/'+${odsPackage.imageUrl}}" style="width:100%;">
+                            </div>
+                          <span th:text="${odsPackage.name}"></span></a>
+                        </th:block>
+                        <th:block th:if="${odsPackage.type} == '02'">
+                          <a th:title="'連結到 ' + ${odsPackage.name}" th:href="@{'/ODS311E/'+${odsPackage.id}+'/'+ ${odsPackage.latestVer} +'/' + ${odsPackage.type} + '/' + ${odsPackage.code} + '/'}">
+                            <div style="float: left; margin-right: 5px">
+                              <img class="img-thumbnail" th:alt="'連結到 ' + ${odsPackage.name}" th:title="'連結到 ' + ${odsPackage.name}" th:src="@{'/ODS308E/public/package/'+${odsPackage.id}+'/image/'+${odsPackage.imageUrl}}" style="width:100%;">
+                            </div>                                    
+                          <span th:text="${odsPackage.name}"></span></a>
+                        </th:block>
+                      </th:block>
+                    </h5>
+                    <p th:text="${odsPackage.description}"></p>
+                    <p style="position:absolute;bottom:20px;right:30px;">
+                      <th:block th:if="${breadData != null}">
+                        <th:block th:if="${odsPackage.type} != '02'">
+                            <a th:title="'連結到 ' + ${odsPackage.name}" class="btn btn-default" th:href="@{'/ODS303E/'+${odsPackage.id}+'/'+ ${odsPackage.latestVer} +'/' + ${data.getBreadLink()} + '/'}">詳細資訊</a>
+                        </th:block>
+                        <th:block th:if="${odsPackage.type} == '02'">
+                            <a th:title="'連結到 ' + ${odsPackage.name}" class="btn btn-default" th:href="@{'/ODS311E/'+${odsPackage.id}+'/'+ ${odsPackage.latestVer} +'/' + ${data.getBreadLink()} + '/' + ${odsPackage.type} + '/' + ${odsPackage.code} + '/'}">詳細資訊</a>
+                        </th:block>
+                      </th:block>
+                      <th:block th:if="${breadData == null}">
+                        <th:block th:if="${odsPackage.type} != '02'">
+                            <a th:title="'連結到 ' + ${odsPackage.name}" class="btn btn-default" th:href="@{'/ODS303E/'+${odsPackage.id}+'/'+ ${odsPackage.latestVer} +'/0/'}">詳細資訊</a>
+                        </th:block>
+                        <th:block th:if="${odsPackage.type} == '02'">
+                            <a th:title="'連結到 ' + ${odsPackage.name}" class="btn btn-default" th:href="@{'/ODS311E/'+${odsPackage.id}+'/'+ ${odsPackage.latestVer} +'/' + ${odsPackage.type} + '/' + ${odsPackage.code} + '/'}">詳細資訊</a>
+                        </th:block>
+                      </th:block>
+                    </p>
+                  </div>
+                </div>
+              </div>
+             </div>
+                <a title="回上一頁" accesskey="B" href="javascript:void(0);" onClick="history.back();" onkeypress="history.back();" class="btn btn-primary btn-xs pull-right" role="button">BACK</a>
+          </div>
+      </div>  
+  </div>
+  <div th:replace="fragments/external_mobile_layout :: footer"></div>
+    <script type="text/javascript" th:src="@{/scripts/common/sls-jquery-ajax.js}"></script>
+    <script type="text/javascript" th:src="@{/scripts/respond.js}"></script>
+    <link rel="stylesheet" href="/ods-main/styles/ods_main.css" />
+</body>
+
+</html>

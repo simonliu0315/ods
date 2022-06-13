@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+  <div class="content">
+    <div class="content-col-left">
+       
+        <!-- CONTENT PAGE HIDDEN START -->
+        <div th:fragment="content_page_hidden" th:remove="tag">
+            <input type="hidden" name="page" th:value="${page.number}" role="CONTENT_PAGE_HIDDEN"/>
+            <input type="hidden" name="size" th:value="${page.size}" role="CONTENT_PAGE_HIDDEN"/>
+        </div>
+        <!-- CONTENT PAGE HIDDEN END -->
+        
+        <!-- CONTENT PAGE BAR START -->
+        <div th:fragment="content_page_bar" class="content-inner-row content-page-bar">
+          <th:block th:if="${page.totalPages > 0}">
+            <span th:text="${'共' + page.totalElements + '筆資料. 目前在 第' + (page.number + 1) + '/' + page.totalPages + '頁. 跳頁: 到第'}"></span>
+            <select name="page" class="select" onchange="odsPaging.changePaginationPage(this.value)">
+                <option th:each="i : ${#numbers.sequence(1, page.totalPages)}"
+                    th:value="${i - 1}" th:text="${i}" th:selected="${i - 1 == page.number}">
+                </option>
+            </select>
+          </th:block>
+          <th:block th:if="${page.totalPages == 0}">
+            <span th:text="${'共' + page.totalElements + '筆資料. 目前在 第0/0頁. 跳頁: 到第'}"></span>
+            <select name="page" class="select" onchange="odsPaging.changePaginationPage(this.value)">
+                <option value="-1" selected="selected">0</option>
+            </select>
+          </th:block>
+          <span>頁. 顯示: 每頁</span>
+          <th:block th:if="${pageSizeBase == null}">
+            <select name="size" class="select" onchange="odsPaging.changePaginationSize(this.value)">
+              <option value="10" th:selected="${page.size == 10}">10</option>
+              <option value="20" th:selected="${page.size == 20}">20</option>
+              <option value="50" th:selected="${page.size == 50}">50</option>
+              <option value="100" th:selected="${page.size == 100}">100</option>
+            </select>
+          </th:block>
+          <th:block th:if="${pageSizeBase != null}">
+            <select name="size" class="select" onchange="odsPaging.changePaginationSize(this.value)">
+              <option th:value="${pageSizeBase}" th:selected="${page.size == pageSizeBase}" th:text="${pageSizeBase}"></option>
+              <option th:value="${pageSizeBase * 2}" th:selected="${page.size == pageSizeBase * 2}" th:text="${pageSizeBase * 2}"></option>
+              <option th:value="${pageSizeBase * 5}" th:selected="${page.size == pageSizeBase * 5}" th:text="${pageSizeBase * 5}"></option>
+              <option th:value="${pageSizeBase * 10}" th:selected="${page.size == pageSizeBase * 10}" th:text="${pageSizeBase * 10}"></option>
+            </select>
+          </th:block>
+          <span>筆 《 </span>
+          <span th:if="${page.number > 0}"><a  th:href="${'javascript:odsPaging.changePaginationPage(' + (page.number - 1) + ');'}" class="page">上一頁</a></span>
+          <span th:if="${page.number <= 0}" class="page">上一頁</span>
+          <span> | </span>
+          <span th:if="${page.number < page.totalPages - 1}"><a th:href="${'javascript:odsPaging.changePaginationPage(' + (page.number + 1) + ');'}" class="page">下一頁</a></span>
+          <span th:if="${page.number >= page.totalPages - 1}" class="page">下一頁</span>
+          <span> 》</span>
+          </span>
+        </div>
+        <!-- CONTENT PAGE BAR END -->
+        
+        <!-- CONTENT PAGE HIDDEN START -->
+        <div th:fragment="content_page_hidden" th:remove="tag">
+            <input type="hidden" name="page" th:value="${page.number}" role="CONTENT_PAGE_HIDDEN"/>
+            <input type="hidden" name="size" th:value="${page.size}" role="CONTENT_PAGE_HIDDEN"/>
+        </div>
+        <!-- CONTENT PAGE HIDDEN END -->
+        
+        <!-- CONTENT PAGE BAR NOSCRIPT START -->
+        <div th:fragment="content_page_bar_noscript" class="content-inner-row content-page-bar-noscript">
+          <th:block th:if="${page.totalPages > 0}">
+              <th:block th:each="i : ${#numbers.sequence(1, page.totalPages)}">
+                <a class="page" th:href="${'javascript:odsPaging.changePaginationPage(' + (i-1) + ');'}" th:title="${'連結到 第' + i + '頁'}" th:text="${i}"></a><th:block th:if="${i < page.totalPages}">│</th:block>
+              </th:block>頁
+          </th:block>
+        </div>
+        <!-- CONTENT PAGE BAR NOSCRIPT END -->
+
+    </div>
+  </div>
+</body>
+</html>

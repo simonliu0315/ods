@@ -1,0 +1,119 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>gov.sls.ods</groupId>
+        <artifactId>ods</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>ods-service</artifactId>
+    <packaging>jar</packaging>
+
+    <name>ODS :: Services</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>gov.sls.ods</groupId>
+            <artifactId>ods-entity</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>gov.sls.commons</groupId>
+            <artifactId>sls-commons-solr</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>gov.sls.commons</groupId>
+            <artifactId>sls-commons-core</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>gov.sls.commons</groupId>
+            <artifactId>sls-commons-persistence</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>gov.sls.commons</groupId>
+            <artifactId>sls-commons-service</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>gov.sls.sub.commons</groupId>
+            <artifactId>sls-sub-commons-core</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.thymeleaf</groupId>
+            <artifactId>thymeleaf</artifactId>
+            <version>2.1.2.RELEASE-cht-1</version>
+        </dependency>
+        <!-- Test -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>4.0.3.RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hsqldb</groupId>
+            <artifactId>hsqldb</artifactId>
+            <version>2.3.2</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>gov.sls.sub.commons</groupId>
+            <artifactId>sls-sub-commons-test</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.supercsv</groupId>
+            <artifactId>super-csv</artifactId>
+            <version>2.2.0</version>
+        </dependency>
+        
+        <!-- SFTP -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-vfs2</artifactId>
+            <version>2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.jcraft</groupId>
+            <artifactId>jsch</artifactId>
+            <version>0.1.53</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.jvnet.localizer</groupId>
+                <artifactId>maven-localizer-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <generatorClass>gov.sls.mojo.localizer.generator.SlsStatusCodesGenerator</generatorClass>
+                            <fileMask>StatusCodes.properties</fileMask>
+                            <keyPattern>(ODS)([A-Z0-9]{3})([0-9]{3})([SIWE])</keyPattern>
+                            <outputDirectory>${project.build.directory}/generated-sources/localizer</outputDirectory>
+                            <outputEncoding>UTF8</outputEncoding>
+                        </configuration>
+                    </execution>
+                </executions>
+                <dependencies>
+                    <dependency>
+                        <groupId>gov.sls.mojo.localizer</groupId>
+                        <artifactId>sls-maven-localizer-plugin-extension</artifactId>
+                        <version>0.1-SNAPSHOT</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+        </plugins>
+    </build>
+</project>

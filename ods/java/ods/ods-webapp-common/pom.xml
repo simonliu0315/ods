@@ -1,0 +1,123 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>gov.sls.ods</groupId>
+        <artifactId>ods</artifactId>
+        <version>1.0.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>ods-webapp-common</artifactId>
+    <packaging>jar</packaging>
+
+    <name>ODS :: Web Common Application</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>gov.sls.ods</groupId>
+            <artifactId>ods-service</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>gov.sls.sub.commons</groupId>
+            <artifactId>sls-sub-commons-web</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>gov.sls.sub.commons</groupId>
+            <artifactId>sls-sub-commons-webui</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>gov.sls.sub.commons</groupId>
+            <artifactId>sls-sub-commons-test</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <configuration>
+                    <sort>true</sort>
+                    <outputFile>${project.build.outputDirectory}/dependency-list</outputFile>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jvnet.localizer</groupId>
+                <artifactId>maven-localizer-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                            <fileMask>Messages.properties</fileMask>
+                            <outputDirectory>${project.build.directory}/generated-sources/localizer</outputDirectory>
+                            <outputEncoding>UTF-8</outputEncoding>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- Optimizing CSS & JavaScript files -->
+            <plugin>
+                <groupId>ro.isdc.wro4j</groupId>
+                <artifactId>wro4j-maven-plugin</artifactId>
+                <version>1.7.5</version>
+                <executions>
+                    <execution>
+                        <id>styles</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <targetGroups>ods-theme,reclineCSS,pdfCSS,paginateCSS,odsCommonBCSS,odsCommonMCSS,odsCommonSCSS,odsOds303eCSS</targetGroups>
+                            <extraConfigFile>${basedir}/src/main/resources/META-INF/wro-styles.properties</extraConfigFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>script</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <targetGroups>reclineJS,pdfJS,paginateJS,odsOds303eJS</targetGroups>
+                            <extraConfigFile>${basedir}/src/main/resources/META-INF/wro-scripts-thirdparty.properties</extraConfigFile>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <cssDestinationFolder>${project.build.directory}/classes/META-INF/resources/styles/bundled/</cssDestinationFolder>
+                    <jsDestinationFolder>${project.build.directory}/classes/META-INF/resources/scripts/bundled/</jsDestinationFolder>
+                    <minimize>true</minimize>
+                    <ignoreMissingResources>false</ignoreMissingResources>
+                    <wroFile>${basedir}/src/main/resources/META-INF/ods_wro.xml</wroFile>
+                    <wroManagerFactory>ro.isdc.wro.maven.plugin.manager.factory.ConfigurableWroManagerFactory</wroManagerFactory>
+                    <groupNameMappingFile>${project.build.directory}/wro4j-groupNameMappingFile.properties</groupNameMappingFile>
+                </configuration>
+            </plugin>
+            <!-- plugin> <groupId>gov.sls</groupId> <artifactId>gentest-maven-plugin</artifactId> <version>0.0.1-SNAPSHOT</version> 
+                <executions> <execution> <goals> <goal>generate</goal> </goals> </execution> </executions> <configuration> 
+                <extendBaseTests>true</extendBaseTests> <generatePackages> <param>gov.sls.ods.common.web.config</param> 
+                <param>gov.sls.ods.common.web.controller</param> <param>gov.sls.ods.common.web.dto</param> <param>gov.sls.ods.common.web.rest</param> 
+                </generatePackages> </configuration> </plugin -->
+            <!-- plugin> <groupId>gov.sls</groupId> <artifactId>parsecode-maven-plugin</artifactId> <version>0.0.1-SNAPSHOT</version> 
+                <executions> <execution> <goals> <goal>parse</goal> </goals> </execution> </executions> <configuration> 
+                <packagePrefixes> <param>gov.sls.entity.ods</param> <param>gov.sls.ods.config</param> <param>gov.sls.ods.dto</param> 
+                <param>gov.sls.ods.service</param> <param>gov.sls.ods.repository</param> </packagePrefixes> <rootPackages> 
+                <param>gov.sls.ods.common.web.rest</param> </rootPackages> </configuration> </plugin -->
+        </plugins>
+    </build>
+
+
+</project>

@@ -1,0 +1,26 @@
+{
+"menu": 
+[
+{ "nodeId":1 , "displayName": "ROOTNODE", "functionId":"", "target":"", "nodeType":"ROOT", "parentNodeId":"" },
+{ "nodeId":2 , "displayName": "連結", "functionId":"", "target":"", "nodeType":"LINK", "parentNodeId":"1" },
+{ "nodeId":3 , "displayName": "隨選式服務系統", "functionId":"", "target":"", "nodeType":"LINK", "parentNodeId":"1" },
+{ "nodeId":4 , "displayName": "承辦人作業", "functionId":"", "target":"", "nodeType":"LINK", "parentNodeId":"1" },
+{ "nodeId":5 , "displayName": "基本編排", "functionId":"SLS001E", "target":"../SLS001E/", "nodeType":"LINK", "parentNodeId":"3" },
+{ "nodeId":6 , "displayName": "(分隔線)", "functionId":"", "target":"", "nodeType":"SEPERATOR", "parentNodeId":"3" },
+{ "nodeId":7 , "displayName": "基本 CRUD", "functionId":"SLS002E", "target":"../SLS002E/", "nodeType":"LINK", "parentNodeId":"3" },
+{ "nodeId":8 , "displayName": "(分隔線)", "functionId":"", "target":"", "nodeType":"SEPERATOR", "parentNodeId":"3" },
+{ "nodeId":9 , "displayName": "基本 CRUD", "functionId":"SLS002E", "target":"../SLS002E/", "nodeType":"LINK", "parentNodeId":"3" },
+{ "nodeId":10 , "displayName": "(分隔線)", "functionId":"", "target":"", "nodeType":"SEPERATOR", "parentNodeId":"3" },
+{ "nodeId":11 , "displayName": "素材與案例管理", "functionId":"ODS701E", "target":"../ODS701E/", "nodeType":"LINK", "parentNodeId":"3" },
+{ "nodeId":12 , "displayName": "(分隔線)", "functionId":"", "target":"", "nodeType":"SEPERATOR", "parentNodeId":"3" },
+{ "nodeId":13 , "displayName": "分類管理", "functionId":"ODS702E", "target":"../ODS702E/", "nodeType":"LINK", "parentNodeId":"3" },
+{ "nodeId":14 , "displayName": "(分隔線)", "functionId":"", "target":"", "nodeType":"SEPERATOR", "parentNodeId":"3" },
+{ "nodeId":15 , "displayName": "主題管理", "functionId":"ODS703E", "target":"../ODS703E/", "nodeType":"LINK", "parentNodeId":"3" },
+{ "nodeId":16 , "displayName": "(分隔線)", "functionId":"", "target":"", "nodeType":"SEPERATOR", "parentNodeId":"3" },
+{ "nodeId":17 , "displayName": "主題群組管理", "functionId":"ODS704E", "target":"../ODS704E/ods704e_02.html", "nodeType":"LINK", "parentNodeId":"3" },
+{ "nodeId":18 , "displayName": "(分隔線)", "functionId":"", "target":"", "nodeType":"SEPERATOR", "parentNodeId":"3" },
+{ "nodeId":19 , "displayName": "範本管理", "functionId":"ODS705E", "target":"../ODS705E/", "nodeType":"LINK", "parentNodeId":"3" },
+{ "nodeId":22 , "displayName": "(分隔線)", "functionId":"", "target":"", "nodeType":"SEPERATOR", "parentNodeId":"3" },
+{ "nodeId":23 , "displayName": "主題流量及訂閱統計", "functionId":"ODS707E", "target":"../ODS707E/", "nodeType":"LINK", "parentNodeId":"3" }
+]
+}

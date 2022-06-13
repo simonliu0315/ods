@@ -1,0 +1,101 @@
+.forIe8 {
+  width:1006px \9;
+}
+
+.panel-title {
+height: 34px;
+line-height: 30px;
+background: rgb(224,224,224);
+background: -moz-linear-gradient(top, rgba(251,251,251,1) 20%, rgba(196,196,196,1) 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(20%,rgba(251,251,251,1)), color-stop(100%,rgba(196,196,196,1)));
+background: -webkit-linear-gradient(top, rgba(251,251,251,1) 20%,rgba(196,196,196,1) 100%);
+background: -o-linear-gradient(top, rgba(251,251,251,1) 20%,rgba(196,196,196,1) 100%);
+background: -ms-linear-gradient(top, rgba(251,251,251,1) 20%,rgba(196,196,196,1) 100%);
+background: linear-gradient(to bottom, rgba(251,251,251,1) 20%,rgba(196,196,196,1) 100%);
+-pie-background: linear-gradient(top, rgba(251,251,251,1) 20%, rgba(196,196,196,1) 100%);
+border-radius: 12px 12px 0px 0px;
+}
+
+.title {
+/* box-shadow: 5px 0px 3px rgb(180,180,180); */
+display: block;
+float: left;
+/* width: 35%; */
+height: 34px;
+margin: 0px 6px 0px 0px;
+text-align: center;
+text-decoration: none;
+color: #FFFFFF;
+font-size: 0.9em;
+/* font-weight: bold; */
+line-height: 34px;
+overflow-y: hidden;
+cursor: pointer;
+background-color: #B2B2B2;
+border-radius: 12px 12px 0px 0px;
+padding-left: 10px;
+padding-right: 5px;
+
+background: rgb(1,166,245);
+background: -moz-linear-gradient(top, rgba(196,4,2,) 0%, rgba(2,52,197,1) 100%);
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(1,166,245,1)), color-stop(100%,rgba(2,52,197,1)));
+background: -webkit-linear-gradient(top, rgba(1,166,245,1) 0%,rgba(2,52,197,1) 100%);
+background: -o-linear-gradient(top, rgba(1,166,245,1) 0%,rgba(2,52,197,1) 100%);
+background: -ms-linear-gradient(top, rgba(1,166,245,1) 0%,rgba(2,52,197,1) 100%);
+background: linear-gradient(to bottom, rgba(1,166,245,1) 0%,rgba(2,52,197,1) 100%);
+-pie-background: linear-gradient(top, rgba(1,166,245,1) 0%, rgba(2,52,197,1) 100%);
+}
+
+.css_table {  
+  display:table;
+  width:98%;
+  max-width:98%;
+  border-collapse: separate;
+  border-spacing: 2px;
+  padding-left: 11px;
+  text-align: left;
+}
+.css_tr {
+  display:table-row;
+}
+.css_td {
+  display:table-cell;
+  padding: 1px;
+}
+.css_th {
+  display:table-cell;
+  padding: 1px;
+  font-weight: bold;
+}
+
+.css_table_dataset {  
+  display:table;
+  width:100%;
+  max-width:100%;
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+.css_td_dataset {
+  display:table-cell;
+  text-align: center;
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+.css_th_dataset {
+  display: table-cell;
+  font-weight: bold;
+  text-align: center;
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+
+.css_table_dataset2 {  
+  display:table;
+  width:100%;
+  max-width:100%;
+}
+.css_th_dataset2 {
+  display: table-cell;
+  font-weight: bold;
+  text-align: left;
+}
