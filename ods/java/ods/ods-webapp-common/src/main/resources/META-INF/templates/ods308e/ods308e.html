@@ -7,17 +7,21 @@
   <!--  >meta th:substituteby="fragments/head_meta :: meta"></meta-->
   <meta th:substituteby="fragments/external_meta :: meta"></meta>
   <link rel="stylesheet" href="/ods-main/styles/ods308e.css" />
+  
   <link rel="shortcut icon" th:href="@{/images/favicon.ico}">
   <link rel="stylesheet" type="text/css" wro4j:style="reclineCSS" />
   <link rel="stylesheet" type="text/css" wro4j:style="paginateCSS" />  
-    
+  <link rel="stylesheet" type="text/css" href="/ods-main/scripts/preview/vendor/bootstrap/5.0.2/css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="/ods-main/scripts/preview/vendor/bootstrap/5.0.2/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="/ods-main/styles/bootstrap_pre.css" />
+
   <meta charset="utf-8" />
   <meta name="generator" content="cht opendata 1.0" />
 
 </head>
 
 <body th:attr="data-site-root=${PreloadDto.siteUrl}, data-locale-root=${PreloadDto.siteUrl}" >
-  <div class="pagination" class="alert alert-info" style="width:1010px; max-width:100%; margin-right: auto; margin-left: auto;">
+  <div class="pagination" class="alert alert-info" style="width:1060px; max-width:100%; margin-right: auto; margin-left: auto;">
       <span th:text="${PreloadDto.name}" style="font-size: 36px; font-family: '微軟正黑體';"></span><br>
       <span th:utext="${PreloadDto.description}" style="font-size: 20px; font-family: '微軟正黑體';"></span>
       <div id="pagging">                   
@@ -50,6 +54,9 @@
   <script>document.getElementsByTagName('html')[0].className += ' js';</script>
   <script wro4j:script="reclineJS"></script>  
   <script wro4j:script="paginateJS"></script>  
+  
+  <script src="/ods-main/scripts/preview/vendor/bootstrap/5.0.2/js/bootstrap.js"></script>  
+  <script src="/ods-main/scripts/preview/vendor/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
   
   <script th:inline="javascript">
   $(function() {

@@ -84,7 +84,9 @@
         <js>classpath:META-INF/resources/scripts/preview/vendor/underscore/1.4.2/underscore.js</js>
         <js>classpath:META-INF/resources/scripts/preview/vendor/backbone/0.9.2/backbone.js</js>
         <js>classpath:META-INF/resources/scripts/preview/vendor/mustache/0.5.0-dev/mustache.js</js>
-        <js>classpath:META-INF/resources/scripts/preview/vendor/bootstrap/2.0.2/bootstrap.js</js>
+        <!--<js>classpath:META-INF/resources/scripts/preview/vendor/bootstrap/2.0.2/bootstrap.js</js>-->
+		<!--<js>classpath:META-INF/resources/scripts/preview/vendor/bootstrap/5.0.2/js/bootstrap.js</js>-->
+		<!--<js>classpath:META-INF/resources/scripts/preview/vendor/bootstrap/5.0.2/js/bootstrap.bundle.min.js</js>-->
         <js>classpath:META-INF/resources/scripts/preview/vendor/json/json2.js</js>
         <js>classpath:META-INF/resources/scripts/preview/vendor/flot/excanvas.js</js>
         <js>classpath:META-INF/resources/scripts/preview/vendor/flot/jquery.flot.js</js>
@@ -108,8 +110,9 @@
 
     </group>
     <group name="reclineCSS">
-        <css>classpath:META-INF/resources/scripts/preview/vendor/bootstrap/2.0.2/css/bootstrap.css
-        </css>
+	
+        <!--<css>classpath:META-INF/resources/scripts/preview/vendor/bootstrap/2.0.2/css/bootstrap.css
+        </css>-->
         <css>classpath:META-INF/resources/scripts/preview/vendor/leaflet/0.4.4/leaflet.css</css>
         <!-- >css>classpath:META-INF/resources/scripts/preview/vendor/leaflet/0.4.4/leaflet.ie.css</css -->
         <css>classpath:META-INF/resources/scripts/preview/vendor/leaflet.markercluster/MarkerCluster.css
@@ -121,8 +124,9 @@
         </css>
         <css>classpath:META-INF/resources/scripts/preview/vendor/recline/recline.css</css>
         <css>classpath:META-INF/resources/styles/preview/recline.css</css>
+		
     </group>
-    
+   
     <group name="plotJS">
         
         <js>classpath:META-INF/resources/scripts/plot/underscore.js</js>
